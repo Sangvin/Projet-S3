@@ -17,11 +17,11 @@ import frame.Test;
 
 /**
  * @author Alex
- * Cette classe charge et stock les données du objet à afficher
+ * Cette classe charge et stock les donnï¿½es du objet ï¿½ afficher
  */
 public class Objet3D {
 	/**
-	 * Fichier à charger
+	 * Fichier ï¿½ charger
 	 */
 	private File fichier;
 	/**
@@ -37,12 +37,12 @@ public class Objet3D {
 	 */
 	private List<Face> faces;
 	/**
-	 * Origine du repère pour l'affichage de l'objet
+	 * Origine du repï¿½re pour l'affichage de l'objet
 	 */
 	private Point origine;
 	
 	/**
-	 * Constructeur qui stock les différentes données de l'objet
+	 * Constructeur qui stock les diffï¿½rentes donnï¿½es de l'objet
 	 * @param accesFichier
 	 */
 	@SuppressWarnings("resource")
@@ -118,7 +118,7 @@ public class Objet3D {
 	}
 	
 	/**
-	 * retourne le Fichier chargé
+	 * retourne le Fichier chargï¿½
 	 * @return
 	 */
 	public File getFichier(){
@@ -159,7 +159,7 @@ public class Objet3D {
 	
 	/**
 	 * ajoute le point d'indice p avec le point point
-	 * retourne false si l'indice p existe déjà existe déjà
+	 * retourne false si l'indice p existe dï¿½jï¿½ existe dï¿½jï¿½
 	 * @param p
 	 * @param point
 	 * @return
@@ -211,7 +211,7 @@ public class Objet3D {
 	
 	
 	/**
-	 * permet de faire tournée la figure sur l'axe z
+	 * permet de faire tournï¿½e la figure sur l'axe z
 	 * @param rad
 	 */
 	public void rotationZ(double rad){
@@ -222,7 +222,7 @@ public class Objet3D {
 	}
 	
 	public static void main(String[] args){
-		Objet3D o = new Objet3D("horse.gts");
+		Objet3D o = new Objet3D("head.gts");
 		Test t = new Test(o);
 		while(true){
 			try {
