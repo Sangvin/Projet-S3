@@ -1,0 +1,18 @@
+#Fait
+Ouverture du fichier dans une classe Objet3D
+Lecture d'un fichier et sauvegarde des données
+les Classes point/segment/face
+tri des faces selon le baricentre / compareTo entre deux face
+apperçu 3d fonctionnel
+zoom à la roullette
+position manuelle de l'image avec les flèches du clavier
+rotation sur axe : X Y Z
+zoom auto
+lumière
+
+#En Cours
+calcul de l'origine
+
+#A Faire
+vérif de l'intégralité du fichier }retourne rien mais fait un throw exception
+					si il y a un problème dans le fichier
