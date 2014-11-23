@@ -1,6 +1,5 @@
 package frame;
 
-import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.Graphics;
 import java.awt.Polygon;
@@ -33,14 +32,16 @@ public class Test extends JFrame{
 	/**
 	 * zoom de la figure
 	 */
-	private int zoom;
-	private Point updateOrigine;
+	private double zoom;
 	
+	/**
+	 * construit la frame et défini les actions
+	 * @param o
+	 */
 	public Test(Objet3D o){
 		this.object = o;
 		this.screen = Toolkit.getDefaultToolkit().getScreenSize();
-		this.zoom = 20;
-		this.updateOrigine = new Point(0,0,0);
+		this.zoom = this.object.getZoomOrigine();
 		this.setTitle("3DGenerator");
 		this.initComponents();
 		this.setAlwaysOnTop(true);
@@ -50,15 +51,18 @@ public class Test extends JFrame{
 		this.setDefaultCloseOperation(EXIT_ON_CLOSE);
 	}
 	
-	public void initComponents(){
+	/**
+	 * initialise tous les composant de la frame
+	 */
+	private void initComponents(){
 		this.addMouseWheelListener(new MouseWheelListener(){
 
 			public void mouseWheelMoved(MouseWheelEvent evt) {
 				if(evt.getWheelRotation() < 0){
-					zoom += 10;
+					zoom += zoom*0.03;
 				}
 				else{
-					zoom -= 10;
+					zoom -= zoom*0.03;
 				}
 				repaint();
 			}
@@ -66,20 +70,25 @@ public class Test extends JFrame{
 		
 		this.addKeyListener(new KeyAdapter(){
 			public void keyPressed(KeyEvent evt){
+				Point vector = object.getVector();
 				if(evt.getKeyCode() == KeyEvent.VK_RIGHT){
-					updateOrigine.x += 5;
+					vector.x += 5;
+					object.setVector(vector);
 					repaint();
 				}
 				if(evt.getKeyCode() == KeyEvent.VK_LEFT){
-					updateOrigine.x -= 5;
+					vector.x -= 5;
+					object.setVector(vector);
 					repaint();
 				}
 				if(evt.getKeyCode() == KeyEvent.VK_UP){
-					updateOrigine.y -= 5;
+					vector.y -= 5;
+					object.setVector(vector);
 					repaint();
 				}
 				if(evt.getKeyCode() == KeyEvent.VK_DOWN){
-					updateOrigine.y += 5;
+					vector.y += 5;
+					object.setVector(vector);
 					repaint();
 				}
 				
@@ -87,9 +96,11 @@ public class Test extends JFrame{
 		});
 	}
 	
+	/* (non-Javadoc)
+	 * @see java.awt.Window#paint(java.awt.Graphics)
+	 */
 	public void paint(Graphics g){
 		g.clearRect(0, 0, screen.width, screen.height);
-		this.object.calculOrigine(zoom,updateOrigine);
 		Iterator<Face> it = object.getFaces().iterator();
 		Face tmp;
 		int[] xpoints;
@@ -97,13 +108,13 @@ public class Test extends JFrame{
 		Polygon p;
 		while(it.hasNext()){
 			tmp = it.next();
-			xpoints = tmp.getAllPosX(object.getOrigine(),zoom);
-			ypoints = tmp.getAllPosY(object.getOrigine(),zoom);
+			xpoints = tmp.getAllPosX(zoom,object.getVector());
+			ypoints = tmp.getAllPosY(zoom,object.getVector());
 			p = new Polygon(xpoints,ypoints,3);
-			//g.setColor(Color.YELLOW);
-			//g.fillPolygon(p);
-			g.setColor(Color.BLACK);
-			g.drawPolygon(p);
+			g.setColor(tmp.getColor());
+			g.fillPolygon(p);
+//			g.setColor(Color.BLACK);
+//			g.drawPolygon(p);
 		}
 	}
 }

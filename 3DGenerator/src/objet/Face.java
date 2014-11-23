@@ -1,8 +1,11 @@
 package objet;
 
+import java.awt.Color;
 import java.util.HashSet;
 import java.util.Iterator;
 import java.util.Set;
+
+import Autre.Outils;
 
 /**
  * @author Alex
@@ -29,7 +32,11 @@ public class Face implements Comparable<Face> {
 	 * identifiant de la face
 	 */
 	public int id;
-	
+	/**
+	 * couleur de la face
+	 */
+	private Color color;
+
 	/**
 	 * Constructeur qui prend trois points en paramètres et calcule le baricentre
 	 * @param a
@@ -43,7 +50,7 @@ public class Face implements Comparable<Face> {
 		this.id = id;
 		this.baricentre = null;
 	}
-	
+
 	/**
 	 * Constructeur qui prend trois segments en paramètres et calcule le baricentre
 	 * @param d
@@ -62,7 +69,31 @@ public class Face implements Comparable<Face> {
 		this.id = id;
 		this.baricentre = null;
 	}
-	
+
+	/**
+	 * retourne la couleur de la face
+	 * @return
+	 */
+	public Color getColor(){
+		return this.color;
+	}
+
+	/**
+	 * calcule la couleur de l'image en prenant compte la lumière
+	 * @param col
+	 */
+	public void setColor(Color col){
+		Point ab = new Point(b.x-a.x,b.y-a.y,b.z-a.z);
+		Point ac = new Point(c.x-a.x,c.y-a.y,c.z-a.z);
+		Point normal = new Point((ab.y*ac.z-ab.z*ac.y),-(ab.x*ac.z-ab.z*ac.x),(ab.x*ac.y-ab.y*ac.x));
+		Point lumiere = new Point(0,0,-1);
+		double percent = Outils.scalaire(normal, lumiere);
+		percent = percent / (Outils.norme(normal)*Outils.norme(lumiere));
+		float[] hsbCol = Color.RGBtoHSB(col.getRed(), col.getGreen(), col.getBlue(), null);
+		hsbCol[2] = (float) percent;
+		this.color = Color.getHSBColor(hsbCol[0], hsbCol[1], hsbCol[2]);
+	}
+
 	/**
 	 * retourne un tableau contenant les coordonnées de tous les points en x
 	 * @return
@@ -78,7 +109,7 @@ public class Face implements Comparable<Face> {
 	public double[] getAllY(){
 		return new double[]{a.y,b.y,b.y};
 	}
-	
+
 	/**
 	 * retourne un tableau contenant les coordonnées de tous les points en z
 	 * @return
@@ -86,40 +117,43 @@ public class Face implements Comparable<Face> {
 	public double[] getAllZ(){
 		return new double[]{a.z,b.z,b.z};
 	}
-	
+
 	/**
 	 * retourne un tableau contenant les coordonnées de tous les points en x
 	 * chaque coordonée est multiplié par zoom puis cast en entier pour un affichage graphique
+	 * @param vector 
 	 * @return
 	 */
-	public int[] getAllPosX(Point origine,int zoom){
-		int o_X = (int)origine.x;
-		int[] tmp = new int[]{(int)(a.x*zoom)+o_X,(int)(b.x*zoom)+o_X,(int)(c.x*zoom)+o_X};
+	public int[] getAllPosX(double zoom, Point vector){
+		double v_X = vector.x;
+		int[] tmp = new int[]{(int)((a.x*zoom)+v_X),(int)((b.x*zoom)+v_X),(int)((c.x*zoom)+v_X)};
 		return tmp;
 	}
 
 	/**
 	 * retourne un tableau contenant les coordonnées de tous les points en y
 	 * chaque coordonée est multiplié par un zoom puis cast en entier pour un affichage graphique
+	 * @param vector
 	 * @return
 	 */
-	public int[] getAllPosY(Point origine, int zoom){
-		int o_Y = (int)origine.y;
-		int[] tmp = new int[]{(int)(a.y*zoom)+o_Y,(int)(b.y*zoom)+o_Y,(int)(c.y*zoom)+o_Y};
+	public int[] getAllPosY(double zoom, Point vector){
+		double v_Y = vector.y;
+		int[] tmp = new int[]{(int)((a.y*zoom)+v_Y),(int)((b.y*zoom)+v_Y),(int)((c.y*zoom)+v_Y)};
 		return tmp;
 	}
-	
+
 	/**
 	 * retourne un tableau contenant les coordonnées de tous les points en z
 	 * chaque coordonée est multiplié par zoom puit cast en entier pour un affichage graphique
+	 * @param vector
 	 * @return
 	 */
-	public int[] getAllPosZ(Point origine, int zoom){
-		int o_Z = (int)origine.z;
-		int[] tmp = new int[]{(int)(a.z*zoom)+o_Z,(int)(b.z*zoom)+o_Z,(int)(c.z*zoom)+o_Z};
+	public int[] getAllPosZ(double zoom, Point vector){
+		double v_Z = vector.z;
+		int[] tmp = new int[]{(int)((a.z*zoom)+v_Z),(int)((b.z*zoom)+v_Z),(int)((c.z*zoom)+v_Z)};
 		return tmp;
 	}
-	
+
 	/* (non-Javadoc)
 	 * @see java.lang.Object#toString()
 	 */
@@ -128,7 +162,7 @@ public class Face implements Comparable<Face> {
 		return "Face [a=" + a + ", b=" + b + ", c=" + c + ", baricentre="
 				+ baricentre + ", id=" + id + "]";
 	}
-	
+
 	/* (non-Javadoc)
 	 * @see java.lang.Comparable#compareTo(java.lang.Object)
 	 */

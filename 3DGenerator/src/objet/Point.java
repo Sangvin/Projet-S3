@@ -26,17 +26,17 @@ public class Point {
 	public double projeteZ;
 	
 	/**
-	 * constructeur avec 3 entiers contenu dans un tableau de string
+	 * constructeur avec 3 doubles/entiers contenu dans un tableau de string
 	 * @param coord
 	 */
 	public Point(String[] coord){
 		this.x = Double.parseDouble(coord[0]);
-		this.y = (Double.parseDouble(coord[1]))*-1;
+		this.y = (Double.parseDouble(coord[1]));
 		this.z = Double.parseDouble(coord[2]);
 	}
 	
 	/**
-	 * constructeur par 3 entiers
+	 * constructeur par 3 doubles
 	 * @param d
 	 * @param e
 	 * @param f
@@ -47,6 +47,12 @@ public class Point {
 		this.z = w;
 	}
 	
+	/**
+	 * constructeur par 3 entiers
+	 * @param u
+	 * @param v
+	 * @param w
+	 */
 	public Point(int u, int v, int w){
 		this.x = u;
 		this.y = v;
@@ -126,5 +132,25 @@ public class Point {
 		this.x = point[0];
 		this.y = point[1];
 		this.z = point[2];
+	}
+
+	/**
+	 * permet de déplacer un point
+	 * @param vector
+	 */
+	public void translate(Point vector) {
+		this.x += vector.x;
+		this.y += vector.y;
+		this.z += vector.z;
+	}
+	
+	/**
+	 * permet de zoomer
+	 * @param zoom
+	 */
+	public void zoom(double zoom){
+		this.x *= zoom;
+		this.y *= zoom;
+		this.z *= zoom;
 	}
 }

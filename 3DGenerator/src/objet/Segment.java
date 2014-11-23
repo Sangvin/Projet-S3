@@ -27,6 +27,10 @@ public class Segment {
 		this.b = b;
 	}
 	
+	/**
+	 * récupère les deux points d'un segment sous forme de liste
+	 * @return
+	 */
 	public List<Point> getPoints(){
 		List<Point> tmp = new ArrayList<Point>();
 		tmp.add(a);

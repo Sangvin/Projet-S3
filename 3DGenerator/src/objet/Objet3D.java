@@ -3,6 +3,7 @@
  */
 package objet;
 
+import java.awt.Color;
 import java.awt.Toolkit;
 import java.io.BufferedReader;
 import java.io.File;
@@ -17,11 +18,11 @@ import frame.Test;
 
 /**
  * @author Alex
- * Cette classe charge et stock les donnï¿½es du objet ï¿½ afficher
+ * Cette classe charge et stock les données du objet à afficher
  */
 public class Objet3D {
 	/**
-	 * Fichier ï¿½ charger
+	 * Fichier à charger
 	 */
 	private File fichier;
 	/**
@@ -37,94 +38,135 @@ public class Objet3D {
 	 */
 	private List<Face> faces;
 	/**
-	 * Origine du repï¿½re pour l'affichage de l'objet
+	 * vecteur qui ramène la figure au centre de l'écran
 	 */
-	private Point origine;
-	
+	private Point vector;
 	/**
-	 * Constructeur qui stock les diffï¿½rentes donnï¿½es de l'objet
-	 * @param accesFichier
+	 * Zoom d'origine de la figure calculé automatiquement
 	 */
-	@SuppressWarnings("resource")
-	public Objet3D(String accesFichier){
-		points = new HashMap<Integer,Point>();
-		segments = new HashMap<Integer,Segment>();
-		faces = new ArrayList<Face>();
-		
+	private double zoomOrigine;
+	/**
+	 * Couleur d'origine de l'objet
+	 */
+	private Color color;
+
+	/**
+	 * Constructeur qui stock les différentes données de l'objet
+	 * @param accesFichier
+	 * @param c 
+	 */
+	public Objet3D(String accesFichier, Color c){
 		try {
-			fichier = new File(accesFichier);
+			this.fichier = new File(accesFichier);
 			BufferedReader br = new BufferedReader(new FileReader(fichier));
-			String tmp = br.readLine();
-			String[] tmpSplit;
-			String[] infoObjet = tmp.split(" ");
-			for(int i = 0; i < infoObjet.length; i++){
-				for(int j = 1; j<=Integer.parseInt(infoObjet[i]) ; j++){
-					tmp = br.readLine();
-					tmpSplit = tmp.split(" ");
-					if(i == 0)
-						try{
-							points.put(j, new Point(tmp.split(" ")));
-						}catch(Exception e){
-							e.printStackTrace();
-						}
-					if(i == 1)
-						try{
-							segments.put(j, new Segment(points.get(Integer.parseInt(tmpSplit[0])),points.get(Integer.parseInt(tmpSplit[1]))));
-						}catch(Exception e){
-							e.printStackTrace();
-						}
-					if(i == 2)
-						try{
-							faces.add(new Face(segments.get(Integer.parseInt(tmpSplit[0])),segments.get(Integer.parseInt(tmpSplit[1])),segments.get(Integer.parseInt(tmpSplit[2])),j));
-						}catch(Exception e){
-							e.printStackTrace();
-						}
-				}
-			}
-			faces = Outils.peintre(faces);
+			initData(br);
+			this.color = c;
+			this.setColor(this.color);
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
 	}
-	
-	public void calculOrigine(int zoom, Point update){
-		double yMax=0;
-		double yMin=0;
-		Point tmp;
-		for(Integer i : points.keySet()){
-			tmp = points.get(i);
-			if(zoom > 0){
-				if(tmp.y * zoom > yMax)
-					yMax = tmp.y * zoom;
-				if(tmp.y * zoom < yMin)
-					yMin = tmp.y * zoom;
-			}
-			else{
-				if(tmp.y * -zoom > yMax)
-					yMax = tmp.y * zoom;
-				if(tmp.y * -zoom < yMin)
-					yMin = tmp.y * zoom;
+
+	/**
+	 * initialise les données
+	 * @param br
+	 * @throws Exception
+	 */
+	private void initData(BufferedReader br) throws Exception{
+		points = new HashMap<Integer,Point>();
+		segments = new HashMap<Integer,Segment>();
+		faces = new ArrayList<Face>();
+
+		String tmp = br.readLine();
+		String[] tmpSplit;
+		String[] infoObjet = tmp.split(" ");
+		for(int i = 0; i < infoObjet.length; i++){
+			for(int j = 1; j<=Integer.parseInt(infoObjet[i]) ; j++){
+				tmp = br.readLine();
+				tmpSplit = tmp.split(" ");
+				if(i == 0)
+					try{
+						points.put(j, new Point(tmp.split(" ")));
+					}catch(Exception e){
+						e.printStackTrace();
+					}
+				if(i == 1)
+					try{
+						segments.put(j, new Segment(points.get(Integer.parseInt(tmpSplit[0])),points.get(Integer.parseInt(tmpSplit[1]))));
+					}catch(Exception e){
+						e.printStackTrace();
+					}
+				if(i == 2)
+					try{
+						faces.add(new Face(segments.get(Integer.parseInt(tmpSplit[0])),segments.get(Integer.parseInt(tmpSplit[1])),segments.get(Integer.parseInt(tmpSplit[2])),j));
+					}catch(Exception e){
+						e.printStackTrace();
+					}
 			}
 		}
-		double screenX = Toolkit.getDefaultToolkit().getScreenSize().getWidth()/2;
-		double screenY = Toolkit.getDefaultToolkit().getScreenSize().getHeight();
-		screenY = screenY/2 - yMax-yMin/2;
-		this.setOrigine(new Point(screenX,screenY,0));
-		this.origine.add(update);
+		faces = Outils.peintre(faces);
+		this.zoomAuto();
+		this.calculOrigine(zoomOrigine);
 	}
-	
-	void verif_Integralite_Fichier(){
-		
-	}
-	
+
+
 	/**
-	 * retourne le Fichier chargï¿½
+	 * Calcule automatiquement le zoom optimal
+	 */
+	public void zoomAuto(){
+		Point temp;
+		double coord_tmp = 0;
+		for(Integer i : this.points.keySet()){
+			temp = this.points.get(i);
+			if(temp.x < coord_tmp)
+				coord_tmp = temp.z;
+			if(temp.y < coord_tmp)
+				coord_tmp = temp.y;
+			if(temp.z < coord_tmp)
+				coord_tmp = temp.z;
+		}
+		this.zoomOrigine = 100 / coord_tmp;
+	}
+
+	/**
+	 * permet de calculer la translation a effectuer sur chaques points de la figure pour
+	 * centrer cette dernière au centre de l'écran
+	 * @param zoom
+	 */
+	public void calculOrigine(double zoom){
+		Point tmp = this.points.get(1);
+		double yMax=tmp.y, yMin=tmp.y;
+		double xMax=tmp.x, xMin=tmp.x;
+		for(Integer i : this.points.keySet()){
+			tmp = this.points.get(i);
+			if(tmp.x*zoom > xMax)
+				xMax = tmp.x*zoom;
+			if(tmp.x*zoom < xMin)
+				xMin = tmp.x*zoom;
+			if(tmp.y*zoom > yMax)
+				yMax = tmp.y*zoom;
+			if(tmp.y*zoom < yMin)
+				yMin = tmp.y*zoom;
+		}
+		double screenX = Toolkit.getDefaultToolkit().getScreenSize().getWidth()/2;
+		double screenY = Toolkit.getDefaultToolkit().getScreenSize().getHeight()/2;
+		Point center = new Point(screenX,screenY,0);
+		tmp = new Point(xMax-xMin, yMax-yMin, 0);
+		this.vector = center;
+	}
+
+	void verif_Integralite_Fichier(){
+
+	}
+
+	/**
+	 * retourne le Fichier chargé
 	 * @return
 	 */
 	public File getFichier(){
 		return this.fichier;
 	}
-	
+
 	/**
 	 * retourne les points de l'objet
 	 * @return
@@ -132,7 +174,7 @@ public class Objet3D {
 	public Map<Integer, Point> getPoints(){
 		return this.points;
 	}
-	
+
 	/**
 	 * retourne les segments de l'objet
 	 * @return
@@ -140,7 +182,7 @@ public class Objet3D {
 	public Map<Integer, Segment> getSegments(){
 		return this.segments;
 	}
-	
+
 	/**
 	 * retourne les faces de l'objet
 	 * @return
@@ -148,7 +190,7 @@ public class Objet3D {
 	public List<Face> getFaces(){
 		return this.faces;
 	}
-	
+
 	/**
 	 * affecte un nouveau fichier
 	 * @param file
@@ -156,10 +198,10 @@ public class Objet3D {
 	public void setFichier(File file){
 		this.fichier = file;
 	}
-	
+
 	/**
 	 * ajoute le point d'indice p avec le point point
-	 * retourne false si l'indice p existe dï¿½jï¿½ existe dï¿½jï¿½
+	 * retourne false si l'indice p existe déjà existe déjà
 	 * @param p
 	 * @param point
 	 * @return
@@ -170,23 +212,57 @@ public class Objet3D {
 		points.put(p, point);
 		return true;
 	}
-	
+
 	/**
 	 * retourne l'origine de la figure
 	 * @return
 	 */
-	public Point getOrigine() {
-		return origine;
+	public Point getVector() {
+		return this.vector;
 	}
 
 	/**
 	 * modifie l'origine de la figure
 	 * @param origine
 	 */
-	public void setOrigine(Point origine) {
-		this.origine = origine;
+	public void setVector(Point vector) {
+		this.vector = vector;
 	}
-	
+
+	/**
+	 * retourne la couleur de l'objet
+	 * @return
+	 */
+	public Color getColor(){
+		return this.color;
+	}
+
+	/**
+	 * permet de calculer la couleur de chaques faces en prennant en compte la lumière
+	 * @param c
+	 */
+	public void setColor(Color c){
+		this.color = c;
+		for(int i = 0; i < this.faces.size(); i++)
+			this.faces.get(i).setColor(c);
+	}
+
+	/**
+	 * récupère le zoom d'origine de la figure
+	 * @return
+	 */
+	public double getZoomOrigine(){
+		return this.zoomOrigine;
+	}
+
+	/**
+	 * modifie le zoom d'origine de la figure
+	 * @param zoom
+	 */
+	public void setZoomOrigine(double zoom){
+		this.zoomOrigine = zoom;
+	}
+
 	/**
 	 * permet de faire tourner la figure sur l'axe x
 	 * @param rad
@@ -197,7 +273,7 @@ public class Objet3D {
 		}
 		faces = Outils.peintre(faces);
 	}
-	
+
 	/**
 	 * permet de faire tourner la figure sur l'axe y
 	 * @param rad
@@ -208,10 +284,10 @@ public class Objet3D {
 		}
 		faces = Outils.peintre(faces);
 	}
-	
-	
+
+
 	/**
-	 * permet de faire tournï¿½e la figure sur l'axe z
+	 * permet de faire tournée la figure sur l'axe z
 	 * @param rad
 	 */
 	public void rotationZ(double rad){
@@ -220,18 +296,23 @@ public class Objet3D {
 		}
 		faces = Outils.peintre(faces);
 	}
-	
+
 	public static void main(String[] args){
-		Objet3D o = new Objet3D("head.gts");
+		Objet3D o = new Objet3D("horse.gts",Color.GREEN);
+		o.rotationX(-Math.PI/2);
+		o.rotationY(Math.PI/2);
+		o.setColor(o.getColor());
+		@SuppressWarnings("unused")
 		Test t = new Test(o);
-		while(true){
-			try {
-				Thread.sleep(50);
-			}catch(Exception e){e.printStackTrace();}
-			o.rotationX(Math.PI/100);
-			o.rotationY(Math.PI/100);
-			//o.rotationZ(Math.PI/100);
-			t.repaint();
-		}
+//		while(true){
+//			try {
+//				Thread.sleep(50);
+//			}catch(Exception e){e.printStackTrace();}
+//			o.rotationX(Math.PI/100);
+//			o.rotationY(Math.PI/100);
+//			o.rotationZ(Math.PI/100);
+//			o.setColor(o.getColor());
+//			t.repaint();
+//		}
 	}
 }
