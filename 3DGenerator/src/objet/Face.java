@@ -124,9 +124,9 @@ public class Face implements Comparable<Face> {
 	 * @param vector 
 	 * @return
 	 */
-	public int[] getAllPosX(double zoom, Point vector){
+	public int[] getAllPosX(Point vector){
 		double v_X = vector.x;
-		int[] tmp = new int[]{(int)((a.x*zoom)+v_X),(int)((b.x*zoom)+v_X),(int)((c.x*zoom)+v_X)};
+		int[] tmp = new int[]{(int)(a.x+v_X),(int)(b.x+v_X),(int)(c.x+v_X)};
 		return tmp;
 	}
 
@@ -136,9 +136,9 @@ public class Face implements Comparable<Face> {
 	 * @param vector
 	 * @return
 	 */
-	public int[] getAllPosY(double zoom, Point vector){
+	public int[] getAllPosY(Point vector){
 		double v_Y = vector.y;
-		int[] tmp = new int[]{(int)((a.y*zoom)+v_Y),(int)((b.y*zoom)+v_Y),(int)((c.y*zoom)+v_Y)};
+		int[] tmp = new int[]{(int)(a.y+v_Y),(int)(b.y+v_Y),(int)(c.y+v_Y)};
 		return tmp;
 	}
 
@@ -148,9 +148,9 @@ public class Face implements Comparable<Face> {
 	 * @param vector
 	 * @return
 	 */
-	public int[] getAllPosZ(double zoom, Point vector){
+	public int[] getAllPosZ(Point vector){
 		double v_Z = vector.z;
-		int[] tmp = new int[]{(int)((a.z*zoom)+v_Z),(int)((b.z*zoom)+v_Z),(int)((c.z*zoom)+v_Z)};
+		int[] tmp = new int[]{(int)(a.z+v_Z),(int)(b.z+v_Z),(int)(c.z+v_Z)};
 		return tmp;
 	}
 

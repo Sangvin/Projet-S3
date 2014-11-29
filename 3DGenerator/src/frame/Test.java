@@ -6,9 +6,14 @@ import java.awt.Polygon;
 import java.awt.Toolkit;
 import java.awt.event.KeyAdapter;
 import java.awt.event.KeyEvent;
+import java.awt.event.MouseEvent;
+import java.awt.event.MouseListener;
+import java.awt.event.MouseMotionListener;
 import java.awt.event.MouseWheelEvent;
 import java.awt.event.MouseWheelListener;
+import java.util.ArrayList;
 import java.util.Iterator;
+import java.util.List;
 
 import javax.swing.JFrame;
 
@@ -30,10 +35,18 @@ public class Test extends JFrame{
 	 */
 	private Dimension screen;
 	/**
-	 * zoom de la figure
+	 * position en x de la souris après un clique
 	 */
-	private double zoom;
-	
+	private int cursorx;
+	/**
+	 * position en y de la souris après un clique
+	 */
+	private int cursory;
+	/**
+	 * pile des boutons qui sont actuellement pressés
+	 */
+	private List<Integer> button;
+
 	/**
 	 * construit la frame et défini les actions
 	 * @param o
@@ -41,7 +54,6 @@ public class Test extends JFrame{
 	public Test(Objet3D o){
 		this.object = o;
 		this.screen = Toolkit.getDefaultToolkit().getScreenSize();
-		this.zoom = this.object.getZoomOrigine();
 		this.setTitle("3DGenerator");
 		this.initComponents();
 		this.setAlwaysOnTop(true);
@@ -50,7 +62,7 @@ public class Test extends JFrame{
 		this.setVisible(true);
 		this.setDefaultCloseOperation(EXIT_ON_CLOSE);
 	}
-	
+
 	/**
 	 * initialise tous les composant de la frame
 	 */
@@ -59,15 +71,15 @@ public class Test extends JFrame{
 
 			public void mouseWheelMoved(MouseWheelEvent evt) {
 				if(evt.getWheelRotation() < 0){
-					zoom += zoom*0.03;
+					object.zoom(0.95);
 				}
 				else{
-					zoom -= zoom*0.03;
+					object.zoom(1.05);
 				}
 				repaint();
 			}
 		});
-		
+
 		this.addKeyListener(new KeyAdapter(){
 			public void keyPressed(KeyEvent evt){
 				Point vector = object.getVector();
@@ -91,11 +103,55 @@ public class Test extends JFrame{
 					object.setVector(vector);
 					repaint();
 				}
-				
+
+			}
+		});
+
+		this.button = new ArrayList<Integer>();
+		this.addMouseListener(new MouseListener(){
+			@Override
+			public void mouseClicked(MouseEvent arg0) {}
+			@Override
+			public void mouseEntered(MouseEvent arg0) {}
+			@Override
+			public void mouseExited(MouseEvent arg0) {}
+			@Override
+			
+			public void mouseReleased(MouseEvent arg0) {
+				button.remove(0);
+			}
+
+			@Override
+			public void mousePressed(MouseEvent arg0) {
+				cursorx = arg0.getY();
+				cursory = arg0.getX();
+				button.add(0,arg0.getButton());
+			}
+		});
+		this.addMouseMotionListener(new MouseMotionListener(){
+			@Override
+			public void mouseMoved(MouseEvent e) {}
+
+			@Override
+			public void mouseDragged(MouseEvent e) {
+				int movex = (cursorx - e.getY());
+				int movey = -(cursory - e.getX());
+				if(button.size() != 0){
+					if(button.get(0) == MouseEvent.BUTTON1){
+						object.rotationX((movex*(Math.PI/6))/1000);
+						object.rotationY((movey*(Math.PI/6))/1000);
+						object.setColor(object.getColor());
+						repaint();
+					}
+					if(button.get(0) == MouseEvent.BUTTON3){
+						object.rotationZ((movex*(Math.PI/3))/1000);
+						repaint();
+					}
+				}
 			}
 		});
 	}
-	
+
 	/* (non-Javadoc)
 	 * @see java.awt.Window#paint(java.awt.Graphics)
 	 */
@@ -108,13 +164,13 @@ public class Test extends JFrame{
 		Polygon p;
 		while(it.hasNext()){
 			tmp = it.next();
-			xpoints = tmp.getAllPosX(zoom,object.getVector());
-			ypoints = tmp.getAllPosY(zoom,object.getVector());
+			xpoints = tmp.getAllPosX(object.getVector());
+			ypoints = tmp.getAllPosY(object.getVector());
 			p = new Polygon(xpoints,ypoints,3);
 			g.setColor(tmp.getColor());
 			g.fillPolygon(p);
-//			g.setColor(Color.BLACK);
-//			g.drawPolygon(p);
+			//			g.setColor(Color.BLACK);
+			//			g.drawPolygon(p);
 		}
 	}
 }

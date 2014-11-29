@@ -9,9 +9,9 @@ position manuelle de l'image avec les flèches du clavier
 rotation sur axe : X Y Z
 zoom auto
 lumière
+rotation de la figure par la souris (clique droit rotation x et y clique gauche rotation z)
 
 #En Cours
-calcul de l'origine
 
 #A Faire
 vérif de l'intégralité du fichier }retourne rien mais fait un throw exception

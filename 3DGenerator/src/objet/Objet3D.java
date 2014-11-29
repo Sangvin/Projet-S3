@@ -106,7 +106,9 @@ public class Objet3D {
 		}
 		faces = Outils.peintre(faces);
 		this.zoomAuto();
-		this.calculOrigine(zoomOrigine);
+		double screenX = Toolkit.getDefaultToolkit().getScreenSize().getWidth()/2;
+		double screenY = Toolkit.getDefaultToolkit().getScreenSize().getHeight()/2;
+		this.vector = new Point(screenX,screenY,0);
 	}
 
 
@@ -126,33 +128,7 @@ public class Objet3D {
 				coord_tmp = temp.z;
 		}
 		this.zoomOrigine = 100 / coord_tmp;
-	}
-
-	/**
-	 * permet de calculer la translation a effectuer sur chaques points de la figure pour
-	 * centrer cette dernière au centre de l'écran
-	 * @param zoom
-	 */
-	public void calculOrigine(double zoom){
-		Point tmp = this.points.get(1);
-		double yMax=tmp.y, yMin=tmp.y;
-		double xMax=tmp.x, xMin=tmp.x;
-		for(Integer i : this.points.keySet()){
-			tmp = this.points.get(i);
-			if(tmp.x*zoom > xMax)
-				xMax = tmp.x*zoom;
-			if(tmp.x*zoom < xMin)
-				xMin = tmp.x*zoom;
-			if(tmp.y*zoom > yMax)
-				yMax = tmp.y*zoom;
-			if(tmp.y*zoom < yMin)
-				yMin = tmp.y*zoom;
-		}
-		double screenX = Toolkit.getDefaultToolkit().getScreenSize().getWidth()/2;
-		double screenY = Toolkit.getDefaultToolkit().getScreenSize().getHeight()/2;
-		Point center = new Point(screenX,screenY,0);
-		tmp = new Point(xMax-xMin, yMax-yMin, 0);
-		this.vector = center;
+		this.zoom(this.zoomOrigine);
 	}
 
 	void verif_Integralite_Fichier(){
@@ -285,7 +261,6 @@ public class Objet3D {
 		faces = Outils.peintre(faces);
 	}
 
-
 	/**
 	 * permet de faire tournée la figure sur l'axe z
 	 * @param rad
@@ -296,11 +271,20 @@ public class Objet3D {
 		}
 		faces = Outils.peintre(faces);
 	}
+	
+	/**
+	 * permet de zoomer/dézoomer une figure
+	 * @param d
+	 */
+	public void zoom(double d) {
+		for(Integer i : this.points.keySet())
+			this.points.get(i).zoom(d);
+	}
 
 	public static void main(String[] args){
-		Objet3D o = new Objet3D("horse.gts",Color.GREEN);
-		o.rotationX(-Math.PI/2);
-		o.rotationY(Math.PI/2);
+		Objet3D o = new Objet3D("lugia.gts",Color.BLUE);
+//		o.rotationX(-Math.PI/2);
+//		o.rotationY(Math.PI/2);
 		o.setColor(o.getColor());
 		@SuppressWarnings("unused")
 		Test t = new Test(o);
