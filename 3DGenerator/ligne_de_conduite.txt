@@ -10,8 +10,10 @@ rotation sur axe : X Y Z
 zoom auto
 lumière
 rotation de la figure par la souris (clique droit rotation x et y clique gauche rotation z)
+frame pour ouvrir un fichier
 
 #En Cours
+intéraction frame ouverture de fichier
 
 #A Faire
 vérif de l'intégralité du fichier }retourne rien mais fait un throw exception
