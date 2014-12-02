@@ -105,12 +105,25 @@ public class Objet3D {
 			}
 		}
 		faces = Outils.peintre(faces);
+		this.centrerFigure();
 		this.zoomAuto();
 		double screenX = Toolkit.getDefaultToolkit().getScreenSize().getWidth()/2;
 		double screenY = Toolkit.getDefaultToolkit().getScreenSize().getHeight()/2;
 		this.vector = new Point(screenX,screenY,0);
 	}
 
+	private void centrerFigure(){
+		int i;
+		Point baricentre = new Point(0,0,0);
+		for(i = 0; i < this.faces.size(); i++)
+			baricentre.add(this.faces.get(i).baricentre);
+		baricentre.x = baricentre.x/i;
+		baricentre.y = baricentre.y/i;
+		baricentre.z = baricentre.z/i;
+		for(Integer in : this.points.keySet())
+			this.points.get(in).add(new Point(-baricentre.x,-baricentre.y,-baricentre.z));
+		this.faces = Outils.peintre(this.faces);
+	}
 
 	/**
 	 * Calcule automatiquement le zoom optimal
@@ -282,21 +295,8 @@ public class Objet3D {
 	}
 	
 	public static void main(String[] args){
-		Objet3D o = new Objet3D("bunny.gts",Color.BLUE);
-//		o.rotationX(-Math.PI/2);
-//		o.rotationY(Math.PI/2);
-		o.setColor(o.getColor());
+		Objet3D o = new Objet3D("head.gts",Color.BLUE);
 		@SuppressWarnings("unused")
 		Test t = new Test(o);
-//		while(true){
-//			try {
-//				Thread.sleep(50);
-//			}catch(Exception e){e.printStackTrace();}
-//			o.rotationX(Math.PI/100);
-//			o.rotationY(Math.PI/100);
-//			o.rotationZ(Math.PI/100);
-//			o.setColor(o.getColor());
-//			t.repaint();
-//		}
 	}
 }

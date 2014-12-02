@@ -93,6 +93,16 @@ public class Point {
 	}
 	
 	/**
+	 * soustrait les coordonnées du point p au point courant
+	 * @param p
+	 */
+	public void sub(Point p){
+		this.x -= p.x;
+		this.y -= p.y;
+		this.z -= p.z;
+	}
+	
+	/**
 	 * calcul et change les coordonnée d'un point suite à une rotation autour de l'axe X
 	 * @param rad
 	 * angle de rotation;

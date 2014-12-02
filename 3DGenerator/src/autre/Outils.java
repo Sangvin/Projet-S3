@@ -28,7 +28,7 @@ public class Outils {
 		}
 		return resultat;
 	}
-	
+
 	/**
 	 * algorithme du peintre qui tri les faces selon les baricentres
 	 * @param faces

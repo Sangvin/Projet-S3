@@ -11,6 +11,9 @@ zoom auto
 lumière
 rotation de la figure par la souris (clique droit rotation x et y clique gauche rotation z)
 frame pour ouvrir un fichier
+centrage
+racourcis claviers
+
 
 #En Cours
 intéraction frame ouverture de fichier

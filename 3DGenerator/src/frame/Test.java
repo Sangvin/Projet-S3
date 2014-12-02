@@ -42,6 +42,10 @@ public class Test extends JFrame{
 	 * pile des boutons qui sont actuellement pressés
 	 */
 	private List<Integer> button;
+	/**
+	 * tablette ou sera dessiné la figure
+	 */
+	private TableDessin tablette;
 
 	/**
 	 * construit la frame et défini les actions
@@ -64,7 +68,8 @@ public class Test extends JFrame{
 	 */
 	private void initComponents(){
 		this.button = new ArrayList<Integer>();
-		
+		this.tablette = new TableDessin(object);
+
 		this.addKeyListener(new KeyAdapter(){
 			public void keyPressed(KeyEvent evt){
 				Point vector = object.getVector();
@@ -86,6 +91,36 @@ public class Test extends JFrame{
 				if(evt.getKeyCode() == KeyEvent.VK_DOWN){
 					vector.y += 5;
 					object.setVector(vector);
+					repaint();
+				}
+				if(evt.getKeyCode() == KeyEvent.VK_Z){
+					object.rotationX(Math.PI/100);
+					object.setColor(object.getColor());
+					repaint();
+				}
+				if(evt.getKeyCode() == KeyEvent.VK_S){
+					object.rotationX(-Math.PI/100);
+					object.setColor(object.getColor());
+					repaint();
+				}
+				if(evt.getKeyCode() == KeyEvent.VK_Q){
+					object.rotationY(-Math.PI/100);
+					object.setColor(object.getColor());
+					repaint();
+				}
+				if(evt.getKeyCode() == KeyEvent.VK_D){
+					object.rotationY(Math.PI/100);
+					object.setColor(object.getColor());
+					repaint();
+				}
+				if(evt.getKeyCode() == KeyEvent.VK_A){
+					object.rotationZ(-Math.PI/100);
+					object.setColor(object.getColor());
+					repaint();
+				}
+				if(evt.getKeyCode() == KeyEvent.VK_E){
+					object.rotationZ(Math.PI/100);
+					object.setColor(object.getColor());
 					repaint();
 				}
 			}
@@ -112,7 +147,7 @@ public class Test extends JFrame{
 			@Override
 			public void mouseExited(MouseEvent arg0) {}
 			@Override
-			
+
 			public void mouseReleased(MouseEvent arg0) {
 				button.remove((Integer) arg0.getButton());
 			}
@@ -147,7 +182,7 @@ public class Test extends JFrame{
 				}
 			}
 		});	
-		TableDessin tablette = new TableDessin(object);
-		this.add(tablette);
+
+		this.add(this.tablette);
 	}
 }
