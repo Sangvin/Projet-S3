@@ -1,6 +1,6 @@
 package objet;
 
-import Autre.Outils;
+import autre.Outils;
 
 
 /**

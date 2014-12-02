@@ -1,9 +1,12 @@
 package frame;
 
+import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.FlowLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.awt.event.FocusEvent;
+import java.awt.event.FocusListener;
 import java.text.ParseException;
 import java.util.ArrayList;
 import java.util.List;
@@ -121,7 +124,20 @@ public class Critere extends JPanel{
 		this.jScrollPane1 = new JScrollPane(this.tag);
 		this.strings = new DefaultListModel<String>();        
 		this.tag.setModel(this.strings);
-		this.addTag = new JTextField();
+		this.addTag = new JTextField("Entrer un tag à ajouter");
+		this.addTag.setForeground(Color.GRAY);
+		this.addTag.addFocusListener(new FocusListener(){
+
+			@Override
+			public void focusGained(FocusEvent arg0) {
+				addTag.setForeground(Color.BLACK);
+				addTag.setText("");
+			}
+
+			@Override
+			public void focusLost(FocusEvent arg0) {
+			}	
+		});
 		this.addTag.setPreferredSize(new Dimension(240,20));
 		this.jScrollPane1.setPreferredSize(new Dimension(this.addTag.getPreferredSize().width,this.addTag.getPreferredSize().height*4));
 		this.add = new JButton("Ajouter tag");
@@ -134,6 +150,8 @@ public class Critere extends JPanel{
 							vide = false;
 					if(!vide)
 						strings.addElement(addTag.getText());
+					addTag.setForeground(Color.GRAY);
+					addTag.setText("Entrer un tag à ajouter");
 				}
 			}
 		});

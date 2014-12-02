@@ -1,4 +1,4 @@
-package Autre;
+package autre;
 
 import java.util.Collections;
 import java.util.List;

@@ -1,8 +1,6 @@
 package frame;
 
 import java.awt.Dimension;
-import java.awt.Graphics;
-import java.awt.Polygon;
 import java.awt.Toolkit;
 import java.awt.event.KeyAdapter;
 import java.awt.event.KeyEvent;
@@ -12,12 +10,10 @@ import java.awt.event.MouseMotionListener;
 import java.awt.event.MouseWheelEvent;
 import java.awt.event.MouseWheelListener;
 import java.util.ArrayList;
-import java.util.Iterator;
 import java.util.List;
 
 import javax.swing.JFrame;
 
-import objet.Face;
 import objet.Objet3D;
 import objet.Point;
 
@@ -67,19 +63,8 @@ public class Test extends JFrame{
 	 * initialise tous les composant de la frame
 	 */
 	private void initComponents(){
-		this.addMouseWheelListener(new MouseWheelListener(){
-
-			public void mouseWheelMoved(MouseWheelEvent evt) {
-				if(evt.getWheelRotation() < 0){
-					object.zoom(0.95);
-				}
-				else{
-					object.zoom(1.05);
-				}
-				repaint();
-			}
-		});
-
+		this.button = new ArrayList<Integer>();
+		
 		this.addKeyListener(new KeyAdapter(){
 			public void keyPressed(KeyEvent evt){
 				Point vector = object.getVector();
@@ -103,11 +88,22 @@ public class Test extends JFrame{
 					object.setVector(vector);
 					repaint();
 				}
-
 			}
 		});
 
-		this.button = new ArrayList<Integer>();
+		this.addMouseWheelListener(new MouseWheelListener(){
+
+			public void mouseWheelMoved(MouseWheelEvent evt) {
+				if(evt.getWheelRotation() < 0){
+					object.zoom(1.05);
+				}
+				else{
+					object.zoom(0.95);
+				}
+				repaint();
+			}
+		});
+
 		this.addMouseListener(new MouseListener(){
 			@Override
 			public void mouseClicked(MouseEvent arg0) {}
@@ -118,7 +114,7 @@ public class Test extends JFrame{
 			@Override
 			
 			public void mouseReleased(MouseEvent arg0) {
-				button.remove(0);
+				button.remove((Integer) arg0.getButton());
 			}
 
 			@Override
@@ -137,40 +133,21 @@ public class Test extends JFrame{
 				int movex = (cursorx - e.getY());
 				int movey = -(cursory - e.getX());
 				if(button.size() != 0){
-					if(button.get(0) == MouseEvent.BUTTON1){
+					if(button.size() == 1 && button.get(0) == MouseEvent.BUTTON1){
 						object.rotationX((movex*(Math.PI/6))/1000);
 						object.rotationY((movey*(Math.PI/6))/1000);
 						object.setColor(object.getColor());
 						repaint();
 					}
-					if(button.get(0) == MouseEvent.BUTTON3){
-						object.rotationZ((movex*(Math.PI/3))/1000);
+					if(button.size() == 1 && button.get(0) == MouseEvent.BUTTON3){
+						Point vector = new Point(e.getX(),e.getY(),0);
+						object.setVector(vector);
 						repaint();
 					}
 				}
 			}
-		});
-	}
-
-	/* (non-Javadoc)
-	 * @see java.awt.Window#paint(java.awt.Graphics)
-	 */
-	public void paint(Graphics g){
-		g.clearRect(0, 0, screen.width, screen.height);
-		Iterator<Face> it = object.getFaces().iterator();
-		Face tmp;
-		int[] xpoints;
-		int[] ypoints;
-		Polygon p;
-		while(it.hasNext()){
-			tmp = it.next();
-			xpoints = tmp.getAllPosX(object.getVector());
-			ypoints = tmp.getAllPosY(object.getVector());
-			p = new Polygon(xpoints,ypoints,3);
-			g.setColor(tmp.getColor());
-			g.fillPolygon(p);
-			//			g.setColor(Color.BLACK);
-			//			g.drawPolygon(p);
-		}
+		});	
+		TableDessin tablette = new TableDessin(object);
+		this.add(tablette);
 	}
 }

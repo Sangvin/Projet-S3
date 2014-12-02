@@ -5,7 +5,7 @@ import java.util.HashSet;
 import java.util.Iterator;
 import java.util.Set;
 
-import Autre.Outils;
+import autre.Outils;
 
 /**
  * @author Alex

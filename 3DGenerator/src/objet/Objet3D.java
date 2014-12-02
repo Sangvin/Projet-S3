@@ -13,7 +13,7 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-import Autre.Outils;
+import autre.Outils;
 import frame.Test;
 
 /**
@@ -280,9 +280,9 @@ public class Objet3D {
 		for(Integer i : this.points.keySet())
 			this.points.get(i).zoom(d);
 	}
-
+	
 	public static void main(String[] args){
-		Objet3D o = new Objet3D("lugia.gts",Color.BLUE);
+		Objet3D o = new Objet3D("bunny.gts",Color.BLUE);
 //		o.rotationX(-Math.PI/2);
 //		o.rotationY(Math.PI/2);
 		o.setColor(o.getColor());
