@@ -295,7 +295,7 @@ public class Objet3D {
 	}
 	
 	public static void main(String[] args){
-		Objet3D o = new Objet3D("head.gts",Color.BLUE);
+		Objet3D o = new Objet3D("cube.gts",Color.green);
 		@SuppressWarnings("unused")
 		Test t = new Test(o);
 	}
