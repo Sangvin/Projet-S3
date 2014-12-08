@@ -8,11 +8,15 @@ import java.awt.Toolkit;
 import java.io.BufferedReader;
 import java.io.File;
 import java.io.FileReader;
+import java.math.BigDecimal;
+import java.math.MathContext;
+import java.math.RoundingMode;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+import autre.Launcher;
 import autre.Outils;
 import frame.Test;
 
@@ -73,6 +77,7 @@ public class Objet3D {
 	 * @throws Exception
 	 */
 	private void initData(BufferedReader br) throws Exception{
+		Launcher l = new Launcher();
 		points = new HashMap<Integer,Point>();
 		segments = new HashMap<Integer,Segment>();
 		faces = new ArrayList<Face>();
@@ -80,7 +85,18 @@ public class Objet3D {
 		String tmp = br.readLine();
 		String[] tmpSplit;
 		String[] infoObjet = tmp.split(" ");
+		BigDecimal nbOperation = new BigDecimal(infoObjet[0]).add(new BigDecimal(infoObjet[1])).add(new BigDecimal(infoObjet[2]));
+		nbOperation = nbOperation.add(new BigDecimal(infoObjet[2])).add(new BigDecimal(infoObjet[0]));
+		nbOperation = nbOperation.add(new BigDecimal(infoObjet[0]));
+		l.setIncrement(new BigDecimal(100).divide(nbOperation,MathContext.DECIMAL128));
+		
 		for(int i = 0; i < infoObjet.length; i++){
+			if(i == 0)
+				l.setText("Lecture des points");
+			if(i == 1)
+				l.setText("Lecture des segments");
+			if(i == 2)
+				l.setText("Lecture des faces");
 			for(int j = 1; j<=Integer.parseInt(infoObjet[i]) ; j++){
 				tmp = br.readLine();
 				tmpSplit = tmp.split(" ");
@@ -102,33 +118,43 @@ public class Objet3D {
 					}catch(Exception e){
 						e.printStackTrace();
 					}
+				l.increment();
 			}
 		}
-		faces = Outils.peintre(faces);
-		this.centrerFigure();
-		this.zoomAuto();
+		l.setText("Organisation des faces");
+		this.faces = Outils.peintre(this.faces);
+		this.centrerFigure(l);
+		this.zoomAuto(l);
 		double screenX = Toolkit.getDefaultToolkit().getScreenSize().getWidth()/2;
 		double screenY = Toolkit.getDefaultToolkit().getScreenSize().getHeight()/2;
 		this.vector = new Point(screenX,screenY,0);
+		l.setValue(100);
+		l.setText("Affichage");
+		l.dispose();
 	}
 
-	private void centrerFigure(){
+	private void centrerFigure(Launcher l){
+		l.setText("Recentrage de la figure");
 		int i;
 		Point baricentre = new Point(0,0,0);
-		for(i = 0; i < this.faces.size(); i++)
+		for(i = 0; i < this.faces.size(); i++){
 			baricentre.add(this.faces.get(i).baricentre);
+			l.increment();
+		}
 		baricentre.x = baricentre.x/i;
 		baricentre.y = baricentre.y/i;
 		baricentre.z = baricentre.z/i;
-		for(Integer in : this.points.keySet())
+		for(Integer in : this.points.keySet()){
 			this.points.get(in).add(new Point(-baricentre.x,-baricentre.y,-baricentre.z));
-		this.faces = Outils.peintre(this.faces);
+			l.increment();
+		}
 	}
 
 	/**
 	 * Calcule automatiquement le zoom optimal
 	 */
-	public void zoomAuto(){
+	public void zoomAuto(Launcher l){
+		l.setText("Calcul du zoom automatique");
 		Point temp;
 		double coord_tmp = 0;
 		for(Integer i : this.points.keySet()){
@@ -139,8 +165,10 @@ public class Objet3D {
 				coord_tmp = temp.y;
 			if(temp.z < coord_tmp)
 				coord_tmp = temp.z;
+			l.increment();
 		}
 		this.zoomOrigine = 100 / coord_tmp;
+		l.setText("Application du zoom");
 		this.zoom(this.zoomOrigine);
 	}
 
@@ -296,7 +324,6 @@ public class Objet3D {
 	
 	public static void main(String[] args){
 		Objet3D o = new Objet3D("cube.gts",Color.green);
-		@SuppressWarnings("unused")
-		Test t = new Test(o);
+		new Test(o);
 	}
 }

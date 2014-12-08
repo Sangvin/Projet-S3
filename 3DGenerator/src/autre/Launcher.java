@@ -3,6 +3,7 @@ package autre;
 import java.awt.Dimension;
 import java.awt.Toolkit;
 import java.awt.image.BufferedImage;
+import java.math.BigDecimal;
 import java.net.URL;
 
 import javax.imageio.ImageIO;
@@ -66,7 +67,44 @@ public class Launcher extends JFrame{
 		this.bar.setValue(i);
 		repaint();
 	}
+	
+	/**
+	 * permet de changer le text affiché
+	 * @param t
+	 */
+	public void setText(String t){
+		this.bar.setText(t);
+		repaint();
+	}
 
+	/**
+	 * permet de préciser une valeur à incrémenter 
+	 * @param b
+	 */
+	public void setIncrement(BigDecimal b){
+		this.bar.setIncrement(b);
+	}
+	
+	/**
+	 * incremente le poucentage d'avancement du curseur avec une valeur spécifié per setIncrement
+	 */
+	public void increment(){
+		this.bar.increment();
+		repaint();
+	}
+	
+	/* (non-Javadoc)
+	 * @see java.awt.Window#dispose()
+	 */
+	public void dispose(){
+		try {
+			Thread.sleep(2000);
+		} catch (InterruptedException e) {
+			e.printStackTrace();
+		}
+		super.dispose();
+	}
+	
 	public static void main(String[] args) throws InterruptedException{
 		Launcher e = new Launcher();
 		for(int i = 0; i <= 100; i++){

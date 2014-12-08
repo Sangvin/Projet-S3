@@ -15,15 +15,39 @@ import java.util.List;
  *
  */
 public class Configure{
+	
 	/**
 	 * ponstructeur du launcher
 	 */
 	public Configure(){
-		this.setExample();
-		/*if(!configIsOk())
+		Launcher l = new Launcher();
+		l.setText("Configuration");
+		/*if(!configIsOk()){
+		    l.setText("Création du dossier");
 			installConfig();
-		else if(!bddIsOk())
-			installBDD();*/
+			l.setValue(33);
+			l.setText("Création de la BDD");
+			installBDD();
+			l.setValue(66);
+			l.setText("Création des examples");
+			this.setExample();
+			l.setValue(100);
+		}
+		else if(!bddIsOk()){
+			l.setText("Création de la BDD");
+			installBDD();
+			l.setValue(50);
+			l.setText("Création des examples");
+			this.setExample();
+			l.setValue(100);
+		}
+		else if(!ExempleIsOk()){
+			l.setText("Création des examples");
+			this.setExample();
+		}
+		*/
+		l.setText("Lancement");
+		l.dispose();
 	}
 
 	/**
@@ -61,6 +85,23 @@ public class Configure{
 			return true;
 		else
 			return false;
+	}
+
+	/**
+	 * regarde la présence des examples
+	 * @return
+	 */
+	private boolean ExampleIsOk(){
+		File f = new File("drone_example.gts");
+		if(!f.exists())
+			return false;
+		f = new File("lugia_example.gts");
+		if(!f.exists())
+			return false;	
+		f = new File("space_station_example.gts");
+		if(!f.exists())
+			return false;
+		return true;
 	}
 
 	/**
