@@ -45,8 +45,7 @@ public class PanelObjet extends JPanel {
 	 */
 	private int cursory;
 	
-	public PanelObjet(Objet3D o){
-		this.object = o;
+	public PanelObjet(){
 		this.initComponents();
 		this.setVisible(true);
 		this.setPreferredSize(new Dimension(Toolkit.getDefaultToolkit().getScreenSize().width,Toolkit.getDefaultToolkit().getScreenSize().height));
@@ -54,62 +53,6 @@ public class PanelObjet extends JPanel {
 	
 	private void initComponents(){
 		this.button = new ArrayList<Integer>();
-		
-//		this.addKeyListener(new KeyAdapter(){
-//			public void keyPressed(KeyEvent evt){
-//				Point vector = object.getVector();
-//				if(evt.getKeyCode() == KeyEvent.VK_RIGHT){
-//					vector.x += 5;
-//					object.setVector(vector);
-//					repaint();
-//				}
-//				if(evt.getKeyCode() == KeyEvent.VK_LEFT){
-//					vector.x -= 5;
-//					object.setVector(vector);
-//					repaint();
-//				}
-//				if(evt.getKeyCode() == KeyEvent.VK_UP){
-//					vector.y -= 5;
-//					object.setVector(vector);
-//					repaint();
-//				}
-//				if(evt.getKeyCode() == KeyEvent.VK_DOWN){
-//					vector.y += 5;
-//					object.setVector(vector);
-//					repaint();
-//				}
-//				if(evt.getKeyCode() == KeyEvent.VK_Z){
-//					object.rotationX(Math.PI/100);
-//					object.setColor(object.getColor());
-//					repaint();
-//				}
-//				if(evt.getKeyCode() == KeyEvent.VK_S){
-//					object.rotationX(-Math.PI/100);
-//					object.setColor(object.getColor());
-//					repaint();
-//				}
-//				if(evt.getKeyCode() == KeyEvent.VK_Q){
-//					object.rotationY(-Math.PI/100);
-//					object.setColor(object.getColor());
-//					repaint();
-//				}
-//				if(evt.getKeyCode() == KeyEvent.VK_D){
-//					object.rotationY(Math.PI/100);
-//					object.setColor(object.getColor());
-//					repaint();
-//				}
-//				if(evt.getKeyCode() == KeyEvent.VK_A){
-//					object.rotationZ(-Math.PI/100);
-//					object.setColor(object.getColor());
-//					repaint();
-//				}
-//				if(evt.getKeyCode() == KeyEvent.VK_E){
-//					object.rotationZ(Math.PI/100);
-//					object.setColor(object.getColor());
-//					repaint();
-//				}
-//			}
-//		});
 		
 		this.addMouseWheelListener(new MouseWheelListener(){
 
@@ -187,5 +130,50 @@ public class PanelObjet extends JPanel {
 			g2D.fillPolygon(tmp.getAllPosX(this.object.getVector()),tmp.getAllPosY(this.object.getVector()),3);
 		}
 		g.dispose();
+	}
+
+	/**
+	 * permet une rotation en x par une action externe au panel
+	 * @param d
+	 */
+	public void rotationX(double d) {
+		this.object.rotationX(d);
+		this.object.setColor(this.object.getColor());
+		this.repaint();
+	}
+
+	/**
+	 * permet une rotation en y par une action externe au panel
+	 * @param d
+	 */
+	public void rotationY(double d) {
+		this.object.rotationY(d);
+		this.object.setColor(this.object.getColor());
+		this.repaint();
+	}
+
+	/**
+	 * permet une rotation en z par une action externe au panel
+	 * @param d
+	 */
+	public void rotationZ(double d) {
+		this.object.rotationZ(d);
+		this.object.setColor(this.object.getColor());
+		this.repaint();
+	}
+
+	public void zoom(double d) {
+		this.object.zoom(d);
+		this.repaint();
+	}
+	
+	public void deplacement(Point p){
+		this.object.getVector().add(p);
+		this.repaint();
+	}
+
+	public void attachObjet3D(Objet3D o) {
+		this.object = o;
+		this.repaint();
 	}
 }

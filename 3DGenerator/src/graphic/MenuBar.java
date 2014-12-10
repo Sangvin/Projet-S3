@@ -10,10 +10,11 @@ public class MenuBar extends JMenuBar {
 	 * 
 	 */
 	private static final long serialVersionUID = -6946857843971255702L;
-
-	public MenuBar(){
-
-
+	private PanelObjet tablette;
+	
+	public MenuBar(PanelObjet tablette){
+		this.tablette = tablette;
+		
 		// Menu Fichier
 		JMenu menuFichier = new JMenu("Fichier");
 		JMenuItem itemOuvrir = new JMenuItem("Ouvrir");
@@ -30,8 +31,16 @@ public class MenuBar extends JMenuBar {
 		menuAide.add(itemAPropos);
 		menuAide.add(itemFAQ);
 		
+		// Menu Options
+		JMenu menuOptions = new JMenu("Options");
+		JMenuItem itemCouleurFigure = new JMenuItem("Couleur figure");
+		JMenuItem itemCouleurBackground = new JMenuItem("Couleur background");
+		menuOptions.add(itemCouleurFigure);
+		menuOptions.add(itemCouleurBackground);
+		
 		//Ajout des JMenu
 		this.add(menuFichier);
+		this.add(menuOptions);
 		this.add(menuAide);
 	}
 

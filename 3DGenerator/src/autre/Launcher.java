@@ -98,19 +98,10 @@ public class Launcher extends JFrame{
 	 */
 	public void dispose(){
 		try {
-			Thread.sleep(2000);
+			Thread.sleep(1500);
 		} catch (InterruptedException e) {
 			e.printStackTrace();
 		}
 		super.dispose();
-	}
-	
-	public static void main(String[] args) throws InterruptedException{
-		Launcher e = new Launcher();
-		for(int i = 0; i <= 100; i++){
-			e.setValue();
-			Thread.sleep(10);
-		}
-		e.dispose();
 	}
 }

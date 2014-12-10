@@ -1,8 +1,10 @@
 package graphic;
 
 import java.awt.GridLayout;
+import java.awt.event.KeyEvent;
+import java.awt.event.KeyListener;
 
-import javax.swing.*;
+import javax.swing.JPanel;
 
 public class PanelBouton extends JPanel {
 
@@ -10,11 +12,12 @@ public class PanelBouton extends JPanel {
 	 * 
 	 */
 	private static final long serialVersionUID = 9039047326989267376L;
-	public PanelBouton(){
+	
+	public PanelBouton(PanelObjet tablette){
 		this.setLayout(new GridLayout(3, 1));
-		JPanel rot = new PanelRotation();
-		JPanel zoom = new PanelZoom();
-		JPanel dep = new PanelDep();
+		JPanel rot = new PanelRotation(tablette);
+		JPanel zoom = new PanelZoom(tablette);
+		JPanel dep = new PanelDep(tablette);
 		
 		this.add(zoom);
 		this.add(rot);
