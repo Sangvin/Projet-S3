@@ -29,26 +29,26 @@ public class PanelObjet extends JPanel {
 	 */
 	private static final long serialVersionUID = 1L;
 	/**
-	 * Stock l'objet à imprimer
+	 * Stock l'objet ï¿½ imprimer
 	 */
 	private Objet3D object;
 	/**
-	 * pile des boutons qui sont actuellement pressés
+	 * pile des boutons qui sont actuellement pressï¿½s
 	 */
 	private List<Integer> button;
 	/**
-	 * position en x de la souris après un clique
+	 * position en x de la souris aprï¿½s un clique
 	 */
 	private int cursorx;
 	/**
-	 * position en y de la souris après un clique
+	 * position en y de la souris aprï¿½s un clique
 	 */
 	private int cursory;
 	
 	public PanelObjet(){
 		this.initComponents();
 		this.setVisible(true);
-		this.setPreferredSize(new Dimension(Toolkit.getDefaultToolkit().getScreenSize().width,Toolkit.getDefaultToolkit().getScreenSize().height));
+		this.setMinimumSize(new Dimension(Toolkit.getDefaultToolkit().getScreenSize().width/2,Toolkit.getDefaultToolkit().getScreenSize().height));
 	}
 	
 	private void initComponents(){

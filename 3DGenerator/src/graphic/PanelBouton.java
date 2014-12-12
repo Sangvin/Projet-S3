@@ -4,6 +4,7 @@ import java.awt.GridLayout;
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
 
+import javax.swing.BoxLayout;
 import javax.swing.JPanel;
 
 public class PanelBouton extends JPanel {
@@ -14,7 +15,7 @@ public class PanelBouton extends JPanel {
 	private static final long serialVersionUID = 9039047326989267376L;
 	
 	public PanelBouton(PanelObjet tablette){
-		this.setLayout(new GridLayout(3, 1));
+		this.setLayout(new BoxLayout(this, 1));
 		JPanel rot = new PanelRotation(tablette);
 		JPanel zoom = new PanelZoom(tablette);
 		JPanel dep = new PanelDep(tablette);

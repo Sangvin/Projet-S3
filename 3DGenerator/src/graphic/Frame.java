@@ -2,7 +2,11 @@ package graphic;
 
 import java.awt.Color;
 import java.awt.Dimension;
+import java.awt.GridBagConstraints;
+import java.awt.GridBagLayout;
 import java.awt.GridLayout;
+import java.awt.Insets;
+import java.awt.Toolkit;
 import java.awt.event.ActionEvent;
 import java.awt.event.KeyEvent;
 import java.util.Random;
@@ -21,11 +25,11 @@ public class Frame extends JFrame {
 	 */
 	private static final long serialVersionUID = 1L;
 	/**
-	 * objet à afficher
+	 * objet ï¿½ afficher
 	 */
 	private Objet3D object;
 	/**
-	 * tablette ou sera dessiné la figure
+	 * tablette ou sera dessinï¿½ la figure
 	 */
 	private PanelObjet tablette;
 	/**
@@ -37,14 +41,15 @@ public class Frame extends JFrame {
 		this.object = o;
 		this.setTitle("3DGenerator");
 		this.initComponents();
-		this.setMinimumSize(new Dimension(800, 800));
 		this.pack();
-		this.object.setVector(new Point(this.tablette.getWidth()/2,this.tablette.getHeight()/2,0));
+		this.setSize(Toolkit.getDefaultToolkit().getScreenSize());
+		this.setAlwaysOnTop(true);
+		this.object.setVector(new Point(this.getSize().width/3,this.getSize().height/2,0));
 		this.tablette.attachObjet3D(this.object);
 		this.setDefaultCloseOperation(EXIT_ON_CLOSE);
 		this.setVisible(true);
 		this.setResizable(false);
-		this.setExtendedState(this.MAXIMIZED_BOTH);	
+		System.out.println(tablette.getPreferredSize());
 	}
 
 	private void initComponents(){
@@ -52,12 +57,33 @@ public class Frame extends JFrame {
 		this.setJMenuBar(new MenuBar(this.tablette));
 		this.button = new PanelBouton(this.tablette);
 
-		this.setLayout(new GridLayout(1, 2));
+		/*this.setLayout(new GridLayout(1, 2));
 
 		this.add(this.tablette);
-		this.add(this.button);
+		this.add(this.button);*/
 		
 		this.initKeyPad();
+		
+		this.setLayout(new GridBagLayout());
+		
+		GridBagConstraints gbc = new GridBagConstraints();
+		gbc.gridx = gbc.gridy = 0;
+		gbc.gridheight = 1;
+		gbc.gridwidth = 1;
+		gbc.weightx = 1;
+		gbc.weighty = 1;
+		gbc.fill = GridBagConstraints.BOTH;
+		
+		this.add(this.tablette,gbc);
+		
+		gbc = new GridBagConstraints();
+		gbc.gridx = 1;
+		gbc.gridy = 0;
+		gbc.fill = GridBagConstraints.BOTH;
+		gbc.insets = new Insets(10,10,50,10);
+		
+		this.add(this.button,gbc);
+		
 	}
 	
 	private void initKeyPad(){
@@ -192,9 +218,8 @@ public class Frame extends JFrame {
 
 	public static void main(String[] args){
 		Random r = new Random();
-		Objet3D o = new Objet3D("cube.gts",new Color(r.nextInt(255),r.nextInt(255),r.nextInt(255)));
+		Objet3D o = new Objet3D("cube.gts",Color.YELLOW);
 		new Frame(o);
 	}
 }
-
 
