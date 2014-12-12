@@ -49,7 +49,6 @@ public class Frame extends JFrame {
 		this.setDefaultCloseOperation(EXIT_ON_CLOSE);
 		this.setVisible(true);
 		this.setResizable(false);
-		System.out.println(tablette.getPreferredSize());
 	}
 
 	private void initComponents(){
@@ -217,9 +216,10 @@ public class Frame extends JFrame {
 	}
 
 	public static void main(String[] args){
-		Random r = new Random();
-		Objet3D o = new Objet3D("cube.gts",Color.YELLOW);
-		new Frame(o);
+		try{
+			Objet3D o = new Objet3D("cube.gts",Color.YELLOW);
+			new Frame(o);
+		}catch(Exception e){System.out.println(e.getMessage());}
 	}
 }
 

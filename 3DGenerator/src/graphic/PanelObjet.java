@@ -48,7 +48,7 @@ public class PanelObjet extends JPanel {
 	public PanelObjet(){
 		this.initComponents();
 		this.setVisible(true);
-		this.setMinimumSize(new Dimension(Toolkit.getDefaultToolkit().getScreenSize().width/2,Toolkit.getDefaultToolkit().getScreenSize().height));
+		//this.setMinimumSize(new Dimension(Toolkit.getDefaultToolkit().getScreenSize().width/2,Toolkit.getDefaultToolkit().getScreenSize().height));
 	}
 	
 	private void initComponents(){

@@ -15,7 +15,8 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-import autre.Launcher;
+import launcher.Launcher;
+import autre.FileError;
 import autre.Outils;
 import frame.Test;
 
@@ -58,16 +59,16 @@ public class Objet3D {
 	 * @param accesFichier
 	 * @param c 
 	 */
-	public Objet3D(String accesFichier, Color c){
-		try {
-			this.fichier = new File(accesFichier);
-			BufferedReader br = new BufferedReader(new FileReader(fichier));
-			initData(br);
-			this.color = c;
-			this.setColor(this.color);
-		} catch (Exception e) {
-			e.printStackTrace();
-		}
+	public Objet3D(String accesFichier, Color c) throws Exception{
+		if(accesFichier.length() < 4)
+			throw new Exception(FileError.ERROR1101.message());
+		if(!accesFichier.substring(accesFichier.length()-4, accesFichier.length()).equals(".gts"))
+			throw new Exception(FileError.ERROR1101.message());
+		this.fichier = new File(accesFichier);
+		BufferedReader br = new BufferedReader(new FileReader(fichier));
+		initData(br);
+		this.color = c;
+		this.setColor(this.color);
 	}
 
 	/**
@@ -82,8 +83,15 @@ public class Objet3D {
 		faces = new ArrayList<Face>();
 
 		String tmp = br.readLine();
+		if(tmp == null) throw new Exception(FileError.ERROR1102.message());
 		String[] tmpSplit;
 		String[] infoObjet = tmp.split(" ");
+		for(int i = 0; i < infoObjet.length; i++)
+			try{
+				Integer.parseInt(infoObjet[i]);
+			}catch(Exception e){throw new Exception(FileError.ERROR1201.message());}
+		if(infoObjet.length != 3) throw new Exception(FileError.ERROR1202.message());
+			
 		BigDecimal nbOperation = new BigDecimal(infoObjet[0]).add(new BigDecimal(infoObjet[1])).add(new BigDecimal(infoObjet[2]));
 		nbOperation = nbOperation.add(new BigDecimal(infoObjet[2])).add(new BigDecimal(infoObjet[0]));
 		nbOperation = nbOperation.add(new BigDecimal(infoObjet[0]));
@@ -98,8 +106,15 @@ public class Objet3D {
 				l.setText("Lecture des faces");
 			for(int j = 1; j<=Integer.parseInt(infoObjet[i]) ; j++){
 				tmp = br.readLine();
+				if(tmp == null) throw new Exception(FileError.ERROR1203.message());
 				tmpSplit = tmp.split(" ");
+				for(int z = 0; z < tmpSplit.length; z++)
+					try{
+						Integer.parseInt(tmpSplit[z]);
+					}catch(Exception e){throw new Exception(FileError.ERROR1201.message());}
+				
 				if(i == 0)
+					if(tmp.split(" ").length != 3) throw new Exception(FileError.ERROR2101.message());
 					try{
 						points.put(j, new Point(tmp.split(" ")));
 					}catch(Exception e){
@@ -172,7 +187,7 @@ public class Objet3D {
 	}
 
 	void verif_Integralite_Fichier(){
-
+		
 	}
 
 	/**
@@ -322,7 +337,10 @@ public class Objet3D {
 	}
 	
 	public static void main(String[] args){
-		Objet3D o = new Objet3D("cube.gts",Color.green);
-		new Test(o);
+		try {
+			Objet3D o = new Objet3D("test.gts",Color.green);
+		} catch (Exception e) {
+			System.out.println(e.getMessage());
+		}
 	}
 }

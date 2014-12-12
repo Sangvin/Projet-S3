@@ -9,6 +9,8 @@ import java.net.URL;
 import java.util.ArrayList;
 import java.util.List;
 
+import launcher.Launcher;
+
 /**
  * cette classe vérifie la présence du dossier de configuration contenant la BDD et les fichiers de modélisation 3D
  * @author Alex

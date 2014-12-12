@@ -1,4 +1,4 @@
-package autre;
+package launcher;
 
 import java.awt.Dimension;
 import java.awt.Toolkit;

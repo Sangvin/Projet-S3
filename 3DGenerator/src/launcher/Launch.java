@@ -1,4 +1,4 @@
-package autre;
+package launcher;
 
 import java.awt.Color;
 import java.awt.Graphics;
