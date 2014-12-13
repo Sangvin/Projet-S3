@@ -13,7 +13,7 @@ import launcher.Launcher;
 
 /**
  * cette classe vérifie la présence du dossier de configuration contenant la BDD et les fichiers de modélisation 3D
- * @author Alex
+ * @author Alex.
  *
  */
 public class Configure{
