@@ -37,7 +37,7 @@ public enum FileError {
 	 * Erreur de type 1000, concerne le fichier lui même
 	 * Erreur de type 1200, concerne le fichier contenu global du fichier
 	 * Erreur de type 1203, des points figure ou face sont manquants
-	 * ERREUR1202
+	 * ERREUR1203
 	 */
 	ERROR1203("Erreur Fichier: points,segments ou faces manquantes"),
 	/**
@@ -47,6 +47,54 @@ public enum FileError {
 	 * ERREUR2101
 	 */
 	ERROR2101("Erreur Contenu: Coordonnée de points manquants"),
+	/**
+	 * Erreur de type 2000, concerne le contenu de fichier
+	 * Erreur de type 2100, concerne les points
+	 * Erreur de type 2102, point en double
+	 * ERREUR2102
+	 */
+	ERROR2102("Erreur Contenu: Point en double"),
+	/**
+	 * Erreur de type 2000, concerne le contenu de fichier
+	 * Erreur de type 2200, concerne les segments
+	 * Erreur de type 2201, une coordonnee est manquante
+	 * ERREUR2201
+	 */
+	ERROR2201("Erreur Contenu: Coordonnée de segment manquants"),
+	/**
+	 * Erreur de type 2000, concerne le contenu de fichier
+	 * Erreur de type 2200, concerne les segments
+	 * Erreur de type 2202, segment en double
+	 * ERREUR2202
+	 */
+	ERROR2202("Erreur Contenu: Segment en double"),
+	/**
+	 * Erreur de type 2000, concerne le contenu de fichier
+	 * Erreur de type 2200, concerne les segments
+	 * Erreur de type 2203, extrémité confondu
+	 */
+	ERROR2203("Erreur Contenu: Extrémité de segment confondus"),
+	/**
+	 * Erreur de type 2000, concerne le contenu de fichier
+	 * Erreur de type 2300, concerne les faces
+	 * Erreur de type 2301, une coordonnee est manquante
+	 * ERREUR2301
+	 */
+	ERROR2301("Erreur Contenu: Coordonnée de face manquants"),
+	/**
+	 * Erreur de type 2000, concerne le contenu de fichier
+	 * Erreur de type 2300, concerne les faces
+	 * Erreur de type 2302, face en double
+	 * ERREUR2302
+	 */
+	ERROR2302("Erreur Contenu: Face en double"),
+	/**
+	 * Erreur de type 2000, concerne le contenu de fichier
+	 * Erreur de type 2300, concerne les faces
+	 * Erreur de type 2303, Sommets de face confondus
+	 * ERREUR2303
+	 */
+	ERROR2303("Erreur Contenu: Sommets de face confondus")
 	;
 	
 	/**

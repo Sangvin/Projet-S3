@@ -11,14 +11,16 @@ import java.io.FileReader;
 import java.math.BigDecimal;
 import java.math.MathContext;
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.HashMap;
+import java.util.HashSet;
 import java.util.List;
 import java.util.Map;
+import java.util.Set;
 
 import launcher.Launcher;
 import autre.FileError;
 import autre.Outils;
-import frame.Test;
 
 /**
  * @author Alex
@@ -97,6 +99,11 @@ public class Objet3D {
 		nbOperation = nbOperation.add(new BigDecimal(infoObjet[0]));
 		l.setIncrement(new BigDecimal(100).divide(nbOperation,MathContext.DECIMAL128));
 		
+		Set<String> pointsUniques = new HashSet<String>();
+		Set<String> segmentsUniques = new HashSet<String>();
+		Set<String> facesUniques = new HashSet<String>();
+		List<Integer> organizeID = new ArrayList<Integer>();
+		
 		for(int i = 0; i < infoObjet.length; i++){
 			if(i == 0)
 				l.setText("Lecture des points");
@@ -105,33 +112,64 @@ public class Objet3D {
 			if(i == 2)
 				l.setText("Lecture des faces");
 			for(int j = 1; j<=Integer.parseInt(infoObjet[i]) ; j++){
+				organizeID.clear();
 				tmp = br.readLine();
 				if(tmp == null) throw new Exception(FileError.ERROR1203.message());
+				
 				tmpSplit = tmp.split(" ");
 				for(int z = 0; z < tmpSplit.length; z++)
 					try{
-						Integer.parseInt(tmpSplit[z]);
+						Double.parseDouble(tmpSplit[z]);
 					}catch(Exception e){throw new Exception(FileError.ERROR1201.message());}
 				
-				if(i == 0)
+				if(i == 0){
 					if(tmp.split(" ").length != 3) throw new Exception(FileError.ERROR2101.message());
+					if(!pointsUniques.add(tmp)) throw new Exception(FileError.ERROR2102.message());
 					try{
-						points.put(j, new Point(tmp.split(" ")));
+						points.put(j, new Point(tmpSplit));
 					}catch(Exception e){
 						e.printStackTrace();
 					}
-				if(i == 1)
+				}
+				
+				if(i == 1){
+					if(tmpSplit.length != 2) throw new Exception(FileError.ERROR2201.message());
+					organizeID.add(Integer.parseInt(tmpSplit[0]));
+					organizeID.add(Integer.parseInt(tmpSplit[1]));
+					Collections.sort(organizeID);
+					tmp = organizeID.get(0) + " " + organizeID.get(1);
+					if(organizeID.get(0) == organizeID.get(1))
+						throw new Exception(FileError.ERROR2203.message());
+					if(!segmentsUniques.add(tmp))
+						throw new Exception(FileError.ERROR2202.message());
 					try{
 						segments.put(j, new Segment(points.get(Integer.parseInt(tmpSplit[0])),points.get(Integer.parseInt(tmpSplit[1]))));
 					}catch(Exception e){
 						e.printStackTrace();
 					}
-				if(i == 2)
+				}
+				
+				if(i == 2){
+					if(tmp.split(" ").length != 3) throw new Exception(FileError.ERROR2301.message());
+					organizeID.add(Integer.parseInt(tmpSplit[0]));
+					organizeID.add(Integer.parseInt(tmpSplit[1]));
+					organizeID.add(Integer.parseInt(tmpSplit[2]));
+					
+					if(organizeID.get(0) == organizeID.get(1)) throw new Exception(FileError.ERROR2303.message());
+					if(organizeID.get(2) == organizeID.get(1)) throw new Exception(FileError.ERROR2303.message());
+					if(organizeID.get(0) == organizeID.get(2)) throw new Exception(FileError.ERROR2303.message());
+					
+					Collections.sort(organizeID);
+					tmp = organizeID.get(0)+" "+organizeID.get(1)+" "+organizeID.get(2);
+					if(!facesUniques.add(tmp))
+						throw new Exception(FileError.ERROR2302.message());
 					try{
 						faces.add(new Face(segments.get(Integer.parseInt(tmpSplit[0])),segments.get(Integer.parseInt(tmpSplit[1])),segments.get(Integer.parseInt(tmpSplit[2])),j));
 					}catch(Exception e){
 						e.printStackTrace();
 					}
+				}
+				
 				l.increment();
 			}
 		}
@@ -334,13 +372,5 @@ public class Objet3D {
 	public void zoom(double d) {
 		for(Integer i : this.points.keySet())
 			this.points.get(i).zoom(d);
-	}
-	
-	public static void main(String[] args){
-		try {
-			Objet3D o = new Objet3D("test.gts",Color.green);
-		} catch (Exception e) {
-			System.out.println(e.getMessage());
-		}
 	}
 }
