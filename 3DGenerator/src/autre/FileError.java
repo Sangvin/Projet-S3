@@ -91,10 +91,16 @@ public enum FileError {
 	/**
 	 * Erreur de type 2000, concerne le contenu de fichier
 	 * Erreur de type 2300, concerne les faces
-	 * Erreur de type 2303, Sommets de face confondus
+	 * Erreur de type 2303, Segments de face confondus
 	 * ERREUR2303
 	 */
-	ERROR2303("Erreur Contenu: Sommets de face confondus")
+	ERROR2303("Erreur Contenu: Segments de face confondus"),
+	/**
+	 * Erreur de type 2000, concerne le contenu de fichier
+	 * Erreur de type 2300, concerne les faces
+	 * Erreur de type 2304, sommet de face confondu ou en trops
+	 */
+	ERROR2304("Erreur Contenu: Sommet de face en trops ou confondu"),
 	;
 	
 	/**

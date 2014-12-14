@@ -44,6 +44,10 @@ public class PanelObjet extends JPanel {
 	 * position en y de la souris aprï¿½s un clique
 	 */
 	private int cursory;
+	/**
+	 * contient la couleur du background du panel
+	 */
+	private Color background;
 	
 	public PanelObjet(){
 		this.initComponents();
@@ -53,6 +57,7 @@ public class PanelObjet extends JPanel {
 	
 	private void initComponents(){
 		this.button = new ArrayList<Integer>();
+		this.background = Color.BLUE;
 		
 		this.addMouseWheelListener(new MouseWheelListener(){
 
@@ -114,7 +119,7 @@ public class PanelObjet extends JPanel {
 	
 	public void paint(Graphics g){
 		Graphics2D g2D = (Graphics2D) g;
-		g2D.setColor(Color.BLUE);
+		g2D.setColor(this.background);
 		g2D.fillRect(0, 0, this.getWidth(), this.getHeight());
 		g2D.setRenderingHint(RenderingHints.KEY_ANTIALIASING, RenderingHints.VALUE_ANTIALIAS_OFF);
 		g2D.setRenderingHint(RenderingHints.KEY_RENDERING, RenderingHints.VALUE_RENDER_SPEED);
@@ -175,5 +180,30 @@ public class PanelObjet extends JPanel {
 	public void attachObjet3D(Objet3D o) {
 		this.object = o;
 		this.repaint();
+	}
+
+	/**
+	 * modifie le background
+	 * @param c
+	 */
+	public void setbackground(Color c){
+		this.background = c;
+		this.repaint();
+	}
+	
+	/**
+	 * récupère le background de la figure
+	 * @return
+	 */
+	public Color getbackground(){
+		return this.background;
+	}
+	
+	/**
+	 * permet de récupérer l'objet à imprimer
+	 * @return
+	 */
+	public Objet3D getObject(){
+		return this.object;
 	}
 }

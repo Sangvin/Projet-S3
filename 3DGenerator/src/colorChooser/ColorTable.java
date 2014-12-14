@@ -58,6 +58,7 @@ public class ColorTable extends JPanel{
 			 }
 	        	
 			 public void mouseClicked(MouseEvent evt) {
+				 c.setColor(tmp.getBackground());
 			 }
 	    }
 		
@@ -67,6 +68,7 @@ public class ColorTable extends JPanel{
 			p[i].setBorder(BorderFactory.createLineBorder(Color.DARK_GRAY));
 			p[i].setPreferredSize(new Dimension(15,15));
 			p[i].setBackground(liste.get(i));
+			p[i].addMouseListener(new MouseListenerPanel(p[i]));
 		}
 		
 		GridBagLayout bagLayout = new GridBagLayout();

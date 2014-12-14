@@ -1,15 +1,11 @@
 package graphic;
 
 import java.awt.Color;
-import java.awt.Dimension;
 import java.awt.GridBagConstraints;
 import java.awt.GridBagLayout;
-import java.awt.GridLayout;
 import java.awt.Insets;
 import java.awt.Toolkit;
 import java.awt.event.ActionEvent;
-import java.awt.event.KeyEvent;
-import java.util.Random;
 
 import javax.swing.AbstractAction;
 import javax.swing.JComponent;
@@ -53,7 +49,7 @@ public class Frame extends JFrame {
 
 	private void initComponents(){
 		this.tablette = new PanelObjet();
-		this.setJMenuBar(new MenuBar(this.tablette));
+		this.setJMenuBar(new MenuBar(this));
 		this.button = new PanelBouton(this.tablette);
 
 		/*this.setLayout(new GridLayout(1, 2));
@@ -213,6 +209,30 @@ public class Frame extends JFrame {
 				repaint();
 			}
 		});
+	}
+	
+	/**
+	 * retourne la tablette de dessin
+	 * @return
+	 */
+	public PanelObjet getTablette(){
+		return this.tablette;
+	}
+	
+	/**
+	 * récupère l'arrière plan de la tablette
+	 * @return
+	 */
+	public Color getbackground(){
+		return this.tablette.getbackground();
+	}
+	
+	/**
+	 * modifie le background
+	 * @param c
+	 */
+	public void setbackground(Color c){
+		this.tablette.setbackground(c);
 	}
 
 	public static void main(String[] args){

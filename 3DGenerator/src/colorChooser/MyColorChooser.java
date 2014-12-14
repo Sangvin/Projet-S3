@@ -1,18 +1,25 @@
 package colorChooser;
 
-import graphic.PanelObjet;
+import graphic.Frame;
 
 import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.Font;
 import java.awt.GridBagConstraints;
 import java.awt.GridBagLayout;
+import java.awt.Toolkit;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+import java.awt.event.WindowAdapter;
+import java.awt.event.WindowEvent;
 
 import javax.swing.BorderFactory;
 import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
+
+import objet.Objet3D;
 
 /**
  * Classe permettant de creer un color chooser fonctionne avec ColorTable et ColorCreator
@@ -45,23 +52,64 @@ public class MyColorChooser extends JFrame{
 	 */
 	private ColorCreator creator;
 	/**
-	 * Contient la tablette de dessin
+	 * Contient la frame principale
 	 */
-	private PanelObjet tablette;
+	private Frame f;
+	/**
+	 * Contient l'objet dont il faut changer la couleur
+	 */
+	private Objet3D object;
+	/**
+	 * Conserve la couleur d'origine
+	 */
+	private Color save;
 	
 	/**
 	 * instancie les différents éléments et enregistre la frame appelante
 	 * @param i
 	 */
-	public MyColorChooser(/*PanelObjet tablette*/){
-		//this.tablette = tablette;
-		this.setTitle("ColorChooser");
+	public MyColorChooser(Frame f){
+		this.f = f;
+		this.object = null;
 		initComponent();
+		initProperties();
+	}
+	
+	public MyColorChooser(Frame f, Objet3D object){
+		this.f = f;
+		this.object = object;
+		initComponent();
+		initProperties();
+	}
+	
+	/**
+	 * inittialise les propriété de la frame
+	 */
+	private void initProperties(){
+		this.setTitle("ColorChooser");
 		this.setVisible(true);
 		this.setAlwaysOnTop(true);
 		pack();
 		this.setResizable(false);
-		this.setDefaultCloseOperation(EXIT_ON_CLOSE);
+		this.setAlwaysOnTop(true);
+		int width = (int) (Toolkit.getDefaultToolkit().getScreenSize().getWidth()-this.getWidth()-10);
+		int height = (int) (Toolkit.getDefaultToolkit().getScreenSize().getHeight()/3-this.getHeight()/2); 
+		this.setLocation(width,height);
+		
+		this.addWindowListener(new WindowAdapter(){
+			@Override
+			public void windowClosing(WindowEvent e) {
+				if(object != null){
+					object.setColor(save);
+					f.getTablette().repaint();
+				}
+				else{
+					f.setbackground(save);
+				}
+				f.setEnabled(true);
+				dispose();
+			}
+		});
 	}
 	
 	/**
@@ -73,11 +121,26 @@ public class MyColorChooser extends JFrame{
     	titre.setText("Choisi ta propre couleur");
     	
     	color = new JPanel();
-    	color.setBackground(new Color(255,255,255));
+    	if(this.object != null){
+    		color.setBackground(this.object.getColor());
+    		save = color.getBackground();
+    	}
+    	else{
+    		color.setBackground(this.f.getbackground());
+    		save = color.getBackground();
+    	}
     	color.setPreferredSize(new Dimension(100,100));
     	color.setBorder(BorderFactory.createLineBorder(Color.black));
+
     	
         appliquer = new JButton("Appliquer");
+        appliquer.addActionListener(new ActionListener(){
+			@Override
+			public void actionPerformed(ActionEvent arg0) {
+				f.setEnabled(true);
+				dispose();
+			}
+        });
         
         table = new ColorTable(this);
         creator = new ColorCreator(this);
@@ -128,7 +191,18 @@ public class MyColorChooser extends JFrame{
 		return color.getBackground();
 	}
 	
-	public static void main(String[] args) {
-		new MyColorChooser();
+	/**
+	 * change la couleur actuelle temporairement
+	 * @param color
+	 */
+	public void setColor(Color color) {
+		this.color.setBackground(color);
+		this.creator.actualiseSlider(color);
+		if(this.object != null){
+			this.object.setColor(color);
+			this.f.getTablette().repaint();
+		}
+		else
+			this.f.setbackground(color);
 	}
 }

@@ -103,6 +103,8 @@ public class Objet3D {
 		Set<String> segmentsUniques = new HashSet<String>();
 		Set<String> facesUniques = new HashSet<String>();
 		List<Integer> organizeID = new ArrayList<Integer>();
+		Set<Integer> uniqueID = new HashSet<Integer>();
+		Set<Point> triangle = new HashSet<Point>();
 		
 		for(int i = 0; i < infoObjet.length; i++){
 			if(i == 0)
@@ -155,9 +157,14 @@ public class Objet3D {
 					organizeID.add(Integer.parseInt(tmpSplit[1]));
 					organizeID.add(Integer.parseInt(tmpSplit[2]));
 					
-					if(organizeID.get(0) == organizeID.get(1)) throw new Exception(FileError.ERROR2303.message());
-					if(organizeID.get(2) == organizeID.get(1)) throw new Exception(FileError.ERROR2303.message());
-					if(organizeID.get(0) == organizeID.get(2)) throw new Exception(FileError.ERROR2303.message());
+					uniqueID.addAll(organizeID);
+					if(uniqueID.size() != 3) throw new Exception(FileError.ERROR2303.message());
+					uniqueID.clear();
+					
+					for(Integer z : organizeID)
+						triangle.addAll(segments.get(z).getPoints());
+					if(triangle.size() != 3) throw new Exception(FileError.ERROR2304.message());
+					triangle.clear();
 					
 					Collections.sort(organizeID);
 					tmp = organizeID.get(0)+" "+organizeID.get(1)+" "+organizeID.get(2);

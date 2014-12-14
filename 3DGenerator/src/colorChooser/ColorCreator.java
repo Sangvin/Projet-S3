@@ -95,6 +95,12 @@ public class ColorCreator extends JPanel{
     	sliderR.setPaintTicks(true);
     	sliderR.setPaintLabels(true);
     	sliderR.setValue(c.getCurentColor().getRed());
+    	sliderR.addChangeListener(new ChangeListener(){
+    		public void stateChanged(ChangeEvent e){
+    			textR.setValue(sliderR.getValue());
+    			c.setColor(new Color((int)textR.getValue(),(int)textG.getValue(),(int)textB.getValue()));
+    		}
+    	});
 
     	
     	sliderG = new JSlider(0,255);    	
@@ -103,6 +109,12 @@ public class ColorCreator extends JPanel{
     	sliderG.setPaintTicks(true);
     	sliderG.setPaintLabels(true);
     	sliderG.setValue(c.getCurentColor().getGreen());
+    	sliderG.addChangeListener(new ChangeListener(){
+    		public void stateChanged(ChangeEvent e){
+    			textG.setValue(sliderG.getValue());
+    			c.setColor(new Color((int)textR.getValue(),(int)textG.getValue(),(int)textB.getValue()));
+    		}
+    	});
 
     	
     	sliderB = new JSlider(0,255);
@@ -111,21 +123,42 @@ public class ColorCreator extends JPanel{
     	sliderB.setPaintTicks(true);
     	sliderB.setPaintLabels(true);
     	sliderB.setValue(c.getCurentColor().getBlue());
+    	sliderB.addChangeListener(new ChangeListener(){
+    		public void stateChanged(ChangeEvent e){
+    			textB.setValue(sliderB.getValue());
+    			c.setColor(new Color((int)textR.getValue(),(int)textG.getValue(),(int)textB.getValue()));
+    		}
+    	});
 
     	
     	SpinnerNumberModel model1 = new SpinnerNumberModel(0, 0, 255, 1);
         textR = new JSpinner(model1);
         textR.setValue(sliderR.getValue());
+        textR.addChangeListener(new ChangeListener(){
+        	public void stateChanged(ChangeEvent e){
+        		sliderR.setValue((int)textR.getValue());
+        	}
+        });
 
         
     	SpinnerNumberModel model2 = new SpinnerNumberModel(0, 0, 255, 1);
         textG = new JSpinner(model2);
         textG.setValue(sliderG.getValue());
+        textG.addChangeListener(new ChangeListener(){
+        	public void stateChanged(ChangeEvent e){
+        		sliderG.setValue((int)textG.getValue());
+        	}
+        });
 
         
     	SpinnerNumberModel model3 = new SpinnerNumberModel(0, 0, 255, 1);
         textB = new JSpinner(model3);
         textB.setValue(sliderB.getValue());
+        textB.addChangeListener(new ChangeListener(){
+        	public void stateChanged(ChangeEvent e){
+        		sliderB.setValue((int)textB.getValue());
+        	}
+        });
 
         
         GridBagLayout bagLayout = new GridBagLayout();
