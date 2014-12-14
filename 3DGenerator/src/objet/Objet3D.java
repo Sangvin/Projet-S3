@@ -99,12 +99,12 @@ public class Objet3D {
 		nbOperation = nbOperation.add(new BigDecimal(infoObjet[0]));
 		l.setIncrement(new BigDecimal(100).divide(nbOperation,MathContext.DECIMAL128));
 		
-		Set<String> pointsUniques = new HashSet<String>();
-		Set<String> segmentsUniques = new HashSet<String>();
-		Set<String> facesUniques = new HashSet<String>();
-		List<Integer> organizeID = new ArrayList<Integer>();
-		Set<Integer> uniqueID = new HashSet<Integer>();
-		Set<Point> triangle = new HashSet<Point>();
+//		Set<String> pointsUniques = new HashSet<String>();
+//		Set<String> segmentsUniques = new HashSet<String>();
+//		Set<String> facesUniques = new HashSet<String>();
+//		List<Integer> organizeID = new ArrayList<Integer>();
+//		Set<Integer> uniqueID = new HashSet<Integer>();
+//		Set<Point> triangle = new HashSet<Point>();
 		
 		for(int i = 0; i < infoObjet.length; i++){
 			if(i == 0)
@@ -114,7 +114,7 @@ public class Objet3D {
 			if(i == 2)
 				l.setText("Lecture des faces");
 			for(int j = 1; j<=Integer.parseInt(infoObjet[i]) ; j++){
-				organizeID.clear();
+//				organizeID.clear();
 				tmp = br.readLine();
 				if(tmp == null) throw new Exception(FileError.ERROR1203.message());
 				
@@ -126,7 +126,7 @@ public class Objet3D {
 				
 				if(i == 0){
 					if(tmp.split(" ").length != 3) throw new Exception(FileError.ERROR2101.message());
-					if(!pointsUniques.add(tmp)) throw new Exception(FileError.ERROR2102.message());
+//					if(!pointsUniques.add(tmp)) throw new Exception(FileError.ERROR2102.message());
 					try{
 						points.put(j, new Point(tmpSplit));
 					}catch(Exception e){
@@ -136,14 +136,14 @@ public class Objet3D {
 				
 				if(i == 1){
 					if(tmpSplit.length != 2) throw new Exception(FileError.ERROR2201.message());
-					organizeID.add(Integer.parseInt(tmpSplit[0]));
-					organizeID.add(Integer.parseInt(tmpSplit[1]));
-					Collections.sort(organizeID);
-					tmp = organizeID.get(0) + " " + organizeID.get(1);
-					if(organizeID.get(0) == organizeID.get(1))
-						throw new Exception(FileError.ERROR2203.message());
-					if(!segmentsUniques.add(tmp))
-						throw new Exception(FileError.ERROR2202.message());
+//					organizeID.add(Integer.parseInt(tmpSplit[0]));
+//					organizeID.add(Integer.parseInt(tmpSplit[1]));
+//					Collections.sort(organizeID);
+//					tmp = organizeID.get(0) + " " + organizeID.get(1);
+//					if(organizeID.get(0) == organizeID.get(1))
+//						throw new Exception(FileError.ERROR2203.message());
+//					if(!segmentsUniques.add(tmp))
+//						throw new Exception(FileError.ERROR2202.message());
 					try{
 						segments.put(j, new Segment(points.get(Integer.parseInt(tmpSplit[0])),points.get(Integer.parseInt(tmpSplit[1]))));
 					}catch(Exception e){
@@ -153,23 +153,23 @@ public class Objet3D {
 				
 				if(i == 2){
 					if(tmp.split(" ").length != 3) throw new Exception(FileError.ERROR2301.message());
-					organizeID.add(Integer.parseInt(tmpSplit[0]));
-					organizeID.add(Integer.parseInt(tmpSplit[1]));
-					organizeID.add(Integer.parseInt(tmpSplit[2]));
-					
-					uniqueID.addAll(organizeID);
-					if(uniqueID.size() != 3) throw new Exception(FileError.ERROR2303.message());
-					uniqueID.clear();
-					
-					for(Integer z : organizeID)
-						triangle.addAll(segments.get(z).getPoints());
-					if(triangle.size() != 3) throw new Exception(FileError.ERROR2304.message());
-					triangle.clear();
-					
-					Collections.sort(organizeID);
-					tmp = organizeID.get(0)+" "+organizeID.get(1)+" "+organizeID.get(2);
-					if(!facesUniques.add(tmp))
-						throw new Exception(FileError.ERROR2302.message());
+//					organizeID.add(Integer.parseInt(tmpSplit[0]));
+//					organizeID.add(Integer.parseInt(tmpSplit[1]));
+//					organizeID.add(Integer.parseInt(tmpSplit[2]));
+//					
+//					uniqueID.addAll(organizeID);
+//					if(uniqueID.size() != 3) throw new Exception(FileError.ERROR2303.message());
+//					uniqueID.clear();
+//					
+//					for(Integer z : organizeID)
+//						triangle.addAll(segments.get(z).getPoints());
+//					if(triangle.size() != 3) throw new Exception(FileError.ERROR2304.message());
+//					triangle.clear();
+//					
+//					Collections.sort(organizeID);
+//					tmp = organizeID.get(0)+" "+organizeID.get(1)+" "+organizeID.get(2);
+//					if(!facesUniques.add(tmp))
+//						throw new Exception(FileError.ERROR2302.message());
 					try{
 						faces.add(new Face(segments.get(Integer.parseInt(tmpSplit[0])),segments.get(Integer.parseInt(tmpSplit[1])),segments.get(Integer.parseInt(tmpSplit[2])),j));
 					}catch(Exception e){
@@ -229,10 +229,6 @@ public class Objet3D {
 		this.zoomOrigine = 100 / coord_tmp;
 		l.setText("Application du zoom");
 		this.zoom(this.zoomOrigine);
-	}
-
-	void verif_Integralite_Fichier(){
-		
 	}
 
 	/**

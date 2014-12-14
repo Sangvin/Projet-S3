@@ -237,7 +237,7 @@ public class Frame extends JFrame {
 
 	public static void main(String[] args){
 		try{
-			Objet3D o = new Objet3D("cube.gts",Color.YELLOW);
+			Objet3D o = new Objet3D("x_wing.gts",Color.YELLOW);
 			new Frame(o);
 		}catch(Exception e){System.out.println(e.getMessage());}
 	}
