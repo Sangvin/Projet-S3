@@ -1,12 +1,18 @@
 package graphic;
 
+import java.awt.Color;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.io.File;
+import java.io.PrintWriter;
 
+import javax.swing.JFileChooser;
 import javax.swing.JMenu;
 import javax.swing.JMenuBar;
 import javax.swing.JMenuItem;
+import javax.swing.JOptionPane;
 
+import objet.Objet3D;
 import colorChooser.MyColorChooser;
 
 public class MenuBar extends JMenuBar {
@@ -30,9 +36,28 @@ public class MenuBar extends JMenuBar {
 		JMenu menuFichier = new JMenu("Fichier");
 		JMenuItem itemOuvrir = new JMenuItem("Ouvrir");
 		JMenuItem itemSauver = new JMenuItem("Sauver");
+		JMenuItem itemImporter = new JMenuItem("Importer");
+		itemImporter.addActionListener(new ActionListener(){
+			@Override
+			public void actionPerformed(ActionEvent arg0) {
+				File fichier = new File(".");
+				JFileChooser dialogue = new JFileChooser(fichier);
+				PrintWriter sortie;			
+				int status = dialogue.showOpenDialog(null);
+				if(status==JFileChooser.APPROVE_OPTION) {
+					fichier = dialogue.getSelectedFile();
+					try {
+						f.attachObjet3D(new Objet3D(fichier.getAbsolutePath(),Color.RED));
+					} catch (Exception e) {
+						JOptionPane.showMessageDialog(null, e.getMessage(), "Erreur", JOptionPane.ERROR_MESSAGE);
+					}
+				}
+			}
+		});
 		JMenuItem itemQuitter = new JMenuItem("Quitter");
 		menuFichier.add(itemOuvrir);
 		menuFichier.add(itemSauver);
+		menuFichier.add(itemImporter);
 		menuFichier.add(itemQuitter);
 
 		// Menu Aide

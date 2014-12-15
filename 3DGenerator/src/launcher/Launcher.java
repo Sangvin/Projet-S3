@@ -29,13 +29,13 @@ public class Launcher extends JFrame{
 	 */
 	public Launcher(){
 		this.setUndecorated(true);
+		this.initComponent();
 		this.setVisible(true);
 		this.setSize(new Dimension(600,350));
 		Dimension size = this.getSize();
 		Dimension screen = Toolkit.getDefaultToolkit().getScreenSize();
 		this.setLocation(screen.width/2-size.width/2, screen.height/2-size.height/2);
 		this.setAlwaysOnTop(true);
-		this.initComponent();
 		try{
 			URL icone = this.getClass().getResource("Logo.png");
 			BufferedImage tmp = ImageIO.read(icone);

@@ -85,14 +85,20 @@ public class Objet3D {
 		faces = new ArrayList<Face>();
 
 		String tmp = br.readLine();
-		if(tmp == null) throw new Exception(FileError.ERROR1102.message());
+		if(tmp == null){
+			l.dispose();
+			throw new Exception(FileError.ERROR1102.message());
+		}
 		String[] tmpSplit;
 		String[] infoObjet = tmp.split(" ");
 		for(int i = 0; i < infoObjet.length; i++)
 			try{
 				Integer.parseInt(infoObjet[i]);
-			}catch(Exception e){throw new Exception(FileError.ERROR1201.message());}
-		if(infoObjet.length != 3) throw new Exception(FileError.ERROR1202.message());
+			}catch(Exception e){l.dispose();throw new Exception(FileError.ERROR1201.message());}
+		if(infoObjet.length != 3){
+			l.dispose();
+			throw new Exception(FileError.ERROR1202.message());
+		}
 			
 		BigDecimal nbOperation = new BigDecimal(infoObjet[0]).add(new BigDecimal(infoObjet[1])).add(new BigDecimal(infoObjet[2]));
 		nbOperation = nbOperation.add(new BigDecimal(infoObjet[2])).add(new BigDecimal(infoObjet[0]));
@@ -116,16 +122,22 @@ public class Objet3D {
 			for(int j = 1; j<=Integer.parseInt(infoObjet[i]) ; j++){
 //				organizeID.clear();
 				tmp = br.readLine();
-				if(tmp == null) throw new Exception(FileError.ERROR1203.message());
+				if(tmp == null){
+					l.dispose();
+					throw new Exception(FileError.ERROR1203.message());
+				}
 				
 				tmpSplit = tmp.split(" ");
 				for(int z = 0; z < tmpSplit.length; z++)
 					try{
 						Double.parseDouble(tmpSplit[z]);
-					}catch(Exception e){throw new Exception(FileError.ERROR1201.message());}
+					}catch(Exception e){l.dispose();throw new Exception(FileError.ERROR1201.message());}
 				
 				if(i == 0){
-					if(tmp.split(" ").length != 3) throw new Exception(FileError.ERROR2101.message());
+					if(tmp.split(" ").length != 3){
+						l.dispose();
+						throw new Exception(FileError.ERROR2101.message());
+					}
 //					if(!pointsUniques.add(tmp)) throw new Exception(FileError.ERROR2102.message());
 					try{
 						points.put(j, new Point(tmpSplit));
@@ -135,7 +147,10 @@ public class Objet3D {
 				}
 				
 				if(i == 1){
-					if(tmpSplit.length != 2) throw new Exception(FileError.ERROR2201.message());
+					if(tmpSplit.length != 2){
+						l.dispose();
+						throw new Exception(FileError.ERROR2201.message());
+					}
 //					organizeID.add(Integer.parseInt(tmpSplit[0]));
 //					organizeID.add(Integer.parseInt(tmpSplit[1]));
 //					Collections.sort(organizeID);
@@ -152,7 +167,10 @@ public class Objet3D {
 				}
 				
 				if(i == 2){
-					if(tmp.split(" ").length != 3) throw new Exception(FileError.ERROR2301.message());
+					if(tmp.split(" ").length != 3){
+						l.dispose();
+						throw new Exception(FileError.ERROR2301.message());
+					}
 //					organizeID.add(Integer.parseInt(tmpSplit[0]));
 //					organizeID.add(Integer.parseInt(tmpSplit[1]));
 //					organizeID.add(Integer.parseInt(tmpSplit[2]));

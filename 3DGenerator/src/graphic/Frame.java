@@ -33,15 +33,11 @@ public class Frame extends JFrame {
 	 */
 	private PanelBouton button;
 
-	public Frame(Objet3D o){
-		this.object = o;
+	public Frame(){
 		this.setTitle("3DGenerator");
 		this.initComponents();
 		this.pack();
 		this.setSize(Toolkit.getDefaultToolkit().getScreenSize());
-		this.setAlwaysOnTop(true);
-		this.object.setVector(new Point(this.getSize().width/3,this.getSize().height/2,0));
-		this.tablette.attachObjet3D(this.object);
 		this.setDefaultCloseOperation(EXIT_ON_CLOSE);
 		this.setVisible(true);
 		this.setResizable(false);
@@ -56,11 +52,11 @@ public class Frame extends JFrame {
 
 		this.add(this.tablette);
 		this.add(this.button);*/
-		
+
 		this.initKeyPad();
-		
+
 		this.setLayout(new GridBagLayout());
-		
+
 		GridBagConstraints gbc = new GridBagConstraints();
 		gbc.gridx = gbc.gridy = 0;
 		gbc.gridheight = 1;
@@ -68,19 +64,19 @@ public class Frame extends JFrame {
 		gbc.weightx = 1;
 		gbc.weighty = 1;
 		gbc.fill = GridBagConstraints.BOTH;
-		
+
 		this.add(this.tablette,gbc);
-		
+
 		gbc = new GridBagConstraints();
 		gbc.gridx = 1;
 		gbc.gridy = 0;
 		gbc.fill = GridBagConstraints.BOTH;
 		gbc.insets = new Insets(10,10,50,10);
-		
+
 		this.add(this.button,gbc);
-		
+
 	}
-	
+
 	private void initKeyPad(){
 		this.getRootPane().getInputMap(JComponent.WHEN_ANCESTOR_OF_FOCUSED_COMPONENT).put(KeyStroke.getKeyStroke("A"), "A" );
 		this.getRootPane().getInputMap(JComponent.WHEN_ANCESTOR_OF_FOCUSED_COMPONENT).put(KeyStroke.getKeyStroke("Z"), "Z" );
@@ -92,7 +88,7 @@ public class Frame extends JFrame {
 		this.getRootPane().getInputMap(JComponent.WHEN_ANCESTOR_OF_FOCUSED_COMPONENT).put(KeyStroke.getKeyStroke("DOWN"), "DOWN" );
 		this.getRootPane().getInputMap(JComponent.WHEN_ANCESTOR_OF_FOCUSED_COMPONENT).put(KeyStroke.getKeyStroke("UP"), "UP" );
 		this.getRootPane().getInputMap(JComponent.WHEN_ANCESTOR_OF_FOCUSED_COMPONENT).put(KeyStroke.getKeyStroke("RIGHT"), "RIGHT");
-		
+
 		this.getRootPane().getActionMap().put("A", new AbstractAction() {
 			/**
 			 * 
@@ -100,9 +96,11 @@ public class Frame extends JFrame {
 			private static final long serialVersionUID = 9;
 
 			public void actionPerformed(ActionEvent e) {
-				object.rotationZ(-Math.PI/100);
-				object.setColor(object.getColor());
-				repaint();
+				if(object != null){
+					object.rotationZ(-Math.PI/100);
+					object.setColor(object.getColor());
+					repaint();
+				}
 			}
 		});
 		this.getRootPane().getActionMap().put("Z", new AbstractAction() {
@@ -112,9 +110,11 @@ public class Frame extends JFrame {
 			private static final long serialVersionUID = 9;
 
 			public void actionPerformed(ActionEvent e) {
-				object.rotationX(Math.PI/100);
-				object.setColor(object.getColor());
-				repaint();
+				if(object != null){
+					object.rotationX(Math.PI/100);
+					object.setColor(object.getColor());
+					repaint();
+				}
 			}
 		});
 		this.getRootPane().getActionMap().put("E", new AbstractAction() {
@@ -124,9 +124,11 @@ public class Frame extends JFrame {
 			private static final long serialVersionUID = 9;
 
 			public void actionPerformed(ActionEvent e) {
-				object.rotationZ(Math.PI/100);
-				object.setColor(object.getColor());
-				repaint();
+				if(object != null){
+					object.rotationZ(Math.PI/100);
+					object.setColor(object.getColor());
+					repaint();
+				}
 			}
 		});
 		this.getRootPane().getActionMap().put("Q", new AbstractAction() {
@@ -136,9 +138,11 @@ public class Frame extends JFrame {
 			private static final long serialVersionUID = 9;
 
 			public void actionPerformed(ActionEvent e) {
-				object.rotationY(-Math.PI/100);
-				object.setColor(object.getColor());
-				repaint();
+				if(object != null){
+					object.rotationY(-Math.PI/100);
+					object.setColor(object.getColor());
+					repaint();
+				}
 			}
 		});
 		this.getRootPane().getActionMap().put("S", new AbstractAction() {
@@ -148,9 +152,11 @@ public class Frame extends JFrame {
 			private static final long serialVersionUID = 9;
 
 			public void actionPerformed(ActionEvent e) {
-				object.rotationX(-Math.PI/100);
-				object.setColor(object.getColor());
-				repaint();
+				if(object != null){
+					object.rotationX(-Math.PI/100);
+					object.setColor(object.getColor());
+					repaint();
+				}
 			}
 		});
 		this.getRootPane().getActionMap().put("D", new AbstractAction() {
@@ -160,9 +166,11 @@ public class Frame extends JFrame {
 			private static final long serialVersionUID = 9;
 
 			public void actionPerformed(ActionEvent e) {
-				object.rotationY(Math.PI/100);
-				object.setColor(object.getColor());
-				repaint();
+				if(object != null){
+					object.rotationY(Math.PI/100);
+					object.setColor(object.getColor());
+					repaint();
+				}
 			}
 		});
 		this.getRootPane().getActionMap().put("UP", new AbstractAction() {
@@ -172,8 +180,10 @@ public class Frame extends JFrame {
 			private static final long serialVersionUID = 9;
 
 			public void actionPerformed(ActionEvent e) {
-				object.getVector().add(new Point(0,-5,0));
-				repaint();
+				if(object != null){
+					object.getVector().add(new Point(0,-5,0));
+					repaint();
+				}
 			}
 		});
 		this.getRootPane().getActionMap().put("DOWN", new AbstractAction() {
@@ -183,8 +193,10 @@ public class Frame extends JFrame {
 			private static final long serialVersionUID = 9;
 
 			public void actionPerformed(ActionEvent e) {
-				object.getVector().add(new Point(0,5,0));
-				repaint();
+				if(object != null){
+					object.getVector().add(new Point(0,5,0));
+					repaint();
+				}
 			}
 		});
 		this.getRootPane().getActionMap().put("LEFT", new AbstractAction() {
@@ -194,8 +206,10 @@ public class Frame extends JFrame {
 			private static final long serialVersionUID = 9;
 
 			public void actionPerformed(ActionEvent e) {
-				object.getVector().add(new Point(-5,0,0));
-				repaint();
+				if(object != null){
+					object.getVector().add(new Point(-5,0,0));
+					repaint();
+				}
 			}
 		});
 		this.getRootPane().getActionMap().put("RIGHT", new AbstractAction() {
@@ -205,12 +219,14 @@ public class Frame extends JFrame {
 			private static final long serialVersionUID = 9;
 
 			public void actionPerformed(ActionEvent e) {
-				object.getVector().add(new Point(5,0,0));
-				repaint();
+				if(object != null){
+					object.getVector().add(new Point(5,0,0));
+					repaint();
+				}
 			}
 		});
 	}
-	
+
 	/**
 	 * retourne la tablette de dessin
 	 * @return
@@ -218,7 +234,7 @@ public class Frame extends JFrame {
 	public PanelObjet getTablette(){
 		return this.tablette;
 	}
-	
+
 	/**
 	 * récupère l'arrière plan de la tablette
 	 * @return
@@ -226,7 +242,7 @@ public class Frame extends JFrame {
 	public Color getbackground(){
 		return this.tablette.getbackground();
 	}
-	
+
 	/**
 	 * modifie le background
 	 * @param c
@@ -235,11 +251,15 @@ public class Frame extends JFrame {
 		this.tablette.setbackground(c);
 	}
 
+
+	public void attachObjet3D(Objet3D objet3d) {
+		this.object = objet3d;
+		this.object.setVector(new Point(this.getSize().width/3,this.getSize().height/2,0));
+		this.tablette.attachObjet3D(this.object);
+	}
+
 	public static void main(String[] args){
-		try{
-			Objet3D o = new Objet3D("x_wing.gts",Color.YELLOW);
-			new Frame(o);
-		}catch(Exception e){System.out.println(e.getMessage());}
+		new Frame();
 	}
 }
 

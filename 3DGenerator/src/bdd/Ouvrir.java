@@ -2,10 +2,11 @@ package bdd;
 import java.awt.Desktop;
 import java.io.File;
 import java.io.FileWriter;
-import java.io.PrintWriter;
 import java.io.IOException;
+import java.io.PrintWriter;
 
 import javax.swing.JFileChooser;
+import javax.swing.JFrame;
 
 /**
  * Cette classe sert à ouvrir un fichier à partir du systeme de fichiers. Elle est appelle depuis
@@ -16,15 +17,17 @@ import javax.swing.JFileChooser;
  *
  */
 
-public class Ouvrir {
-
+public class Ouvrir{
+	
 	public static void main(String[] arg) throws IOException {
-		JFileChooser dialogue = new JFileChooser(new File("."));
-		PrintWriter sortie;
-		File fichier;	
-		if(dialogue.showOpenDialog(null)==JFileChooser.APPROVE_OPTION) {
+		File fichier = new File(".");
+		JFileChooser dialogue = new JFileChooser(fichier);
+		PrintWriter sortie;			
+		int status = dialogue.showOpenDialog(null);
+		if(status==JFileChooser.APPROVE_OPTION) {
 			fichier = dialogue.getSelectedFile();
-			sortie = new PrintWriter(new FileWriter(fichier.getPath(), true));
+			System.out.println(fichier);
+			sortie = new PrintWriter(new FileWriter(fichier.getPath()));
 			sortie.close();
 			if (Desktop.isDesktopSupported())
 			{
