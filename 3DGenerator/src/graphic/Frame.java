@@ -14,6 +14,7 @@ import javax.swing.KeyStroke;
 
 import objet.Objet3D;
 import objet.Point;
+import autre.Configure;
 
 public class Frame extends JFrame {
 	/**
@@ -259,6 +260,7 @@ public class Frame extends JFrame {
 	}
 
 	public static void main(String[] args){
+		new Configure();
 		new Frame();
 	}
 }
