@@ -1,9 +1,5 @@
 package graphic;
 
-import java.awt.GridLayout;
-import java.awt.event.KeyEvent;
-import java.awt.event.KeyListener;
-
 import javax.swing.BoxLayout;
 import javax.swing.JPanel;
 

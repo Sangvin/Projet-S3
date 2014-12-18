@@ -2,12 +2,9 @@ package launcher;
 
 import java.awt.Color;
 import java.awt.Graphics;
-import java.awt.Graphics2D;
 import java.awt.Image;
-import java.awt.RenderingHints;
 import java.math.BigDecimal;
 import java.math.MathContext;
-import java.math.RoundingMode;
 
 import javax.imageio.ImageIO;
 import javax.swing.JPanel;
@@ -84,7 +81,6 @@ public class Launch extends JPanel{
 	 * @see javax.swing.JComponent#paint(java.awt.Graphics)
 	 */
 	public void paint(Graphics g){
-		Graphics2D g2D = (Graphics2D) g;
 		try{
 			this.img = ImageIO.read(this.getClass().getResource("Launcher.jpg"));
 		} catch(Exception e){}

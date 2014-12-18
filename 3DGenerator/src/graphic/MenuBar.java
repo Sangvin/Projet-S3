@@ -4,7 +4,6 @@ import java.awt.Color;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.io.File;
-import java.io.PrintWriter;
 
 import javax.swing.JFileChooser;
 import javax.swing.JMenu;
@@ -41,8 +40,7 @@ public class MenuBar extends JMenuBar {
 			@Override
 			public void actionPerformed(ActionEvent arg0) {
 				File fichier = new File(".");
-				JFileChooser dialogue = new JFileChooser(fichier);
-				PrintWriter sortie;			
+				JFileChooser dialogue = new JFileChooser(fichier);	
 				int status = dialogue.showOpenDialog(null);
 				if(status==JFileChooser.APPROVE_OPTION) {
 					fichier = dialogue.getSelectedFile();
