@@ -11,6 +11,7 @@ import javax.swing.JMenuBar;
 import javax.swing.JMenuItem;
 import javax.swing.JOptionPane;
 
+import bdd.Recherche;
 import objet.Objet3D;
 import colorChooser.MyColorChooser;
 
@@ -34,6 +35,12 @@ public class MenuBar extends JMenuBar {
 		// Menu Fichier
 		JMenu menuFichier = new JMenu("Fichier");
 		JMenuItem itemOuvrir = new JMenuItem("Ouvrir");
+		itemOuvrir.addActionListener(new ActionListener(){
+			@Override
+			public void actionPerformed(ActionEvent arg0) {
+				new Recherche();
+			}
+		});
 		JMenuItem itemSauver = new JMenuItem("Sauver");
 		JMenuItem itemImporter = new JMenuItem("Importer");
 		itemImporter.addActionListener(new ActionListener(){

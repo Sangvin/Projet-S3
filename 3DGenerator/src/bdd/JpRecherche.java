@@ -1,5 +1,7 @@
 package bdd;
 import java.awt.GridLayout;
+
+import javax.swing.BoxLayout;
 import javax.swing.JPanel;
 /**
  * Cette classe contient le panel de recherche par mots clé et le panel de recherche avancée
@@ -12,9 +14,9 @@ public class JpRecherche extends JPanel {
 	private static final long serialVersionUID = 1L;
 
 	public JpRecherche(){
-		this.setLayout(new GridLayout(2,1));
-        PanelMcle pmc= new PanelMcle();
-        PanelAtrCritere pac=new PanelAtrCritere(); 
+		this.setLayout(new BoxLayout(this,BoxLayout.Y_AXIS));
+        PanelMcle pmc = new PanelMcle();
+        PanelAtrCritere pac = new PanelAtrCritere(); 
         this.add(pmc);
         this.add(pac);
 	}
