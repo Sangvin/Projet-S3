@@ -11,7 +11,7 @@ import javax.swing.JMenuBar;
 import javax.swing.JMenuItem;
 import javax.swing.JOptionPane;
 
-import bdd.Recherche;
+import open.Recherche;
 import objet.Objet3D;
 import colorChooser.MyColorChooser;
 

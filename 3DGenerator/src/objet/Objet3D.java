@@ -15,6 +15,8 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+import javax.swing.JOptionPane;
+
 import launcher.Launcher;
 import autre.FileError;
 import autre.Outils;

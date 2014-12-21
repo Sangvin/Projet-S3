@@ -35,7 +35,6 @@ public class Launcher extends JFrame{
 		Dimension size = this.getSize();
 		Dimension screen = Toolkit.getDefaultToolkit().getScreenSize();
 		this.setLocation(screen.width/2-size.width/2, screen.height/2-size.height/2);
-		this.setAlwaysOnTop(true);
 		try{
 			URL icone = this.getClass().getResource("Logo.png");
 			BufferedImage tmp = ImageIO.read(icone);

@@ -1,4 +1,4 @@
-package bdd;
+package open;
 import java.awt.GridLayout;
 
 import javax.swing.BoxLayout;
