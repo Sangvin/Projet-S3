@@ -40,7 +40,6 @@ public class PanelMcle extends JPanel{
 		JPanel tmp4 = new JPanel();
 		
         tmp1.add(new JLabel("Mots-clés"));
-		//tmp1.add(motCle);
         tmp1.add(p);
     	tmp2.add(new JLabel("Forme "));
     	tmp2.add(forme);

@@ -1,10 +1,18 @@
 package bdd;
 import java.awt.Color;
+import java.awt.Dimension;
+import java.awt.GridLayout;
+import java.text.ParseException;
+
 import javax.swing.BorderFactory;
 import javax.swing.JButton;
+import javax.swing.JFormattedTextField;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
+import javax.swing.JSpinner;
 import javax.swing.JTextField;
+import javax.swing.SpinnerNumberModel;
+import javax.swing.text.MaskFormatter;
 /**
  * Cette classe contient le panel de recherche avancée dans la base de donnee
  * 
@@ -14,58 +22,64 @@ import javax.swing.JTextField;
 public class PanelAtrCritere extends JPanel{
 
 	private static final long serialVersionUID = 1L;
-	protected JLabel idObj= new JLabel("Identifiant de l'objet");
-	protected JLabel dateAjt= new JLabel("Date d'Ajout");
-	protected JLabel cmplxmdl= new JLabel("Complexité du modèle");
-	protected JLabel nbf= new JLabel("Nombre de Faces");
-	protected JLabel nbs= new JLabel("Nombre de segments");
-	protected JLabel nbp= new JLabel("Nombre de points");
-	protected JLabel nmauteur= new JLabel("Nom de l'auteur");
-	protected JTextField  cinq= new JTextField(30);
+	protected JTextField nomObj;
+	protected JFormattedTextField dateAjt;
+	protected JSpinner nbf;
+	protected JSpinner nbs;
+	protected JSpinner nbp;
+	protected JTextField nmauteur;
 	protected JTextField  six= new JTextField(30);
 	protected JTextField  sept= new JTextField(15);
 	protected JTextField  huit= new JTextField(15);
 	protected JTextField  neuf= new JTextField(15);
 	protected JTextField  dix= new JTextField(30);
-	protected JButton annuler=new JButton("Annuler");
-	protected JButton valider=new JButton("Valider");
+	protected JButton annuler;
+	protected JButton valider;
 	
 	public PanelAtrCritere(){
-		this.setLayout(null);
 		this.setBorder(BorderFactory.createTitledBorder("Autres critères de recherche :"));
-		this.annuler.setBackground(Color.WHITE);
+		this.initComponents();
+	}
+	
+	private void initComponents(){
+		this.annuler = new JButton("Annuler");
+		this.annuler.setBackground(Color.WHITE);	
 		this.annuler.setBorder(BorderFactory.createLineBorder(Color.BLACK, 3));
-		this.valider.setBackground(Color.WHITE);
+		this.valider = new JButton("Valider");
+		this.valider.setBackground(Color.WHITE);	
 		this.valider.setBorder(BorderFactory.createLineBorder(Color.BLACK, 3));
-		this.add(annuler);
-		this.add(valider);
-    	this.add(idObj);
-    	this.add(dateAjt);
-    	this.add(cmplxmdl);
-	    this.add(nbf);
-	    this.add(nbs);
-	    this.add(nbp);
-	    this.add(nmauteur);
-	    this.add(cinq);
-	    this.add(six);
-	    this.add(sept);
-	    this.add(huit);
-	    this.add(neuf);
-	    this.add(dix);
-	    this.annuler.setBounds(370, 285, 100, 30);
-		this.valider.setBounds(20, 285, 100, 30);
-	    this.idObj.setBounds(100, 75, 150, 30);
-	    this.cinq.setBounds(265, 75, 100, 25);
-	    this.dateAjt.setBounds(100, 105, 150, 30);
-	    this.six.setBounds(265, 105, 100, 25);
-	    this.cmplxmdl.setBounds(100, 135, 200, 30);   
-	    this.nbf.setBounds(150, 165, 200, 30);
-	    this.sept.setBounds(310, 165, 50, 20);
-	    this.nbs.setBounds(150, 185, 200, 30);
-	    this.huit.setBounds(310, 185, 50, 20);
-	    this.nbp.setBounds(150, 205, 200, 30);
-	    this.neuf.setBounds(310, 205, 50, 20);
-	    this.nmauteur.setBounds(100, 245, 200, 30);
-	    this.dix.setBounds(220, 245, 100, 25);
+		this.nomObj = new JTextField();
+		try {
+			this.dateAjt = new JFormattedTextField(new MaskFormatter("##/##/####"));
+		} catch (ParseException e) {
+			e.printStackTrace();
+		}
+		this.nbp = new JSpinner(new SpinnerNumberModel(0,0,99999999,1));
+		this.nbs = new JSpinner(new SpinnerNumberModel(0,0,99999999,1));
+		this.nbf = new JSpinner(new SpinnerNumberModel(0,0,99999999,1));
+		this.nmauteur = new JTextField();
+		
+//		JPanel tmp2 = new JPanel();
+//		JPanel tmp3 = new JPanel();
+//		JPanel tmp4 = new JPanel();
+		
+		GridLayout g = new GridLayout(7,2);
+		this.setLayout(g);
+		this.add(new JLabel("Nom de l'objet"));
+		this.add(this.nomObj);
+		this.add(new JLabel("Date d'Ajout"));
+		this.add(this.dateAjt);
+		this.add(new JLabel("Nombre de points"));
+		this.add(this.nbp);
+		this.add(new JLabel("Nombre de segments"));
+		this.add(this.nbs);
+		this.add(new JLabel("Nombre de Faces"));
+		this.add(this.nbf);
+		this.add(new JLabel("Nom de l'auteur"));
+		this.add(this.nmauteur);
+		g.setHgap(5);
+		g.setVgap(10);
+		this.add(this.valider);
+		this.add(this.annuler);
 	}
 }
