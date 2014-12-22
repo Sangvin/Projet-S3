@@ -4,18 +4,14 @@
 package objet;
 
 import java.awt.Color;
-import java.awt.Toolkit;
 import java.io.BufferedReader;
 import java.io.File;
 import java.io.FileReader;
-import java.math.BigDecimal;
-import java.math.MathContext;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-import launcher.Launcher;
 import autre.FileError;
 import autre.Outils;
 
@@ -76,14 +72,14 @@ public class Objet3D {
 	 * @throws Exception
 	 */
 	private void initData(BufferedReader br) throws Exception{
-		Launcher l = new Launcher();
+//		Launcher l = new Launcher();
 		points = new HashMap<Integer,Point>();
 		segments = new HashMap<Integer,Segment>();
 		faces = new ArrayList<Face>();
 
 		String tmp = br.readLine();
 		if(tmp == null){
-			l.dispose();
+//			l.dispose();
 			throw new Exception(FileError.ERROR1102.message());
 		}
 		String[] tmpSplit;
@@ -91,16 +87,16 @@ public class Objet3D {
 		for(int i = 0; i < infoObjet.length; i++)
 			try{
 				Integer.parseInt(infoObjet[i]);
-			}catch(Exception e){l.dispose();throw new Exception(FileError.ERROR1201.message());}
+			}catch(Exception e){/*l.dispose();*/throw new Exception(FileError.ERROR1201.message());}
 		if(infoObjet.length != 3){
-			l.dispose();
+//			l.dispose();
 			throw new Exception(FileError.ERROR1202.message());
 		}
 			
-		BigDecimal nbOperation = new BigDecimal(infoObjet[0]).add(new BigDecimal(infoObjet[1])).add(new BigDecimal(infoObjet[2]));
-		nbOperation = nbOperation.add(new BigDecimal(infoObjet[2])).add(new BigDecimal(infoObjet[0]));
-		nbOperation = nbOperation.add(new BigDecimal(infoObjet[0]));
-		l.setIncrement(new BigDecimal(100).divide(nbOperation,MathContext.DECIMAL128));
+//		BigDecimal nbOperation = new BigDecimal(infoObjet[0]).add(new BigDecimal(infoObjet[1])).add(new BigDecimal(infoObjet[2]));
+//		nbOperation = nbOperation.add(new BigDecimal(infoObjet[2])).add(new BigDecimal(infoObjet[0]));
+//		nbOperation = nbOperation.add(new BigDecimal(infoObjet[0]));
+//		l.setIncrement(new BigDecimal(100).divide(nbOperation,MathContext.DECIMAL128));
 		
 //		Set<String> pointsUniques = new HashSet<String>();
 //		Set<String> segmentsUniques = new HashSet<String>();
@@ -110,17 +106,17 @@ public class Objet3D {
 //		Set<Point> triangle = new HashSet<Point>();
 		
 		for(int i = 0; i < infoObjet.length; i++){
-			if(i == 0)
-				l.setText("Lecture des points");
-			if(i == 1)
-				l.setText("Lecture des segments");
-			if(i == 2)
-				l.setText("Lecture des faces");
+//			if(i == 0)
+//				l.setText("Lecture des points");
+//			if(i == 1)
+//				l.setText("Lecture des segments");
+//			if(i == 2)
+//				l.setText("Lecture des faces");
 			for(int j = 1; j<=Integer.parseInt(infoObjet[i]) ; j++){
 //				organizeID.clear();
 				tmp = br.readLine();
 				if(tmp == null){
-					l.dispose();
+//					l.dispose();
 					throw new Exception(FileError.ERROR1203.message());
 				}
 				
@@ -128,11 +124,11 @@ public class Objet3D {
 				for(int z = 0; z < tmpSplit.length; z++)
 					try{
 						Double.parseDouble(tmpSplit[z]);
-					}catch(Exception e){l.dispose();throw new Exception(FileError.ERROR1201.message());}
+					}catch(Exception e){/*l.dispose();*/throw new Exception(FileError.ERROR1201.message());}
 				
 				if(i == 0){
 					if(tmp.split(" ").length != 3){
-						l.dispose();
+//						l.dispose();
 						throw new Exception(FileError.ERROR2101.message());
 					}
 //					if(!pointsUniques.add(tmp)) throw new Exception(FileError.ERROR2102.message());
@@ -145,7 +141,7 @@ public class Objet3D {
 				
 				if(i == 1){
 					if(tmpSplit.length != 2){
-						l.dispose();
+//						l.dispose();
 						throw new Exception(FileError.ERROR2201.message());
 					}
 //					organizeID.add(Integer.parseInt(tmpSplit[0]));
@@ -165,7 +161,7 @@ public class Objet3D {
 				
 				if(i == 2){
 					if(tmp.split(" ").length != 3){
-						l.dispose();
+//						l.dispose();
 						throw new Exception(FileError.ERROR2301.message());
 					}
 //					organizeID.add(Integer.parseInt(tmpSplit[0]));
@@ -192,41 +188,41 @@ public class Objet3D {
 					}
 				}
 				
-				l.increment();
+//				l.increment();
 			}
 		}
-		l.setText("Organisation des faces");
+//		l.setText("Organisation des faces");
 		this.faces = Outils.peintre(this.faces);
-		this.centrerFigure(l);
-		this.zoomAuto(l);
+		this.centrerFigure(/*l*/);
+		this.zoomAuto(/*l*/);
 		this.vector = new Point(0,0,0);
-		l.setValue(100);
-		l.setText("Affichage");
-		l.dispose();
+//		l.setValue(100);
+//		l.setText("Affichage");
+//		l.dispose();
 	}
 
-	private void centrerFigure(Launcher l){
-		l.setText("Recentrage de la figure");
+	private void centrerFigure(/*Launcher l*/){
+//		l.setText("Recentrage de la figure");
 		int i;
 		Point baricentre = new Point(0,0,0);
 		for(i = 0; i < this.faces.size(); i++){
 			baricentre.add(this.faces.get(i).baricentre);
-			l.increment();
+//			l.increment();
 		}
 		baricentre.x = baricentre.x/i;
 		baricentre.y = baricentre.y/i;
 		baricentre.z = baricentre.z/i;
 		for(Integer in : this.points.keySet()){
 			this.points.get(in).add(new Point(-baricentre.x,-baricentre.y,-baricentre.z));
-			l.increment();
+//			l.increment();
 		}
 	}
 
 	/**
 	 * Calcule automatiquement le zoom optimal
 	 */
-	public void zoomAuto(Launcher l){
-		l.setText("Calcul du zoom automatique");
+	public void zoomAuto(/*Launcher l*/){
+//		l.setText("Calcul du zoom automatique");
 		Point temp;
 		double coord_tmp = 0;
 		for(Integer i : this.points.keySet()){
@@ -237,10 +233,10 @@ public class Objet3D {
 				coord_tmp = temp.y;
 			if(temp.z < coord_tmp)
 				coord_tmp = temp.z;
-			l.increment();
+//			l.increment();
 		}
 		this.zoomOrigine = 100 / coord_tmp;
-		l.setText("Application du zoom");
+//		l.setText("Application du zoom");
 		this.zoom(this.zoomOrigine);
 	}
 

@@ -52,7 +52,7 @@ public class Frame extends JFrame {
 		this.setSize(Toolkit.getDefaultToolkit().getScreenSize());
 		this.setDefaultCloseOperation(EXIT_ON_CLOSE);
 		this.setVisible(true);
-		this.setResizable(false);
+//		this.setResizable(false);
 	}
 
 	private void initComponents(){
@@ -68,11 +68,6 @@ public class Frame extends JFrame {
 		ObjectController controlButton = new ObjectController(this.model);
 		this.button = new PanelBouton(this.model, controlButton);
 		controlButton.addView(this.tablette);
-
-		/*this.setLayout(new GridLayout(1, 2));
-
-		this.add(this.tablette);
-		this.add(this.button);*/
 
 		this.initKeyPad();
 
@@ -235,13 +230,6 @@ public class Frame extends JFrame {
 	public void setbackground(Color c){
 		this.tablette.setbackground(c);
 	}
-
-
-//	public void attachObjet3D(Objet3D objet3d) {
-//		this.object = objet3d;
-//		this.object.setVector(new Point(this.getSize().width/3,this.getSize().height/2,0));
-//		this.tablette.attachObjet3D(this.object);
-//	}
 
 	public static void main(String[] args){
 //		new Configure();

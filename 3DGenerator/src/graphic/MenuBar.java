@@ -51,7 +51,7 @@ public class MenuBar extends JMenuBar {
 		itemOuvrir.addActionListener(new ActionListener(){
 			@Override
 			public void actionPerformed(ActionEvent arg0) {
-				new Recherche();
+				new Recherche(f);
 			}
 		});
 		JMenuItem itemSauver = new JMenuItem("Sauver");
@@ -83,7 +83,9 @@ public class MenuBar extends JMenuBar {
 		JMenuItem itemQuitter = new JMenuItem("Quitter");
 		menuFichier.add(itemOuvrir);
 		menuFichier.add(itemSauver);
+		menuFichier.addSeparator();
 		menuFichier.add(itemImporter);
+		menuFichier.addSeparator();
 		menuFichier.add(itemQuitter);
 
 		// Menu Aide
@@ -99,7 +101,6 @@ public class MenuBar extends JMenuBar {
 		itemCouleurFigure.addActionListener(new ActionListener(){
 			@Override
 			public void actionPerformed(ActionEvent arg0) {
-				f.setEnabled(false);
 				new MyColorChooser(f,model);
 			}
 		});
@@ -107,7 +108,6 @@ public class MenuBar extends JMenuBar {
 		itemCouleurBackground.addActionListener(new ActionListener(){
 			@Override
 			public void actionPerformed(ActionEvent arg0) {
-				f.setEnabled(false);
 				new MyColorChooser(f,model);
 			}
 		});

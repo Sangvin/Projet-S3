@@ -22,7 +22,7 @@ public class Configure{
 	 * vérifie ou corrige la configuration
 	 */
 	public  Configure(){
-		Launcher l = new Launcher();
+		Launcher l = new Launcher(null);
 		l.setText("Configuration");
 		dossier(l);
 		l.setValue(33);

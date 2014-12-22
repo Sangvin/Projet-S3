@@ -15,7 +15,7 @@ import java.awt.event.WindowEvent;
 
 import javax.swing.BorderFactory;
 import javax.swing.JButton;
-import javax.swing.JFrame;
+import javax.swing.JDialog;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 
@@ -27,7 +27,7 @@ import objet.Objet3D;
  * @author Alex Dalencourt
  * @author Yoan Lamaire
  */
-public class MyColorChooser extends JFrame{
+public class MyColorChooser extends JDialog{
 	/**
 	 * 
 	 */
@@ -70,6 +70,7 @@ public class MyColorChooser extends JFrame{
 	 * @param i
 	 */
 	public MyColorChooser(Frame f,Model model){
+		super(f,"ColorChooser",true);
 		this.model = model;
 		this.f = f;
 		initComponent();
@@ -77,6 +78,7 @@ public class MyColorChooser extends JFrame{
 	}
 	
 	public MyColorChooser(Frame f, Objet3D object){
+		super(f,"ColorChooser",true);
 		this.f = f;
 		initComponent();
 		initProperties();
@@ -86,15 +88,11 @@ public class MyColorChooser extends JFrame{
 	 * inittialise les propriété de la frame
 	 */
 	private void initProperties(){
-		this.setTitle("ColorChooser");
-		this.setVisible(true);
-		this.setAlwaysOnTop(true);
 		pack();
-		this.setResizable(false);
-		this.setAlwaysOnTop(true);
 		int width = (int) (Toolkit.getDefaultToolkit().getScreenSize().getWidth()-this.getWidth()-10);
 		int height = (int) (Toolkit.getDefaultToolkit().getScreenSize().getHeight()/3-this.getHeight()/2); 
 		this.setLocation(width,height);
+		this.setResizable(false);
 		
 		this.addWindowListener(new WindowAdapter(){
 			@Override
@@ -105,10 +103,12 @@ public class MyColorChooser extends JFrame{
 				else{
 					f.setbackground(save);
 				}
-				f.setEnabled(true);
 				dispose();
 			}
 		});
+		
+
+		this.setVisible(true);
 	}
 	
 	/**
@@ -136,7 +136,6 @@ public class MyColorChooser extends JFrame{
         appliquer.addActionListener(new ActionListener(){
 			@Override
 			public void actionPerformed(ActionEvent arg0) {
-				f.setEnabled(true);
 				dispose();
 			}
         });

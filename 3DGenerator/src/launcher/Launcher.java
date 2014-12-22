@@ -1,20 +1,19 @@
 package launcher;
 
+import graphic.Frame;
+
 import java.awt.Dimension;
 import java.awt.Toolkit;
-import java.awt.image.BufferedImage;
 import java.math.BigDecimal;
-import java.net.URL;
 
-import javax.imageio.ImageIO;
-import javax.swing.JFrame;
+import javax.swing.JDialog;
 
 /**
  * frame qui montre la progression du chargement d'un fichier
  * @author Alex
  *
  */
-public class Launcher extends JFrame{
+public class Launcher extends JDialog{
 	/**
 	 * 
 	 */
@@ -27,19 +26,15 @@ public class Launcher extends JFrame{
 	/**
 	 * construit la frame
 	 */
-	public Launcher(){
+	public Launcher(Frame f){
+		super(f,"",true);
 		this.setUndecorated(true);
 		this.initComponent();
-		this.setVisible(true);
 		this.setSize(new Dimension(600,350));
 		Dimension size = this.getSize();
 		Dimension screen = Toolkit.getDefaultToolkit().getScreenSize();
 		this.setLocation(screen.width/2-size.width/2, screen.height/2-size.height/2);
-		try{
-			URL icone = this.getClass().getResource("Logo.png");
-			BufferedImage tmp = ImageIO.read(icone);
-			this.setIconImage(tmp);
-		} catch(Exception e){}
+		this.setVisible(true);
 	}
 
 	/**

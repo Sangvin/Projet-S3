@@ -45,7 +45,9 @@ public class Launch extends JPanel{
 	public Launch(){
 		this.percent = 0;
 		this.progress = 0;
-		this.img = null;
+		try{
+			this.img = ImageIO.read(this.getClass().getResource("Launcher.jpg"));
+		} catch(Exception e){}
 		this.text = "Initialisation";
 		this.posIncrement = new BigDecimal(0,MathContext.DECIMAL128);
 	}
@@ -81,9 +83,6 @@ public class Launch extends JPanel{
 	 * @see javax.swing.JComponent#paint(java.awt.Graphics)
 	 */
 	public void paint(Graphics g){
-		try{
-			this.img = ImageIO.read(this.getClass().getResource("Launcher.jpg"));
-		} catch(Exception e){}
 		g.drawImage(img, 0, 0, this.getWidth(),this.getHeight(),this);
 		g.setColor(Color.BLACK);
 		g.drawRect(175, 245, 225, 20);
