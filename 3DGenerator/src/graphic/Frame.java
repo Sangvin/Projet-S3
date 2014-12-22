@@ -12,9 +12,9 @@ import javax.swing.JComponent;
 import javax.swing.JFrame;
 import javax.swing.KeyStroke;
 
-import objet.Objet3D;
+import mvc.Model;
+import mvc.ObjectController;
 import objet.Point;
-import autre.Configure;
 
 public class Frame extends JFrame {
 	/**
@@ -22,21 +22,32 @@ public class Frame extends JFrame {
 	 */
 	private static final long serialVersionUID = 1L;
 	/**
-	 * objet ï¿½ afficher
-	 */
-	private Objet3D object;
-	/**
-	 * tablette ou sera dessinï¿½ la figure
+	 * tablette ou sera dessiné la figure
 	 */
 	private PanelObjet tablette;
 	/**
 	 * panel qui contient ts les boutons de control
 	 */
 	private PanelBouton button;
+	/**
+	 * Contient la bare de menu
+	 */
+	private MenuBar menu;
+	/**
+	 * contient le model
+	 */
+	private Model model;
+	/**
+	 * controller du modèle
+	 */
+	private ObjectController controller;
 
-	public Frame(){
+	public Frame(Model model, ObjectController controller){
+		this.model = model;
+		this.controller = controller;
 		this.setTitle("3DGenerator");
 		this.initComponents();
+		this.controller.addView(this.tablette);
 		this.pack();
 		this.setSize(Toolkit.getDefaultToolkit().getScreenSize());
 		this.setDefaultCloseOperation(EXIT_ON_CLOSE);
@@ -45,9 +56,18 @@ public class Frame extends JFrame {
 	}
 
 	private void initComponents(){
-		this.tablette = new PanelObjet();
-		this.setJMenuBar(new MenuBar(this));
-		this.button = new PanelBouton(this.tablette);
+		ObjectController controlTablette = new ObjectController(this.model);
+		this.tablette = new PanelObjet(this.model, controlTablette);
+		controlTablette.addView(this.tablette);
+		
+		ObjectController controlMenu = new ObjectController(this.model);
+		this.menu = new MenuBar(this,this.model,controlMenu);
+		this.setJMenuBar(this.menu);
+		controlMenu.addView(this.tablette);
+		
+		ObjectController controlButton = new ObjectController(this.model);
+		this.button = new PanelBouton(this.model, controlButton);
+		controlButton.addView(this.tablette);
 
 		/*this.setLayout(new GridLayout(1, 2));
 
@@ -97,11 +117,7 @@ public class Frame extends JFrame {
 			private static final long serialVersionUID = 9;
 
 			public void actionPerformed(ActionEvent e) {
-				if(object != null){
-					object.rotationZ(-Math.PI/100);
-					object.setColor(object.getColor());
-					repaint();
-				}
+				controller.rotationZ(-Math.PI/100);
 			}
 		});
 		this.getRootPane().getActionMap().put("Z", new AbstractAction() {
@@ -111,11 +127,7 @@ public class Frame extends JFrame {
 			private static final long serialVersionUID = 9;
 
 			public void actionPerformed(ActionEvent e) {
-				if(object != null){
-					object.rotationX(Math.PI/100);
-					object.setColor(object.getColor());
-					repaint();
-				}
+				controller.rotationX(Math.PI/100);
 			}
 		});
 		this.getRootPane().getActionMap().put("E", new AbstractAction() {
@@ -125,11 +137,7 @@ public class Frame extends JFrame {
 			private static final long serialVersionUID = 9;
 
 			public void actionPerformed(ActionEvent e) {
-				if(object != null){
-					object.rotationZ(Math.PI/100);
-					object.setColor(object.getColor());
-					repaint();
-				}
+				controller.rotationZ(Math.PI/100);
 			}
 		});
 		this.getRootPane().getActionMap().put("Q", new AbstractAction() {
@@ -139,11 +147,7 @@ public class Frame extends JFrame {
 			private static final long serialVersionUID = 9;
 
 			public void actionPerformed(ActionEvent e) {
-				if(object != null){
-					object.rotationY(-Math.PI/100);
-					object.setColor(object.getColor());
-					repaint();
-				}
+				controller.rotationY(-Math.PI/100);
 			}
 		});
 		this.getRootPane().getActionMap().put("S", new AbstractAction() {
@@ -153,11 +157,7 @@ public class Frame extends JFrame {
 			private static final long serialVersionUID = 9;
 
 			public void actionPerformed(ActionEvent e) {
-				if(object != null){
-					object.rotationX(-Math.PI/100);
-					object.setColor(object.getColor());
-					repaint();
-				}
+				controller.rotationX(-Math.PI/100);
 			}
 		});
 		this.getRootPane().getActionMap().put("D", new AbstractAction() {
@@ -167,11 +167,7 @@ public class Frame extends JFrame {
 			private static final long serialVersionUID = 9;
 
 			public void actionPerformed(ActionEvent e) {
-				if(object != null){
-					object.rotationY(Math.PI/100);
-					object.setColor(object.getColor());
-					repaint();
-				}
+				controller.rotationY(Math.PI/100);
 			}
 		});
 		this.getRootPane().getActionMap().put("UP", new AbstractAction() {
@@ -181,10 +177,7 @@ public class Frame extends JFrame {
 			private static final long serialVersionUID = 9;
 
 			public void actionPerformed(ActionEvent e) {
-				if(object != null){
-					object.getVector().add(new Point(0,-5,0));
-					repaint();
-				}
+				controller.deplacement(new Point(0,-5,0));
 			}
 		});
 		this.getRootPane().getActionMap().put("DOWN", new AbstractAction() {
@@ -194,10 +187,7 @@ public class Frame extends JFrame {
 			private static final long serialVersionUID = 9;
 
 			public void actionPerformed(ActionEvent e) {
-				if(object != null){
-					object.getVector().add(new Point(0,5,0));
-					repaint();
-				}
+					controller.deplacement(new Point(0,5,0));
 			}
 		});
 		this.getRootPane().getActionMap().put("LEFT", new AbstractAction() {
@@ -207,10 +197,7 @@ public class Frame extends JFrame {
 			private static final long serialVersionUID = 9;
 
 			public void actionPerformed(ActionEvent e) {
-				if(object != null){
-					object.getVector().add(new Point(-5,0,0));
-					repaint();
-				}
+					controller.deplacement(new Point(-5,0,0));
 			}
 		});
 		this.getRootPane().getActionMap().put("RIGHT", new AbstractAction() {
@@ -220,10 +207,7 @@ public class Frame extends JFrame {
 			private static final long serialVersionUID = 9;
 
 			public void actionPerformed(ActionEvent e) {
-				if(object != null){
-					object.getVector().add(new Point(5,0,0));
-					repaint();
-				}
+					controller.deplacement(new Point(5,0,0));
 			}
 		});
 	}
@@ -253,15 +237,16 @@ public class Frame extends JFrame {
 	}
 
 
-	public void attachObjet3D(Objet3D objet3d) {
-		this.object = objet3d;
-		this.object.setVector(new Point(this.getSize().width/3,this.getSize().height/2,0));
-		this.tablette.attachObjet3D(this.object);
-	}
+//	public void attachObjet3D(Objet3D objet3d) {
+//		this.object = objet3d;
+//		this.object.setVector(new Point(this.getSize().width/3,this.getSize().height/2,0));
+//		this.tablette.attachObjet3D(this.object);
+//	}
 
 	public static void main(String[] args){
-		new Configure();
-		new Frame();
+//		new Configure();
+		Model m = new Model();
+		new Frame(m,new ObjectController(m));
 	}
 }
 

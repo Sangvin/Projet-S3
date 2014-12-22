@@ -8,6 +8,8 @@ import javax.swing.JButton;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 
+import mvc.ObjectController;
+
 public class PanelZoom extends JPanel {
 
 	/**
@@ -15,12 +17,12 @@ public class PanelZoom extends JPanel {
 	 */
 	private static final long serialVersionUID = -1240814111067203130L;
 	/**
-	 * contrient le panel de dessin
+	 * Contient le controller
 	 */
-	private PanelObjet tablette;
+	private ObjectController controller;
 
-	public PanelZoom(PanelObjet tablette){
-		this.tablette = tablette;
+	public PanelZoom(ObjectController controller){
+		this.controller = controller;
 		initComponents();
 	}
 	
@@ -133,7 +135,7 @@ public class PanelZoom extends JPanel {
 
 		public void run() {
 			while(true){
-				tablette.zoom(this.zoom);;
+				controller.zoom(this.zoom);;
 				try {
 					Thread.sleep(200);
 				} catch (InterruptedException e) {

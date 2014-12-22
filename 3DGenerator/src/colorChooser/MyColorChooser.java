@@ -19,6 +19,7 @@ import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 
+import mvc.Model;
 import objet.Objet3D;
 
 /**
@@ -56,28 +57,27 @@ public class MyColorChooser extends JFrame{
 	 */
 	private Frame f;
 	/**
-	 * Contient l'objet dont il faut changer la couleur
-	 */
-	private Objet3D object;
-	/**
 	 * Conserve la couleur d'origine
 	 */
 	private Color save;
+	/**
+	 * Contient le modèle
+	 */
+	private Model model;
 	
 	/**
 	 * instancie les différents éléments et enregistre la frame appelante
 	 * @param i
 	 */
-	public MyColorChooser(Frame f){
+	public MyColorChooser(Frame f,Model model){
+		this.model = model;
 		this.f = f;
-		this.object = null;
 		initComponent();
 		initProperties();
 	}
 	
 	public MyColorChooser(Frame f, Objet3D object){
 		this.f = f;
-		this.object = object;
 		initComponent();
 		initProperties();
 	}
@@ -99,9 +99,8 @@ public class MyColorChooser extends JFrame{
 		this.addWindowListener(new WindowAdapter(){
 			@Override
 			public void windowClosing(WindowEvent e) {
-				if(object != null){
-					object.setColor(save);
-					f.getTablette().repaint();
+				if(model.getObject() != null){
+					model.setColor(save);
 				}
 				else{
 					f.setbackground(save);
@@ -121,8 +120,8 @@ public class MyColorChooser extends JFrame{
     	titre.setText("Choisi ta propre couleur");
     	
     	color = new JPanel();
-    	if(this.object != null){
-    		color.setBackground(this.object.getColor());
+    	if(this.model.getObject() != null){
+    		color.setBackground(this.model.getColor());
     		save = color.getBackground();
     	}
     	else{
@@ -198,8 +197,8 @@ public class MyColorChooser extends JFrame{
 	public void setColor(Color color) {
 		this.color.setBackground(color);
 		this.creator.actualiseSlider(color);
-		if(this.object != null){
-			this.object.setColor(color);
+		if(this.model.getObject() != null){
+			this.model.setColor(color);
 			this.f.getTablette().repaint();
 		}
 		else

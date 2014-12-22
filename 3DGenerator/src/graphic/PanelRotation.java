@@ -8,6 +8,8 @@ import javax.swing.JButton;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 
+import mvc.ObjectController;
+
 public class PanelRotation extends JPanel {
 
 	/**
@@ -15,12 +17,12 @@ public class PanelRotation extends JPanel {
 	 */
 	private static final long serialVersionUID = -126940328392104128L;
 	/**
-	 * contrient le panel de dessin
+	 * Contient le controller
 	 */
-	private PanelObjet tablette;
+	private ObjectController controller;
 
-	public PanelRotation(PanelObjet tablette){
-		this.tablette = tablette;
+	public PanelRotation(ObjectController controller){
+		this.controller = controller;
 		initComponents();
 	}
 	
@@ -136,13 +138,13 @@ public class PanelRotation extends JPanel {
 		public void run() {
 			while(true){
 				if(this.axe == 'X')
-					tablette.rotationX(this.degree);
+					controller.rotationX(this.degree);
 
 				if(this.axe == 'Y')
-					tablette.rotationY(this.degree);
+					controller.rotationY(this.degree);
 
 				if(this.axe == 'Z')
-					tablette.rotationZ(this.degree);
+					controller.rotationZ(this.degree);
 				try {
 					Thread.sleep(50);
 				} catch (InterruptedException e) {

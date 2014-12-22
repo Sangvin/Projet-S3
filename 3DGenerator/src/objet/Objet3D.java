@@ -15,8 +15,6 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-import javax.swing.JOptionPane;
-
 import launcher.Launcher;
 import autre.FileError;
 import autre.Outils;
@@ -201,9 +199,7 @@ public class Objet3D {
 		this.faces = Outils.peintre(this.faces);
 		this.centrerFigure(l);
 		this.zoomAuto(l);
-		double screenX = Toolkit.getDefaultToolkit().getScreenSize().getWidth()/2;
-		double screenY = Toolkit.getDefaultToolkit().getScreenSize().getHeight()/2;
-		this.vector = new Point(screenX,screenY,0);
+		this.vector = new Point(0,0,0);
 		l.setValue(100);
 		l.setText("Affichage");
 		l.dispose();

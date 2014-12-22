@@ -8,6 +8,7 @@ import javax.swing.Box;
 import javax.swing.JButton;
 import javax.swing.JPanel;
 
+import mvc.ObjectController;
 import objet.Point;
 
 public class PanelDep extends JPanel {
@@ -17,12 +18,12 @@ public class PanelDep extends JPanel {
 	 */
 	private static final long serialVersionUID = 5602993964742282381L;
 	/**
-	 * contrient le panel de dessin
+	 * contient le controller
 	 */
-	private PanelObjet tablette;
+	private ObjectController controller;
 
-	public PanelDep(PanelObjet tablette){
-		this.tablette = tablette;
+	public PanelDep(ObjectController controller){
+		this.controller = controller;
 		this.initComponents();
 	}
 
@@ -102,7 +103,7 @@ public class PanelDep extends JPanel {
 
 		public void run() {
 			while(true){
-				tablette.deplacement(this.deplacement);
+				controller.deplacement(this.deplacement);
 				try {
 					Thread.sleep(50);
 				} catch (InterruptedException e) {

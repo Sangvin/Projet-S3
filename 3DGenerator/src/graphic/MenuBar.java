@@ -11,8 +11,11 @@ import javax.swing.JMenuBar;
 import javax.swing.JMenuItem;
 import javax.swing.JOptionPane;
 
-import open.Recherche;
+import mvc.Model;
+import mvc.ObjectController;
 import objet.Objet3D;
+import objet.Point;
+import open.Recherche;
 import colorChooser.MyColorChooser;
 
 public class MenuBar extends JMenuBar {
@@ -22,12 +25,22 @@ public class MenuBar extends JMenuBar {
 	 */
 	private static final long serialVersionUID = -6946857843971255702L;
 	private Frame f;
+	/**
+	 * Contient le modèle
+	 */
+	private Model model;
+	/**
+	 * Contient le controller
+	 */
+	private ObjectController controller;
 	
 	/**
 	 * @param f
 	 */
-	public MenuBar(Frame f){
+	public MenuBar(Frame f,Model model, ObjectController controller){
 		this.f = f;
+		this.model = model;
+		this.controller = controller;
 		this.initComponents();
 	}
 
@@ -42,6 +55,11 @@ public class MenuBar extends JMenuBar {
 			}
 		});
 		JMenuItem itemSauver = new JMenuItem("Sauver");
+		itemSauver.addActionListener(new ActionListener(){
+			@Override
+			public void actionPerformed(ActionEvent arg0) {
+			}
+		});
 		JMenuItem itemImporter = new JMenuItem("Importer");
 		itemImporter.addActionListener(new ActionListener(){
 			@Override
@@ -52,7 +70,10 @@ public class MenuBar extends JMenuBar {
 				if(status==JFileChooser.APPROVE_OPTION) {
 					fichier = dialogue.getSelectedFile();
 					try {
-						f.attachObjet3D(new Objet3D(fichier.getAbsolutePath(),Color.RED));
+						controller.attachObjet3D(new Objet3D(fichier.getAbsolutePath(),Color.RED));
+						double posx = f.getTablette().getSize().getWidth()/2;
+						double posy = f.getTablette().getSize().getHeight()/2;
+						controller.setVector(new Point(posx,posy,0));
 					} catch (Exception e) {
 						JOptionPane.showMessageDialog(null, e.getMessage(), "Erreur", JOptionPane.ERROR_MESSAGE);
 					}
@@ -79,15 +100,15 @@ public class MenuBar extends JMenuBar {
 			@Override
 			public void actionPerformed(ActionEvent arg0) {
 				f.setEnabled(false);
-				new MyColorChooser(f, f.getTablette().getObject());
+				new MyColorChooser(f,model);
 			}
 		});
 		JMenuItem itemCouleurBackground = new JMenuItem("Couleur background");
 		itemCouleurBackground.addActionListener(new ActionListener(){
 			@Override
 			public void actionPerformed(ActionEvent arg0) {
-				f.setEnabled(true);
-				new MyColorChooser(f);
+				f.setEnabled(false);
+				new MyColorChooser(f,model);
 			}
 		});
 		menuOptions.add(itemCouleurFigure);
