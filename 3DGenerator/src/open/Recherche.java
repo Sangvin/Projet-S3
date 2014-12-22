@@ -16,6 +16,8 @@ import javax.swing.JFrame;
  */
 public class Recherche extends JDialog {
     private static final long serialVersionUID = 1L;
+    private JpResultats jpResultats;
+    private JpRecherche jpRecherche;
     
 	public Recherche(Frame f){
 		super(f,"Recherche de fichiers",true);
@@ -30,11 +32,11 @@ public class Recherche extends JDialog {
 	}
 	
 	private void initComponents(){
-		JpResultats jpResultats=new JpResultats();
-		JpRecherche jpRecherche=new JpRecherche();
+		this.jpResultats = new JpResultats();
+		this.jpRecherche = new JpRecherche();
 		this.setLayout(new FlowLayout());
-		this.add(jpResultats);
-		this.add(jpRecherche);
+		this.add(this.jpResultats);
+		this.add(this.jpRecherche);
 	}
 }
 

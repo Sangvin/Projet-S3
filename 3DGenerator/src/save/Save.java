@@ -64,7 +64,7 @@ public class Save extends JDialog{
 	 * permet de placer les composants
 	 */
 	private void initComponents(){
-		this.info = new GeneralInformation(this.object.getFichier().getPath());
+		this.info = new GeneralInformation(this.object.getFichier().getAbsolutePath());
 		this.sorted = new SortInformation();
 		
 		this.valider = new JButton("Valider");

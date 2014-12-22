@@ -21,19 +21,14 @@ import javax.swing.text.MaskFormatter;
 public class PanelAtrCritere extends JPanel{
 
 	private static final long serialVersionUID = 1L;
-	protected JTextField nomObj;
-	protected JFormattedTextField dateAjt;
-	protected JSpinner nbf;
-	protected JSpinner nbs;
-	protected JSpinner nbp;
-	protected JTextField nmauteur;
-	protected JTextField  six= new JTextField(30);
-	protected JTextField  sept= new JTextField(15);
-	protected JTextField  huit= new JTextField(15);
-	protected JTextField  neuf= new JTextField(15);
-	protected JTextField  dix= new JTextField(30);
-	protected JButton annuler;
-	protected JButton valider;
+	private JTextField nomObj;
+	private JFormattedTextField dateAjt;
+	private JSpinner nbf;
+	private JSpinner nbs;
+	private JSpinner nbp;
+	private JTextField nmauteur;
+	private JButton annuler;
+	private JButton valider;
 	
 	public PanelAtrCritere(){
 		this.setBorder(BorderFactory.createTitledBorder("Autres critères de recherche :"));

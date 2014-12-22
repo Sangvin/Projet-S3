@@ -10,12 +10,14 @@ import javax.swing.JPanel;
 public class JpRecherche extends JPanel {
 
 	private static final long serialVersionUID = 1L;
-
+	private PanelMcle pmc;
+	private PanelAtrCritere pac;
+	
 	public JpRecherche(){
 		this.setLayout(new BoxLayout(this,BoxLayout.Y_AXIS));
-        PanelMcle pmc = new PanelMcle();
-        PanelAtrCritere pac = new PanelAtrCritere(); 
-        this.add(pmc);
-        this.add(pac);
+        this.pmc = new PanelMcle();
+        this.pac = new PanelAtrCritere(); 
+        this.add(this.pmc);
+        this.add(this.pac);
 	}
 }
