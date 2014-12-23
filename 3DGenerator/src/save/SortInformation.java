@@ -1,6 +1,8 @@
 package save;
 
-import java.awt.GridLayout;
+import java.awt.GridBagConstraints;
+import java.awt.GridBagLayout;
+import java.awt.Insets;
 
 import javax.swing.BorderFactory;
 import javax.swing.JLabel;
@@ -34,7 +36,7 @@ public class SortInformation extends JPanel{
 	}
 	
 	private void initComponents(){
-		this.tag = new JTextArea(2,15);
+		this.tag = new JTextArea(4,15);
 		this.tag.setLineWrap(true);
 		JScrollPane scrollPane = new JScrollPane(this.tag);
 		this.tag.setToolTipText("Entrez vos tag ici en les séparant par un espace");
@@ -43,15 +45,61 @@ public class SortInformation extends JPanel{
 		this.utilisation = new JTextField(15);
 		this.utilisation.setToolTipText("Entrez ici une utilisation de l'objet");
 
-		GridLayout g = new GridLayout(3,2);
-		this.setLayout(g);
-		g.setHgap(10);
-		g.setVgap(5);
-		this.add(new JLabel("Tag:"));
+		
+		GridBagLayout bagLayout = new GridBagLayout();
+        this.setLayout(bagLayout);
+        GridBagConstraints c = new GridBagConstraints();
+        
+        c.anchor = GridBagConstraints.WEST;
+        c.insets = new Insets(2,2,2,2);	
+        c.weightx = 1;
+        c.weighty = 0;
+        c.fill = GridBagConstraints.WEST;
+        c.gridwidth = 1;
+        c.gridheight = 1;
+        c.gridx = 0;
+        c.gridy = 0;
+        JLabel tagLabel = new JLabel("Tag:");
+        bagLayout.setConstraints(tagLabel, c);
+        this.add(tagLabel);
+		c.gridx = 1;
+		bagLayout.setConstraints(scrollPane, c);
 		this.add(scrollPane);
-		this.add(new JLabel("Utilisation:"));
+		
+		JLabel utilisationLabel = new JLabel("Utilisation:");
+		c.gridx = 0;
+		c.gridy = 1;
+		bagLayout.setConstraints(utilisationLabel, c);
+		this.add(utilisationLabel);
+		c.gridx = 1;
+		bagLayout.setConstraints(this.utilisation, c);
 		this.add(this.utilisation);
-		this.add(new JLabel("Forme:"));
+		
+		JLabel formeLabel = new JLabel("Forme:");
+		c.gridx = 0;
+		c.gridy = 2;
+		bagLayout.setConstraints(formeLabel, c);
+		this.add(formeLabel);
+		c.gridx = 1;
+		bagLayout.setConstraints(this.forme, c);
 		this.add(this.forme);
+	}
+
+	/**
+	 * permet de récupérer les information supplémentaire saisies
+	 * @return
+	 */
+	public String[][] getInfo() {
+		String[][] info = new String[3][];
+		if(this.tag.getText().length() != 0)
+			info[0] = new String[this.tag.getText().split(" ").length];
+		info[0] = this.tag.getText().split(" ");
+		info[1] = new String[1];
+		if(this.utilisation.getText().replaceAll(" ", "").length() != 0)
+			info[1][0] = this.utilisation.getText();
+		info[2] = new String[1];
+		if(this.forme.getText().replaceAll(" ", "").length() != 0)
+			info[2][0] = this.forme.getText();
+		return info;
 	}
 }

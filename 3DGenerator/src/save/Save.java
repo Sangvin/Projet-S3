@@ -3,10 +3,17 @@ package save;
 import java.awt.Color;
 import java.awt.GridBagConstraints;
 import java.awt.GridBagLayout;
+import java.awt.Insets;
 import java.awt.Toolkit;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+import java.sql.Connection;
+import java.sql.DriverManager;
+import java.sql.PreparedStatement;
 
 import javax.swing.JButton;
 import javax.swing.JDialog;
+import javax.swing.JOptionPane;
 
 import objet.Objet3D;
 
@@ -41,7 +48,7 @@ public class Save extends JDialog{
 	 * permet d'annuler la sauvegarde
 	 */
 	private JButton annuler;
-	
+
 	/**
 	 * constructeur de la frame
 	 * @param object
@@ -59,47 +66,103 @@ public class Save extends JDialog{
 		this.setAlwaysOnTop(true);
 		this.setDefaultCloseOperation(DISPOSE_ON_CLOSE);
 	}
-	
+
 	/**
 	 * permet de placer les composants
 	 */
 	private void initComponents(){
 		this.info = new GeneralInformation(this.object.getFichier().getAbsolutePath());
 		this.sorted = new SortInformation();
-		
+
 		this.valider = new JButton("Valider");
+		final JDialog parent = this;
+		this.valider.addActionListener(new ActionListener(){
+
+			@Override
+			public void actionPerformed(ActionEvent arg0) {
+				if(info.getInfo() != null){
+
+					int confirm = JOptionPane.showConfirmDialog(parent, "Confirmer l'ajout dans la base","Confirmation",
+							JOptionPane.YES_NO_OPTION,JOptionPane.QUESTION_MESSAGE);
+					if(confirm == JOptionPane.OK_OPTION){
+						String[] information = info.getInfo();
+						String[][] triInformation = sorted.getInfo();
+						try{
+							Class.forName("org.sqlite.JDBC");
+							Connection con = null;
+							try{
+								con = DriverManager.getConnection("jdbc:sqlite:./config/bibliotheque.db");
+								PreparedStatement ps = con.prepareStatement("insert into object values(?,?,?,?,?,?,?,?,?)");
+								int j = 0;
+								for(; j < information.length; j++)
+									ps.setString(j+1,information[j]);
+								for(int i = 1; i < triInformation.length; i++){
+									ps.setString(++j, triInformation[i][0]);
+								}
+								ps.setString(++j, object.getPoints().size()+"");
+								ps.setString(++j, object.getSegments().size()+"");
+								ps.setString(++j, object.getFaces().size()+"");
+//								ps.executeUpdate();
+								if(triInformation[0][0] != null){
+									System.out.println("test");
+									ps = con.prepareStatement("insert into tag values(?,?)");
+									for(int i = 0; i < triInformation[0].length; i++){
+										ps.setString(1, triInformation[0][i]);
+										ps.setString(2, information[0]);
+//										ps.executeUpdate();
+									}
+								}
+								dispose();
+							}catch(Exception e){e.printStackTrace();}
+							con.close();
+						}catch(Exception e){e.printStackTrace();}
+					}
+				}
+				else{
+					String msg = "Impossible d'effectuer l'enregistrement des informations sont manqantes";
+					JOptionPane.showMessageDialog(parent,msg,"Erreur",JOptionPane.ERROR_MESSAGE);
+				}
+			}
+		});
 		this.annuler = new JButton("Annuler");
-		
+		this.annuler.addActionListener(new ActionListener(){
+			@Override
+			public void actionPerformed(ActionEvent arg0) {
+				dispose();
+			}
+		});
+
 		GridBagLayout bagLayout = new GridBagLayout();
-        this.setLayout(bagLayout);
-        GridBagConstraints c = new GridBagConstraints();
-        
-        c.anchor = GridBagConstraints.NORTH;
-        c.weightx = 1;
-        c.weighty = 0;
-        c.fill = GridBagConstraints.NORTHEAST;
-        c.gridwidth = 1;
-        c.gridheight = 1;
-        
-        c.gridx = 0;
-        c.gridy = 0;
-        bagLayout.setConstraints(this.info, c);
-        this.getContentPane().add(this.info);
-        
-        c.gridx = 1;
-        bagLayout.setConstraints(this.sorted, c);
-        this.getContentPane().add(this.sorted);
-        
-        c.gridx = 0;
-        c.gridy = 1;
-        bagLayout.setConstraints(this.valider, c);
-        this.getContentPane().add(this.valider);
-        
-        c.gridx = 1;
-        bagLayout.setConstraints(this.annuler, c);
-        this.getContentPane().add(this.annuler);
+		this.setLayout(bagLayout);
+		GridBagConstraints c = new GridBagConstraints();
+
+		c.anchor = GridBagConstraints.NORTH;
+		c.insets = new Insets(5,2,5,2);
+		c.weightx = 1;
+		c.weighty = 0;
+		c.fill = GridBagConstraints.NORTHEAST;
+		c.gridwidth = 1;
+		c.gridheight = 1;
+
+		c.gridx = 0;
+		c.gridy = 0;
+		bagLayout.setConstraints(this.info, c);
+		this.getContentPane().add(this.info);
+
+		c.gridx = 1;
+		bagLayout.setConstraints(this.sorted, c);
+		this.getContentPane().add(this.sorted);
+
+		c.gridx = 0;
+		c.gridy = 1;
+		bagLayout.setConstraints(this.valider, c);
+		this.getContentPane().add(this.valider);
+
+		c.gridx = 1;
+		bagLayout.setConstraints(this.annuler, c);
+		this.getContentPane().add(this.annuler);
 	}
-	
+
 	public static void main(String[] args) throws Exception {
 		new Save(new Objet3D("./drone_dead_orbit_LP.gts",Color.RED));
 	}

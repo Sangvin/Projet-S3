@@ -110,7 +110,7 @@ public class Configure{
 			try{
 				con = DriverManager.getConnection("jdbc:sqlite:./config/bibliotheque.db");
 				Statement stmt = con.createStatement();
-				String req = "create table object (name text, url text, forme text, utilisation text, date text, nb_faces integer, nb_segments integer, nb_points integer, auteur text,constraint pk_object primary key (name))";
+				String req = "create table object (name text, url text, date text, auteur text, utilisation text, forme text, nb_points integer, nb_segments integer, nb_faces integer,constraint pk_object primary key (name))";
 				stmt.executeUpdate(req);
 				req = "create table tag (cle text,name text,constraint pk_tag primary key (cle,name), constraint fk_object foreign key (name) references object(name))";
 				stmt.executeUpdate(req);
@@ -188,10 +188,10 @@ public class Configure{
 			try{
 				con = DriverManager.getConnection("jdbc:sqlite:./config/bibliotheque.db");
 				Statement stmt = con.createStatement();
-				String req = "insert into object values('"+file.substring(0, file.length()-4)+"','./config/"+file+"','example',"
-						+ "'example','00/00/0000','"+Integer.parseInt(descripeurFigure.split(" ")[0])+"','"+
+				String req = "insert into object values('"+file.substring(0, file.length()-4)+"','./config/"+file+"','00/00/0000',"
+						+ "'3DGenerator','example','example','"+Integer.parseInt(descripeurFigure.split(" ")[0])+"','"+
 						Integer.parseInt(descripeurFigure.split(" ")[1])+"','"+Integer.parseInt(descripeurFigure.split(" ")[2])
-						+"','3DGenerator')";
+						+"')";
 				stmt.executeUpdate(req);
 				req = "insert into tag values('Example','"+file.substring(0,file.length()-4)+"')";
 				stmt.executeUpdate(req);
@@ -202,5 +202,9 @@ public class Configure{
 		}catch(Exception e){
 			e.printStackTrace();
 		}
+	}
+	
+	public static void main(String[] args) {
+		new Configure();
 	}
 }

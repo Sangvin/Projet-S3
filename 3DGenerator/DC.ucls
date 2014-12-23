@@ -1,55 +1,55 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<class-diagram version="1.1.7" icons="true" automaticImage="JPEG" always-add-relationships="true" generalizations="true" 
-  realizations="true" associations="true" dependencies="true" nesting-relationships="true">  
-  <class id="1" language="java" name="mvc.Model" project="3DGenerator" file="/3DGenerator/src/mvc/Model.java" 
-    binary="false" corner="BOTTOM_RIGHT">    
-    <position height="-1" width="-1" x="412" y="1804"/>    
-    <display autosize="true" stereotype="true" package="true" initial-value="true" signature="true" 
+<class-diagram version="1.1.7" icons="true" automaticImage="JPEG" always-add-relationships="false" 
+  generalizations="true" realizations="true" associations="true" dependencies="false" nesting-relationships="true">  
+  <enumeration id="1" language="java" name="autre.FileError" project="3DGenerator" 
+    file="/3DGenerator/src/autre/FileError.java" binary="false" corner="BOTTOM_RIGHT">    
+    <position height="369" width="131" x="41" y="37"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </enumeration>  
+  <class id="2" language="java" name="autre.Configure" project="3DGenerator" 
+    file="/3DGenerator/src/autre/Configure.java" binary="false" corner="BOTTOM_RIGHT">    
+    <position height="225" width="155" x="490" y="37"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
       sort-features="false" accessors="true" visibility="true">      
       <attributes public="true" package="true" protected="true" private="true" static="true"/>      
       <operations public="true" package="true" protected="true" private="true" static="true"/>    
     </display>  
   </class>  
-  <class id="2" language="java" name="mvc.ObjectController" project="3DGenerator" 
-    file="/3DGenerator/src/mvc/ObjectController.java" binary="false" corner="BOTTOM_RIGHT">    
-    <position height="-1" width="-1" x="412" y="1485"/>    
-    <display autosize="true" stereotype="true" package="true" initial-value="true" signature="true" 
+  <class id="3" language="java" name="autre.Outils" project="3DGenerator" file="/3DGenerator/src/autre/Outils.java" 
+    binary="false" corner="BOTTOM_RIGHT">    
+    <position height="171" width="238" x="212" y="37"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
       sort-features="false" accessors="true" visibility="true">      
       <attributes public="true" package="true" protected="true" private="true" static="true"/>      
       <operations public="true" package="true" protected="true" private="true" static="true"/>    
     </display>  
   </class>  
-  <class id="3" language="java" name="objet.Point" project="3DGenerator" file="/3DGenerator/src/objet/Point.java" 
-    binary="false" corner="BOTTOM_RIGHT">    
-    <position height="-1" width="-1" x="1232" y="817"/>    
-    <display autosize="true" stereotype="true" package="true" initial-value="true" signature="true" 
+  <class id="4" language="java" name="colorChooser.ColorTable" project="3DGenerator" 
+    file="/3DGenerator/src/colorChooser/ColorTable.java" binary="false" corner="BOTTOM_RIGHT">    
+    <position height="135" width="164" x="2479" y="37"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
       sort-features="false" accessors="true" visibility="true">      
       <attributes public="true" package="true" protected="true" private="true" static="true"/>      
       <operations public="true" package="true" protected="true" private="true" static="true"/>    
     </display>  
   </class>  
-  <class id="4" language="java" name="objet.Objet3D" project="3DGenerator" file="/3DGenerator/src/objet/Objet3D.java" 
-    binary="false" corner="BOTTOM_RIGHT">    
-    <position height="-1" width="-1" x="976" y="322"/>    
-    <display autosize="true" stereotype="true" package="true" initial-value="true" signature="true" 
+  <class id="5" language="java" name="colorChooser.ColorCreator" project="3DGenerator" 
+    file="/3DGenerator/src/colorChooser/ColorCreator.java" binary="false" corner="BOTTOM_RIGHT">    
+    <position height="315" width="175" x="2264" y="37"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
       sort-features="false" accessors="true" visibility="true">      
       <attributes public="true" package="true" protected="true" private="true" static="true"/>      
       <operations public="true" package="true" protected="true" private="true" static="true"/>    
     </display>  
   </class>  
-  <class id="5" language="java" name="objet.Face" project="3DGenerator" file="/3DGenerator/src/objet/Face.java" 
-    binary="false" corner="BOTTOM_RIGHT">    
-    <position height="-1" width="-1" x="749" y="811"/>    
-    <display autosize="true" stereotype="true" package="true" initial-value="true" signature="true" 
-      sort-features="false" accessors="true" visibility="true">      
-      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
-      <operations public="true" package="true" protected="true" private="true" static="true"/>    
-    </display>  
-  </class>  
-  <class id="6" language="java" name="objet.Segment" project="3DGenerator" file="/3DGenerator/src/objet/Segment.java" 
-    binary="false" corner="BOTTOM_RIGHT">    
-    <position height="-1" width="-1" x="994" y="699"/>    
-    <display autosize="true" stereotype="true" package="true" initial-value="true" signature="true" 
+  <class id="6" language="java" name="colorChooser.MyColorChooser" project="3DGenerator" 
+    file="/3DGenerator/src/colorChooser/MyColorChooser.java" binary="false" corner="BOTTOM_RIGHT">    
+    <position height="261" width="185" x="2458" y="446"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
       sort-features="false" accessors="true" visibility="true">      
       <attributes public="true" package="true" protected="true" private="true" static="true"/>      
       <operations public="true" package="true" protected="true" private="true" static="true"/>    
@@ -57,8 +57,8 @@
   </class>  
   <class id="7" language="java" name="graphic.PanelZoom.ZoomThread" project="3DGenerator" 
     file="/3DGenerator/src/graphic/PanelZoom.java" binary="false" corner="BOTTOM_RIGHT">    
-    <position height="-1" width="-1" x="-204" y="1053"/>    
-    <display autosize="true" stereotype="true" package="true" initial-value="true" signature="true" 
+    <position height="117" width="127" x="1052" y="801"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
       sort-features="false" accessors="true" visibility="true">      
       <attributes public="true" package="true" protected="true" private="true" static="true"/>      
       <operations public="true" package="true" protected="true" private="true" static="true"/>    
@@ -66,8 +66,8 @@
   </class>  
   <class id="8" language="java" name="graphic.Frame" project="3DGenerator" file="/3DGenerator/src/graphic/Frame.java" 
     binary="false" corner="BOTTOM_RIGHT">    
-    <position height="-1" width="-1" x="-85" y="401"/>    
-    <display autosize="true" stereotype="true" package="true" initial-value="true" signature="true" 
+    <position height="207" width="172" x="1937" y="37"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
       sort-features="false" accessors="true" visibility="true">      
       <attributes public="true" package="true" protected="true" private="true" static="true"/>      
       <operations public="true" package="true" protected="true" private="true" static="true"/>    
@@ -75,8 +75,8 @@
   </class>  
   <class id="9" language="java" name="graphic.PanelRotation" project="3DGenerator" 
     file="/3DGenerator/src/graphic/PanelRotation.java" binary="false" corner="BOTTOM_RIGHT">    
-    <position height="-1" width="-1" x="-452" y="910"/>    
-    <display autosize="true" stereotype="true" package="true" initial-value="true" signature="true" 
+    <position height="117" width="176" x="1467" y="446"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
       sort-features="false" accessors="true" visibility="true">      
       <attributes public="true" package="true" protected="true" private="true" static="true"/>      
       <operations public="true" package="true" protected="true" private="true" static="true"/>    
@@ -84,8 +84,8 @@
   </class>  
   <class id="10" language="java" name="graphic.PanelDep.MoveThread" project="3DGenerator" 
     file="/3DGenerator/src/graphic/PanelDep.java" binary="false" corner="BOTTOM_RIGHT">    
-    <position height="-1" width="-1" x="305" y="1059"/>    
-    <display autosize="true" stereotype="true" package="true" initial-value="true" signature="true" 
+    <position height="99" width="117" x="895" y="801"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
       sort-features="false" accessors="true" visibility="true">      
       <attributes public="true" package="true" protected="true" private="true" static="true"/>      
       <operations public="true" package="true" protected="true" private="true" static="true"/>    
@@ -93,8 +93,8 @@
   </class>  
   <class id="11" language="java" name="graphic.PanelBouton" project="3DGenerator" 
     file="/3DGenerator/src/graphic/PanelBouton.java" binary="false" corner="BOTTOM_RIGHT">    
-    <position height="-1" width="-1" x="-150" y="600"/>    
-    <display autosize="true" stereotype="true" package="true" initial-value="true" signature="true" 
+    <position height="99" width="202" x="2195" y="446"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
       sort-features="false" accessors="true" visibility="true">      
       <attributes public="true" package="true" protected="true" private="true" static="true"/>      
       <operations public="true" package="true" protected="true" private="true" static="true"/>    
@@ -102,8 +102,8 @@
   </class>  
   <class id="12" language="java" name="graphic.PanelObjet" project="3DGenerator" 
     file="/3DGenerator/src/graphic/PanelObjet.java" binary="false" corner="BOTTOM_RIGHT">    
-    <position height="-1" width="-1" x="343" y="682"/>    
-    <display autosize="true" stereotype="true" package="true" initial-value="true" signature="true" 
+    <position height="261" width="193" x="1704" y="446"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
       sort-features="false" accessors="true" visibility="true">      
       <attributes public="true" package="true" protected="true" private="true" static="true"/>      
       <operations public="true" package="true" protected="true" private="true" static="true"/>    
@@ -111,8 +111,8 @@
   </class>  
   <class id="13" language="java" name="graphic.PanelDep" project="3DGenerator" 
     file="/3DGenerator/src/graphic/PanelDep.java" binary="false" corner="BOTTOM_RIGHT">    
-    <position height="-1" width="-1" x="378" y="911"/>    
-    <display autosize="true" stereotype="true" package="true" initial-value="true" signature="true" 
+    <position height="117" width="156" x="856" y="446"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
       sort-features="false" accessors="true" visibility="true">      
       <attributes public="true" package="true" protected="true" private="true" static="true"/>      
       <operations public="true" package="true" protected="true" private="true" static="true"/>    
@@ -120,8 +120,8 @@
   </class>  
   <class id="14" language="java" name="graphic.PanelZoom" project="3DGenerator" 
     file="/3DGenerator/src/graphic/PanelZoom.java" binary="false" corner="BOTTOM_RIGHT">    
-    <position height="-1" width="-1" x="-131" y="900"/>    
-    <display autosize="true" stereotype="true" package="true" initial-value="true" signature="true" 
+    <position height="117" width="164" x="1052" y="446"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
       sort-features="false" accessors="true" visibility="true">      
       <attributes public="true" package="true" protected="true" private="true" static="true"/>      
       <operations public="true" package="true" protected="true" private="true" static="true"/>    
@@ -129,8 +129,8 @@
   </class>  
   <class id="15" language="java" name="graphic.PanelRotation.RotationThread" project="3DGenerator" 
     file="/3DGenerator/src/graphic/PanelRotation.java" binary="false" corner="BOTTOM_RIGHT">    
-    <position height="-1" width="-1" x="-501" y="1076"/>    
-    <display autosize="true" stereotype="true" package="true" initial-value="true" signature="true" 
+    <position height="135" width="163" x="1461" y="801"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
       sort-features="false" accessors="true" visibility="true">      
       <attributes public="true" package="true" protected="true" private="true" static="true"/>      
       <operations public="true" package="true" protected="true" private="true" static="true"/>    
@@ -138,80 +138,80 @@
   </class>  
   <class id="16" language="java" name="graphic.MenuBar" project="3DGenerator" 
     file="/3DGenerator/src/graphic/MenuBar.java" binary="false" corner="BOTTOM_RIGHT">    
-    <position height="-1" width="-1" x="67" y="103"/>    
-    <display autosize="true" stereotype="true" package="true" initial-value="true" signature="true" 
+    <position height="117" width="218" x="1937" y="446"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
       sort-features="false" accessors="true" visibility="true">      
       <attributes public="true" package="true" protected="true" private="true" static="true"/>      
       <operations public="true" package="true" protected="true" private="true" static="true"/>    
     </display>  
   </class>  
-  <class id="17" language="java" name="colorChooser.ColorTable" project="3DGenerator" 
-    file="/3DGenerator/src/colorChooser/ColorTable.java" binary="false" corner="BOTTOM_RIGHT">    
-    <position height="-1" width="-1" x="298" y="-304"/>    
-    <display autosize="true" stereotype="true" package="true" initial-value="true" signature="true" 
-      sort-features="false" accessors="true" visibility="true">      
-      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
-      <operations public="true" package="true" protected="true" private="true" static="true"/>    
-    </display>  
-  </class>  
-  <class id="18" language="java" name="colorChooser.ColorCreator" project="3DGenerator" 
-    file="/3DGenerator/src/colorChooser/ColorCreator.java" binary="false" corner="BOTTOM_RIGHT">    
-    <position height="-1" width="-1" x="657" y="-224"/>    
-    <display autosize="true" stereotype="true" package="true" initial-value="true" signature="true" 
-      sort-features="false" accessors="true" visibility="true">      
-      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
-      <operations public="true" package="true" protected="true" private="true" static="true"/>    
-    </display>  
-  </class>  
-  <class id="19" language="java" name="colorChooser.MyColorChooser" project="3DGenerator" 
-    file="/3DGenerator/src/colorChooser/MyColorChooser.java" binary="false" corner="BOTTOM_RIGHT">    
-    <position height="-1" width="-1" x="474" y="-636"/>    
-    <display autosize="true" stereotype="true" package="true" initial-value="true" signature="true" 
-      sort-features="false" accessors="true" visibility="true">      
-      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
-      <operations public="true" package="true" protected="true" private="true" static="true"/>    
-    </display>  
-  </class>  
-  <enumeration id="20" language="java" name="autre.FileError" project="3DGenerator" 
-    file="/3DGenerator/src/autre/FileError.java" binary="false" corner="BOTTOM_RIGHT">    
-    <position height="-1" width="-1" x="1702" y="246"/>    
-    <display autosize="true" stereotype="true" package="true" initial-value="true" signature="true" 
-      sort-features="false" accessors="true" visibility="true">      
-      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
-      <operations public="true" package="true" protected="true" private="true" static="true"/>    
-    </display>  
-  </enumeration>  
-  <class id="21" language="java" name="autre.Configure" project="3DGenerator" 
-    file="/3DGenerator/src/autre/Configure.java" binary="false" corner="BOTTOM_RIGHT">    
-    <position height="-1" width="-1" x="-581" y="-532"/>    
-    <display autosize="true" stereotype="true" package="true" initial-value="true" signature="true" 
-      sort-features="false" accessors="true" visibility="true">      
-      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
-      <operations public="true" package="true" protected="true" private="true" static="true"/>    
-    </display>  
-  </class>  
-  <class id="22" language="java" name="autre.Outils" project="3DGenerator" file="/3DGenerator/src/autre/Outils.java" 
-    binary="false" corner="BOTTOM_RIGHT">    
-    <position height="-1" width="-1" x="1960" y="159"/>    
-    <display autosize="true" stereotype="true" package="true" initial-value="true" signature="true" 
-      sort-features="false" accessors="true" visibility="true">      
-      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
-      <operations public="true" package="true" protected="true" private="true" static="true"/>    
-    </display>  
-  </class>  
-  <class id="23" language="java" name="launcher.Launcher" project="3DGenerator" 
+  <class id="17" language="java" name="launcher.Launcher" project="3DGenerator" 
     file="/3DGenerator/src/launcher/Launcher.java" binary="false" corner="BOTTOM_RIGHT">    
-    <position height="-1" width="-1" x="-578" y="-200"/>    
-    <display autosize="true" stereotype="true" package="true" initial-value="true" signature="true" 
+    <position height="225" width="171" x="1256" y="37"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
       sort-features="false" accessors="true" visibility="true">      
       <attributes public="true" package="true" protected="true" private="true" static="true"/>      
       <operations public="true" package="true" protected="true" private="true" static="true"/>    
     </display>  
   </class>  
-  <class id="24" language="java" name="launcher.Launch" project="3DGenerator" 
+  <class id="18" language="java" name="launcher.Launch" project="3DGenerator" 
     file="/3DGenerator/src/launcher/Launch.java" binary="false" corner="BOTTOM_RIGHT">    
-    <position height="-1" width="-1" x="-578" y="110"/>    
-    <display autosize="true" stereotype="true" package="true" initial-value="true" signature="true" 
+    <position height="315" width="171" x="1256" y="446"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </class>  
+  <class id="19" language="java" name="mvc.Model" project="3DGenerator" file="/3DGenerator/src/mvc/Model.java" 
+    binary="false" corner="BOTTOM_RIGHT">    
+    <position height="261" width="163" x="1937" y="1102"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </class>  
+  <class id="20" language="java" name="mvc.ObjectController" project="3DGenerator" 
+    file="/3DGenerator/src/mvc/ObjectController.java" binary="false" corner="BOTTOM_RIGHT">    
+    <position height="261" width="163" x="1664" y="801"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </class>  
+  <class id="21" language="java" name="objet.Point" project="3DGenerator" file="/3DGenerator/src/objet/Point.java" 
+    binary="false" corner="BOTTOM_RIGHT">    
+    <position height="351" width="159" x="1106" y="2275"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </class>  
+  <class id="22" language="java" name="objet.Objet3D" project="3DGenerator" file="/3DGenerator/src/objet/Objet3D.java" 
+    binary="false" corner="BOTTOM_RIGHT">    
+    <position height="477" width="209" x="1333" y="1403"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </class>  
+  <class id="23" language="java" name="objet.Face" project="3DGenerator" file="/3DGenerator/src/objet/Face.java" 
+    binary="false" corner="BOTTOM_RIGHT">    
+    <position height="315" width="204" x="935" y="1920"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </class>  
+  <class id="24" language="java" name="objet.Segment" project="3DGenerator" file="/3DGenerator/src/objet/Segment.java" 
+    binary="false" corner="BOTTOM_RIGHT">    
+    <position height="117" width="133" x="1179" y="1920"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
       sort-features="false" accessors="true" visibility="true">      
       <attributes public="true" package="true" protected="true" private="true" static="true"/>      
       <operations public="true" package="true" protected="true" private="true" static="true"/>    
@@ -219,8 +219,8 @@
   </class>  
   <class id="25" language="java" name="open.JpRecherche" project="3DGenerator" 
     file="/3DGenerator/src/open/JpRecherche.java" binary="false" corner="BOTTOM_RIGHT">    
-    <position height="-1" width="-1" x="-330" y="-604"/>    
-    <display autosize="true" stereotype="true" package="true" initial-value="true" signature="true" 
+    <position height="99" width="131" x="685" y="446"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
       sort-features="false" accessors="true" visibility="true">      
       <attributes public="true" package="true" protected="true" private="true" static="true"/>      
       <operations public="true" package="true" protected="true" private="true" static="true"/>    
@@ -228,8 +228,8 @@
   </class>  
   <class id="26" language="java" name="open.Recherche" project="3DGenerator" file="/3DGenerator/src/open/Recherche.java" 
     binary="false" corner="BOTTOM_RIGHT">    
-    <position height="-1" width="-1" x="-232" y="-752"/>    
-    <display autosize="true" stereotype="true" package="true" initial-value="true" signature="true" 
+    <position height="117" width="131" x="685" y="37"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
       sort-features="false" accessors="true" visibility="true">      
       <attributes public="true" package="true" protected="true" private="true" static="true"/>      
       <operations public="true" package="true" protected="true" private="true" static="true"/>    
@@ -237,8 +237,8 @@
   </class>  
   <class id="27" language="java" name="open.PanelAtrCritere" project="3DGenerator" 
     file="/3DGenerator/src/open/PanelAtrCritere.java" binary="false" corner="BOTTOM_RIGHT">    
-    <position height="-1" width="-1" x="-327" y="-276"/>    
-    <display autosize="true" stereotype="true" package="true" initial-value="true" signature="true" 
+    <position height="261" width="161" x="519" y="801"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
       sort-features="false" accessors="true" visibility="true">      
       <attributes public="true" package="true" protected="true" private="true" static="true"/>      
       <operations public="true" package="true" protected="true" private="true" static="true"/>    
@@ -246,8 +246,8 @@
   </class>  
   <class id="28" language="java" name="open.JpResultats" project="3DGenerator" 
     file="/3DGenerator/src/open/JpResultats.java" binary="false" corner="BOTTOM_RIGHT">    
-    <position height="-1" width="-1" x="-129" y="-550"/>    
-    <display autosize="true" stereotype="true" package="true" initial-value="true" signature="true" 
+    <position height="207" width="167" x="478" y="446"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
       sort-features="false" accessors="true" visibility="true">      
       <attributes public="true" package="true" protected="true" private="true" static="true"/>      
       <operations public="true" package="true" protected="true" private="true" static="true"/>    
@@ -255,8 +255,8 @@
   </class>  
   <class id="29" language="java" name="open.PanelMcle" project="3DGenerator" file="/3DGenerator/src/open/PanelMcle.java" 
     binary="false" corner="BOTTOM_RIGHT">    
-    <position height="-1" width="-1" x="-129" y="-312"/>    
-    <display autosize="true" stereotype="true" package="true" initial-value="true" signature="true" 
+    <position height="189" width="135" x="720" y="801"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
       sort-features="false" accessors="true" visibility="true">      
       <attributes public="true" package="true" protected="true" private="true" static="true"/>      
       <operations public="true" package="true" protected="true" private="true" static="true"/>    
@@ -264,8 +264,8 @@
   </class>  
   <class id="30" language="java" name="save.Save" project="3DGenerator" file="/3DGenerator/src/save/Save.java" 
     binary="false" corner="BOTTOM_RIGHT">    
-    <position height="-1" width="-1" x="1402" y="-452"/>    
-    <display autosize="true" stereotype="true" package="true" initial-value="true" signature="true" 
+    <position height="171" width="131" x="1140" y="1102"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
       sort-features="false" accessors="true" visibility="true">      
       <attributes public="true" package="true" protected="true" private="true" static="true"/>      
       <operations public="true" package="true" protected="true" private="true" static="true"/>    
@@ -273,8 +273,8 @@
   </class>  
   <class id="31" language="java" name="save.GeneralInformation" project="3DGenerator" 
     file="/3DGenerator/src/save/GeneralInformation.java" binary="false" corner="BOTTOM_RIGHT">    
-    <position height="-1" width="-1" x="1304" y="-223"/>    
-    <display autosize="true" stereotype="true" package="true" initial-value="true" signature="true" 
+    <position height="207" width="153" x="1140" y="1403"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
       sort-features="false" accessors="true" visibility="true">      
       <attributes public="true" package="true" protected="true" private="true" static="true"/>      
       <operations public="true" package="true" protected="true" private="true" static="true"/>    
@@ -282,554 +282,375 @@
   </class>  
   <class id="32" language="java" name="save.SortInformation" project="3DGenerator" 
     file="/3DGenerator/src/save/SortInformation.java" binary="false" corner="BOTTOM_RIGHT">    
-    <position height="-1" width="-1" x="1499" y="-241"/>    
-    <display autosize="true" stereotype="true" package="true" initial-value="true" signature="true" 
+    <position height="171" width="131" x="969" y="1403"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
       sort-features="false" accessors="true" visibility="true">      
       <attributes public="true" package="true" protected="true" private="true" static="true"/>      
       <operations public="true" package="true" protected="true" private="true" static="true"/>    
     </display>  
   </class>  
-  <dependency id="33">    
-    <end type="SOURCE" refId="11"/>    
-    <end type="TARGET" refId="9"/>  
-  </dependency>  
-  <dependency id="34">    
-    <end type="SOURCE" refId="19"/>    
-    <end type="TARGET" refId="12"/>  
-  </dependency>  
-  <dependency id="35">    
-    <bendpoint x="1856" y="762"/>    
-    <bendpoint x="1554" y="1058"/>    
-    <bendpoint x="700" y="1068"/>    
-    <end type="SOURCE" refId="22"/>    
-    <end type="TARGET" refId="5"/>  
-  </dependency>  
-  <dependency id="36">    
-    <end type="SOURCE" refId="11"/>    
-    <end type="TARGET" refId="13"/>  
-  </dependency>  
-  <association id="37">    
-    <bendpoint x="610" y="374"/>    
-    <bendpoint x="610" y="614"/>    
-    <bendpoint x="646" y="1456"/>    
-    <end type="SOURCE" refId="19" navigable="false">      
-      <attribute id="38" name="model"/>      
-      <multiplicity id="39" minimum="0" maximum="1"/>    
+  <association id="33">    
+    <end type="SOURCE" refId="30" navigable="false">      
+      <attribute id="34" name="object"/>      
+      <multiplicity id="35" minimum="0" maximum="1"/>    
     </end>    
-    <end type="TARGET" refId="1" navigable="true"/>    
+    <end type="TARGET" refId="22" navigable="true"/>    
     <display labels="true" multiplicity="true"/>  
   </association>  
-  <association id="40">    
-    <end type="SOURCE" refId="25" navigable="false">      
-      <attribute id="41" name="pmc"/>      
-      <multiplicity id="42" minimum="0" maximum="1"/>    
-    </end>    
-    <end type="TARGET" refId="29" navigable="true"/>    
-    <display labels="true" multiplicity="true"/>  
-  </association>  
-  <dependency id="43">    
-    <bendpoint x="1222" y="1196"/>    
-    <bendpoint x="1262" y="1094"/>    
-    <end type="SOURCE" refId="2"/>    
-    <end type="TARGET" refId="3"/>  
-  </dependency>  
-  <association id="44">    
-    <bendpoint x="1163" y="595"/>    
-    <end type="SOURCE" refId="4" navigable="false">      
-      <attribute id="45" name="vector"/>      
-      <multiplicity id="46" minimum="0" maximum="1"/>    
-    </end>    
-    <end type="TARGET" refId="3" navigable="true"/>    
-    <display labels="true" multiplicity="true"/>  
-  </association>  
-  <association id="47">    
-    <end type="SOURCE" refId="17" navigable="false">      
-      <attribute id="48" name="c"/>      
-      <multiplicity id="49" minimum="0" maximum="1"/>    
-    </end>    
-    <end type="TARGET" refId="19" navigable="true"/>    
-    <display labels="true" multiplicity="true"/>  
-  </association>  
-  <nesting id="50">    
-    <end type="SOURCE" refId="9"/>    
-    <end type="TARGET" refId="15"/>  
-  </nesting>  
-  <association id="51">    
-    <bendpoint x="100" y="1144"/>    
-    <bendpoint x="96" y="690"/>    
-    <end type="SOURCE" refId="2" navigable="false">      
-      <attribute id="52" name="view"/>      
-      <multiplicity id="53" minimum="0" maximum="1"/>    
-    </end>    
-    <end type="TARGET" refId="12" navigable="true"/>    
-    <display labels="true" multiplicity="true"/>  
-  </association>  
-  <association id="54">    
-    <end type="SOURCE" refId="23" navigable="false">      
-      <attribute id="55" name="bar"/>      
-      <multiplicity id="56" minimum="0" maximum="1"/>    
+  <association id="36">    
+    <end type="SOURCE" refId="22" navigable="false">      
+      <attribute id="37" name="segments"/>      
+      <multiplicity id="38" minimum="0" maximum="2147483647"/>    
     </end>    
     <end type="TARGET" refId="24" navigable="true"/>    
     <display labels="true" multiplicity="true"/>  
   </association>  
-  <association id="57">    
-    <bendpoint x="534" y="412"/>    
-    <bendpoint x="534" y="1290"/>    
-    <end type="SOURCE" refId="16" navigable="false">      
-      <attribute id="58" name="controller"/>      
-      <multiplicity id="59" minimum="0" maximum="1"/>    
-    </end>    
-    <end type="TARGET" refId="2" navigable="true"/>    
-    <display labels="true" multiplicity="true"/>  
-  </association>  
-  <association id="60">    
-    <end type="SOURCE" refId="25" navigable="false">      
-      <attribute id="61" name="pac"/>      
-      <multiplicity id="62" minimum="0" maximum="1"/>    
-    </end>    
-    <end type="TARGET" refId="27" navigable="true"/>    
-    <display labels="true" multiplicity="true"/>  
-  </association>  
-  <association id="63">    
+  <association id="39">    
     <end type="SOURCE" refId="19" navigable="false">      
-      <attribute id="64" name="creator"/>      
-      <multiplicity id="65" minimum="0" maximum="1"/>    
+      <attribute id="40" name="object"/>      
+      <multiplicity id="41" minimum="0" maximum="1"/>    
     </end>    
-    <end type="TARGET" refId="18" navigable="true"/>    
+    <end type="TARGET" refId="22" navigable="true"/>    
     <display labels="true" multiplicity="true"/>  
   </association>  
-  <dependency id="66">    
-    <bendpoint x="-500" y="1282"/>    
-    <end type="SOURCE" refId="15"/>    
-    <end type="TARGET" refId="2"/>  
-  </dependency>  
-  <association id="67">    
-    <bendpoint x="-620" y="666"/>    
-    <bendpoint x="-618" y="1302"/>    
+  <association id="42">    
     <end type="SOURCE" refId="8" navigable="false">      
-      <attribute id="68" name="controller"/>      
-      <multiplicity id="69" minimum="0" maximum="1"/>    
-    </end>    
-    <end type="TARGET" refId="2" navigable="true"/>    
-    <display labels="true" multiplicity="true"/>  
-  </association>  
-  <dependency id="70">    
-    <end type="SOURCE" refId="12"/>    
-    <end type="TARGET" refId="4"/>  
-  </dependency>  
-  <association id="71">    
-    <end type="SOURCE" refId="30" navigable="false">      
-      <attribute id="72" name="info"/>      
-      <multiplicity id="73" minimum="0" maximum="1"/>    
-    </end>    
-    <end type="TARGET" refId="31" navigable="true"/>    
-    <display labels="true" multiplicity="true"/>  
-  </association>  
-  <association id="74">    
-    <end type="SOURCE" refId="26" navigable="false">      
-      <attribute id="75" name="jpRecherche"/>      
-      <multiplicity id="76" minimum="0" maximum="1"/>    
-    </end>    
-    <end type="TARGET" refId="25" navigable="true"/>    
-    <display labels="true" multiplicity="true"/>  
-  </association>  
-  <dependency id="77">    
-    <end type="SOURCE" refId="16"/>    
-    <end type="TARGET" refId="12"/>  
-  </dependency>  
-  <association id="78">    
-    <end type="SOURCE" refId="8" navigable="false">      
-      <attribute id="79" name="menu"/>      
-      <multiplicity id="80" minimum="0" maximum="1"/>    
-    </end>    
-    <end type="TARGET" refId="16" navigable="true"/>    
-    <display labels="true" multiplicity="true"/>  
-  </association>  
-  <dependency id="81">    
-    <bendpoint x="588" y="886"/>    
-    <bendpoint x="641" y="1096"/>    
-    <bendpoint x="1203" y="1087"/>    
-    <end type="SOURCE" refId="12"/>    
-    <end type="TARGET" refId="3"/>  
-  </dependency>  
-  <association id="82">    
-    <end type="SOURCE" refId="13" navigable="false">      
-      <attribute id="83" name="controller"/>      
-      <multiplicity id="84" minimum="0" maximum="1"/>    
-    </end>    
-    <end type="TARGET" refId="2" navigable="true"/>    
-    <display labels="true" multiplicity="true"/>  
-  </association>  
-  <nesting id="85">    
-    <end type="SOURCE" refId="13"/>    
-    <end type="TARGET" refId="10"/>  
-  </nesting>  
-  <dependency id="86">    
-    <bendpoint x="-154" y="1202"/>    
-    <end type="SOURCE" refId="7"/>    
-    <end type="TARGET" refId="2"/>  
-  </dependency>  
-  <dependency id="87">    
-    <bendpoint x="221" y="78"/>    
-    <bendpoint x="468" y="79"/>    
-    <end type="SOURCE" refId="16"/>    
-    <end type="TARGET" refId="4"/>  
-  </dependency>  
-  <association id="88">    
-    <bendpoint x="668" y="1137"/>    
-    <bendpoint x="1236" y="1113"/>    
-    <end type="SOURCE" refId="10" navigable="false">      
-      <attribute id="89" name="deplacement"/>      
-      <multiplicity id="90" minimum="0" maximum="1"/>    
-    </end>    
-    <end type="TARGET" refId="3" navigable="true"/>    
-    <display labels="true" multiplicity="true"/>  
-  </association>  
-  <association id="91">    
-    <bendpoint x="-702" y="598"/>    
-    <bendpoint x="-700" y="1348"/>    
-    <end type="SOURCE" refId="8" navigable="false">      
-      <attribute id="92" name="model"/>      
-      <multiplicity id="93" minimum="0" maximum="1"/>    
-    </end>    
-    <end type="TARGET" refId="1" navigable="true"/>    
-    <display labels="true" multiplicity="true"/>  
-  </association>  
-  <dependency id="94">    
-    <bendpoint x="1788" y="670"/>    
-    <end type="SOURCE" refId="22"/>    
-    <end type="TARGET" refId="3"/>  
-  </dependency>  
-  <association id="95">    
-    <bendpoint x="104" y="-402"/>    
-    <bendpoint x="-204" y="-28"/>    
-    <end type="SOURCE" refId="19" navigable="false">      
-      <attribute id="96" name="f"/>      
-      <multiplicity id="97" minimum="0" maximum="1"/>    
-    </end>    
-    <end type="TARGET" refId="8" navigable="true"/>    
-    <display labels="true" multiplicity="true"/>  
-  </association>  
-  <dependency id="98">    
-    <bendpoint x="-662" y="642"/>    
-    <bendpoint x="-670" y="1324"/>    
-    <end type="SOURCE" refId="11"/>    
-    <end type="TARGET" refId="1"/>  
-  </dependency>  
-  <association id="99">    
-    <end type="SOURCE" refId="8" navigable="false">      
-      <attribute id="100" name="button"/>      
-      <multiplicity id="101" minimum="0" maximum="1"/>    
+      <attribute id="43" name="button"/>      
+      <multiplicity id="44" minimum="0" maximum="1"/>    
     </end>    
     <end type="TARGET" refId="11" navigable="true"/>    
     <display labels="true" multiplicity="true"/>  
   </association>  
-  <dependency id="102">    
-    <bendpoint x="-2" y="716"/>    
-    <bendpoint x="148" y="994"/>    
-    <end type="SOURCE" refId="11"/>    
-    <end type="TARGET" refId="2"/>  
-  </dependency>  
-  <association id="103">    
-    <bendpoint x="744" y="1013"/>    
-    <bendpoint x="987" y="1013"/>    
-    <end type="SOURCE" refId="5" navigable="false">      
-      <attribute id="104" name="c"/>      
-      <multiplicity id="105" minimum="0" maximum="1"/>    
-    </end>    
-    <end type="TARGET" refId="3" navigable="true"/>    
-    <display labels="true" multiplicity="true"/>  
-  </association>  
-  <association id="106">    
-    <end type="SOURCE" refId="19" navigable="false">      
-      <attribute id="107" name="table"/>      
-      <multiplicity id="108" minimum="0" maximum="1"/>    
-    </end>    
-    <end type="TARGET" refId="17" navigable="true"/>    
-    <display labels="true" multiplicity="true"/>  
-  </association>  
-  <association id="109">    
-    <end type="SOURCE" refId="2" navigable="false">      
-      <attribute id="110" name="model"/>      
-      <multiplicity id="111" minimum="0" maximum="1"/>    
-    </end>    
-    <end type="TARGET" refId="1" navigable="true"/>    
-    <display labels="true" multiplicity="true"/>  
-  </association>  
-  <association id="112">    
-    <bendpoint x="-454" y="1240"/>    
-    <end type="SOURCE" refId="9" navigable="false">      
-      <attribute id="113" name="controller"/>      
-      <multiplicity id="114" minimum="0" maximum="1"/>    
-    </end>    
-    <end type="TARGET" refId="2" navigable="true"/>    
-    <display labels="true" multiplicity="true"/>  
-  </association>  
-  <dependency id="115">    
-    <end type="SOURCE" refId="5"/>    
-    <end type="TARGET" refId="6"/>  
-  </dependency>  
-  <dependency id="116">    
-    <bendpoint x="884" y="-294"/>    
-    <end type="SOURCE" refId="19"/>    
-    <end type="TARGET" refId="4"/>  
-  </dependency>  
-  <association id="117">    
-    <bendpoint x="132" y="716"/>    
-    <bendpoint x="138" y="1136"/>    
+  <association id="45">    
     <end type="SOURCE" refId="12" navigable="false">      
-      <attribute id="118" name="controller"/>      
-      <multiplicity id="119" minimum="0" maximum="1"/>    
+      <attribute id="46" name="controller"/>      
+      <multiplicity id="47" minimum="0" maximum="1"/>    
     </end>    
-    <end type="TARGET" refId="2" navigable="true"/>    
+    <end type="TARGET" refId="20" navigable="true"/>    
     <display labels="true" multiplicity="true"/>  
   </association>  
-  <association id="120">    
-    <end type="SOURCE" refId="6" navigable="false">      
-      <attribute id="121" name="a"/>      
-      <multiplicity id="122" minimum="0" maximum="1"/>    
-    </end>    
-    <end type="TARGET" refId="3" navigable="true"/>    
-    <display labels="true" multiplicity="true"/>  
-  </association>  
-  <dependency id="123">    
-    <end type="SOURCE" refId="4"/>    
-    <end type="TARGET" refId="20"/>  
-  </dependency>  
-  <dependency id="124">    
-    <bendpoint x="104" y="-712"/>    
-    <end type="SOURCE" refId="16"/>    
-    <end type="TARGET" refId="26"/>  
-  </dependency>  
-  <dependency id="125">    
-    <bendpoint x="892" y="1210"/>    
-    <bendpoint x="1020" y="1064"/>    
-    <end type="SOURCE" refId="1"/>    
-    <end type="TARGET" refId="3"/>  
-  </dependency>  
-  <dependency id="126">    
-    <bendpoint x="54" y="-658"/>    
-    <bendpoint x="36" y="-212"/>    
-    <bendpoint x="-100" y="-108"/>    
-    <end type="SOURCE" refId="26"/>    
-    <end type="TARGET" refId="8"/>  
-  </dependency>  
-  <association id="127">    
+  <association id="48">    
     <end type="SOURCE" refId="4" navigable="false">      
-      <attribute id="128" name="segments"/>      
-      <multiplicity id="129" minimum="0" maximum="2147483647"/>    
+      <attribute id="49" name="c"/>      
+      <multiplicity id="50" minimum="0" maximum="1"/>    
     </end>    
     <end type="TARGET" refId="6" navigable="true"/>    
     <display labels="true" multiplicity="true"/>  
   </association>  
-  <dependency id="130">    
-    <bendpoint x="188" y="45"/>    
-    <bendpoint x="677" y="47"/>    
-    <bendpoint x="1246" y="46"/>    
-    <bendpoint x="1242" y="156"/>    
-    <end type="SOURCE" refId="16"/>    
-    <end type="TARGET" refId="3"/>  
-  </dependency>  
-  <dependency id="131">    
-    <end type="SOURCE" refId="11"/>    
-    <end type="TARGET" refId="14"/>  
-  </dependency>  
-  <association id="132">    
-    <bendpoint x="-134" y="1174"/>    
-    <end type="SOURCE" refId="14" navigable="false">      
-      <attribute id="133" name="controller"/>      
-      <multiplicity id="134" minimum="0" maximum="1"/>    
+  <association id="51">    
+    <end type="SOURCE" refId="23" navigable="false">      
+      <attribute id="52" name="a"/>      
+      <multiplicity id="53" minimum="0" maximum="1"/>    
     </end>    
-    <end type="TARGET" refId="2" navigable="true"/>    
+    <end type="TARGET" refId="21" navigable="true"/>    
     <display labels="true" multiplicity="true"/>  
   </association>  
-  <dependency id="135">    
-    <end type="SOURCE" refId="10"/>    
-    <end type="TARGET" refId="2"/>  
-  </dependency>  
-  <dependency id="136">    
-    <bendpoint x="1180" y="1286"/>    
-    <bendpoint x="1370" y="1142"/>    
-    <bendpoint x="1360" y="558"/>    
-    <end type="SOURCE" refId="2"/>    
-    <end type="TARGET" refId="4"/>  
-  </dependency>  
-  <association id="137">    
-    <end type="SOURCE" refId="18" navigable="false">      
-      <attribute id="138" name="c"/>      
-      <multiplicity id="139" minimum="0" maximum="1"/>    
+  <association id="54">    
+    <end type="SOURCE" refId="9" navigable="false">      
+      <attribute id="55" name="controller"/>      
+      <multiplicity id="56" minimum="0" maximum="1"/>    
     </end>    
-    <end type="TARGET" refId="19" navigable="true"/>    
+    <end type="TARGET" refId="20" navigable="true"/>    
     <display labels="true" multiplicity="true"/>  
   </association>  
-  <association id="140">    
+  <association id="57">    
+    <end type="SOURCE" refId="24" navigable="false">      
+      <attribute id="58" name="b"/>      
+      <multiplicity id="59" minimum="0" maximum="1"/>    
+    </end>    
+    <end type="TARGET" refId="21" navigable="true"/>    
+    <display labels="true" multiplicity="true"/>  
+  </association>  
+  <association id="60">    
     <end type="SOURCE" refId="6" navigable="false">      
-      <attribute id="141" name="b"/>      
-      <multiplicity id="142" minimum="0" maximum="1"/>    
-    </end>    
-    <end type="TARGET" refId="3" navigable="true"/>    
-    <display labels="true" multiplicity="true"/>  
-  </association>  
-  <association id="143">    
-    <bendpoint x="727" y="1030"/>    
-    <bendpoint x="1005" y="1030"/>    
-    <end type="SOURCE" refId="5" navigable="false">      
-      <attribute id="144" name="b"/>      
-      <multiplicity id="145" minimum="0" maximum="1"/>    
-    </end>    
-    <end type="TARGET" refId="3" navigable="true"/>    
-    <display labels="true" multiplicity="true"/>  
-  </association>  
-  <dependency id="146">    
-    <end type="SOURCE" refId="21"/>    
-    <end type="TARGET" refId="23"/>  
-  </dependency>  
-  <association id="147">    
-    <bendpoint x="24" y="614"/>    
-    <bendpoint x="42" y="1200"/>    
-    <end type="SOURCE" refId="12" navigable="false">      
-      <attribute id="148" name="model"/>      
-      <multiplicity id="149" minimum="0" maximum="1"/>    
-    </end>    
-    <end type="TARGET" refId="1" navigable="true"/>    
-    <display labels="true" multiplicity="true"/>  
-  </association>  
-  <association id="150">    
-    <end type="SOURCE" refId="8" navigable="false">      
-      <attribute id="151" name="tablette"/>      
-      <multiplicity id="152" minimum="0" maximum="1"/>    
-    </end>    
-    <end type="TARGET" refId="12" navigable="true"/>    
-    <display labels="true" multiplicity="true"/>  
-  </association>  
-  <association id="153">    
-    <bendpoint x="1432" y="1158"/>    
-    <bendpoint x="1396" y="514"/>    
-    <end type="SOURCE" refId="1" navigable="false">      
-      <attribute id="154" name="object"/>      
-      <multiplicity id="155" minimum="0" maximum="1"/>    
-    </end>    
-    <end type="TARGET" refId="4" navigable="true"/>    
-    <display labels="true" multiplicity="true"/>  
-  </association>  
-  <dependency id="156">    
-    <bendpoint x="-150" y="16"/>    
-    <bendpoint x="530" y="5"/>    
-    <bendpoint x="1267" y="23"/>    
-    <end type="SOURCE" refId="8"/>    
-    <end type="TARGET" refId="3"/>  
-  </dependency>  
-  <association id="157">    
-    <bendpoint x="737" y="1022"/>    
-    <bendpoint x="995" y="1022"/>    
-    <end type="SOURCE" refId="5" navigable="false">      
-      <attribute id="158" name="a"/>      
-      <multiplicity id="159" minimum="0" maximum="1"/>    
-    </end>    
-    <end type="TARGET" refId="3" navigable="true"/>    
-    <display labels="true" multiplicity="true"/>  
-  </association>  
-  <association id="160">    
-    <bendpoint x="749" y="1002"/>    
-    <bendpoint x="979" y="1002"/>    
-    <end type="SOURCE" refId="5" navigable="false">      
-      <attribute id="161" name="baricentre"/>      
-      <multiplicity id="162" minimum="0" maximum="1"/>    
-    </end>    
-    <end type="TARGET" refId="3" navigable="true"/>    
-    <display labels="true" multiplicity="true"/>  
-  </association>  
-  <dependency id="163">    
-    <bendpoint x="1556" y="496"/>    
-    <bendpoint x="1776" y="466"/>    
-    <bendpoint x="1854" y="416"/>    
-    <end type="SOURCE" refId="4"/>    
-    <end type="TARGET" refId="22"/>  
-  </dependency>  
-  <association id="164">    
-    <bendpoint x="570" y="382"/>    
-    <bendpoint x="602" y="1460"/>    
-    <end type="SOURCE" refId="16" navigable="false">      
-      <attribute id="165" name="model"/>      
-      <multiplicity id="166" minimum="0" maximum="1"/>    
-    </end>    
-    <end type="TARGET" refId="1" navigable="true"/>    
-    <display labels="true" multiplicity="true"/>  
-  </association>  
-  <association id="167">    
-    <end type="SOURCE" refId="4" navigable="false">      
-      <attribute id="168" name="faces"/>      
-      <multiplicity id="169" minimum="0" maximum="2147483647"/>    
+      <attribute id="61" name="creator"/>      
+      <multiplicity id="62" minimum="0" maximum="1"/>    
     </end>    
     <end type="TARGET" refId="5" navigable="true"/>    
     <display labels="true" multiplicity="true"/>  
   </association>  
-  <association id="170">    
-    <end type="SOURCE" refId="30" navigable="false">      
-      <attribute id="171" name="sorted"/>      
-      <multiplicity id="172" minimum="0" maximum="1"/>    
-    </end>    
-    <end type="TARGET" refId="32" navigable="true"/>    
-    <display labels="true" multiplicity="true"/>  
-  </association>  
-  <dependency id="173">    
-    <end type="SOURCE" refId="23"/>    
-    <end type="TARGET" refId="8"/>  
-  </dependency>  
-  <dependency id="174">    
-    <end type="SOURCE" refId="12"/>    
-    <end type="TARGET" refId="5"/>  
-  </dependency>  
-  <association id="175">    
+  <association id="63">    
     <end type="SOURCE" refId="16" navigable="false">      
-      <attribute id="176" name="f"/>      
-      <multiplicity id="177" minimum="0" maximum="1"/>    
+      <attribute id="64" name="f"/>      
+      <multiplicity id="65" minimum="0" maximum="1"/>    
     </end>    
     <end type="TARGET" refId="8" navigable="true"/>    
     <display labels="true" multiplicity="true"/>  
   </association>  
-  <dependency id="178">    
-    <bendpoint x="636" y="1114"/>    
-    <bendpoint x="1217" y="1098"/>    
-    <end type="SOURCE" refId="13"/>    
-    <end type="TARGET" refId="3"/>  
-  </dependency>  
-  <dependency id="179">    
-    <bendpoint x="130" y="-368"/>    
-    <end type="SOURCE" refId="16"/>    
-    <end type="TARGET" refId="19"/>  
-  </dependency>  
-  <association id="180">    
-    <bendpoint x="1046" y="-454"/>    
-    <end type="SOURCE" refId="30" navigable="false">      
-      <attribute id="181" name="object"/>      
-      <multiplicity id="182" minimum="0" maximum="1"/>    
+  <association id="66">    
+    <bendpoint x="2414" y="423"/>    
+    <bendpoint x="2260" y="369"/>    
+    <end type="SOURCE" refId="6" navigable="false">      
+      <attribute id="67" name="f"/>      
+      <multiplicity id="68" minimum="0" maximum="1"/>    
+    </end>    
+    <end type="TARGET" refId="8" navigable="true"/>    
+    <display labels="true" multiplicity="true"/>  
+  </association>  
+  <association id="69">    
+    <end type="SOURCE" refId="25" navigable="false">      
+      <attribute id="70" name="pac"/>      
+      <multiplicity id="71" minimum="0" maximum="1"/>    
+    </end>    
+    <end type="TARGET" refId="27" navigable="true"/>    
+    <display labels="true" multiplicity="true"/>  
+  </association>  
+  <association id="72">    
+    <end type="SOURCE" refId="23" navigable="false">      
+      <attribute id="73" name="c"/>      
+      <multiplicity id="74" minimum="0" maximum="1"/>    
+    </end>    
+    <end type="TARGET" refId="21" navigable="true"/>    
+    <display labels="true" multiplicity="true"/>  
+  </association>  
+  <association id="75">    
+    <end type="SOURCE" refId="6" navigable="false">      
+      <attribute id="76" name="table"/>      
+      <multiplicity id="77" minimum="0" maximum="1"/>    
     </end>    
     <end type="TARGET" refId="4" navigable="true"/>    
     <display labels="true" multiplicity="true"/>  
   </association>  
-  <nesting id="183">    
-    <null/>    
-    <end type="SOURCE" refId="14"/>    
-    <end type="TARGET" refId="7"/>  
+  <association id="78">    
+    <end type="SOURCE" refId="23" navigable="false">      
+      <attribute id="79" name="baricentre"/>      
+      <multiplicity id="80" minimum="0" maximum="1"/>    
+    </end>    
+    <end type="TARGET" refId="21" navigable="true"/>    
+    <display labels="true" multiplicity="true"/>  
+  </association>  
+  <association id="81">    
+    <bendpoint x="1673" y="446"/>    
+    <bendpoint x="1683" y="729"/>    
+    <end type="SOURCE" refId="8" navigable="false">      
+      <attribute id="82" name="controller"/>      
+      <multiplicity id="83" minimum="0" maximum="1"/>    
+    </end>    
+    <end type="TARGET" refId="20" navigable="true"/>    
+    <display labels="true" multiplicity="true"/>  
+  </association>  
+  <association id="84">    
+    <bendpoint x="2448" y="801"/>    
+    <end type="SOURCE" refId="6" navigable="false">      
+      <attribute id="85" name="model"/>      
+      <multiplicity id="86" minimum="0" maximum="1"/>    
+    </end>    
+    <end type="TARGET" refId="19" navigable="true"/>    
+    <display labels="true" multiplicity="true"/>  
+  </association>  
+  <nesting id="87">    
+    <end type="SOURCE" refId="13"/>    
+    <end type="TARGET" refId="10"/>  
   </nesting>  
-  <association id="184">    
+  <association id="88">    
+    <end type="SOURCE" refId="24" navigable="false">      
+      <attribute id="89" name="a"/>      
+      <multiplicity id="90" minimum="0" maximum="1"/>    
+    </end>    
+    <end type="TARGET" refId="21" navigable="true"/>    
+    <display labels="true" multiplicity="true"/>  
+  </association>  
+  <association id="91">    
+    <end type="SOURCE" refId="20" navigable="false">      
+      <attribute id="92" name="view"/>      
+      <multiplicity id="93" minimum="0" maximum="1"/>    
+    </end>    
+    <end type="TARGET" refId="12" navigable="true"/>    
+    <display labels="true" multiplicity="true"/>  
+  </association>  
+  <association id="94">    
+    <end type="SOURCE" refId="30" navigable="false">      
+      <attribute id="95" name="sorted"/>      
+      <multiplicity id="96" minimum="0" maximum="1"/>    
+    </end>    
+    <end type="TARGET" refId="32" navigable="true"/>    
+    <display labels="true" multiplicity="true"/>  
+  </association>  
+  <association id="97">    
+    <bendpoint x="1350" y="2062"/>    
+    <end type="SOURCE" refId="22" navigable="false">      
+      <attribute id="98" name="vector"/>      
+      <multiplicity id="99" minimum="0" maximum="1"/>    
+    </end>    
+    <end type="TARGET" refId="21" navigable="true"/>    
+    <display labels="true" multiplicity="true"/>  
+  </association>  
+  <association id="100">    
+    <end type="SOURCE" refId="17" navigable="false">      
+      <attribute id="101" name="bar"/>      
+      <multiplicity id="102" minimum="0" maximum="1"/>    
+    </end>    
+    <end type="TARGET" refId="18" navigable="true"/>    
+    <display labels="true" multiplicity="true"/>  
+  </association>  
+  <association id="103">    
     <end type="SOURCE" refId="26" navigable="false">      
-      <attribute id="185" name="jpResultats"/>      
-      <multiplicity id="186" minimum="0" maximum="1"/>    
+      <attribute id="104" name="jpResultats"/>      
+      <multiplicity id="105" minimum="0" maximum="1"/>    
     </end>    
     <end type="TARGET" refId="28" navigable="true"/>    
     <display labels="true" multiplicity="true"/>  
   </association>  
-  <association id="187">    
-    <end type="SOURCE" refId="4" navigable="false">      
-      <attribute id="188" name="points"/>      
-      <multiplicity id="189" minimum="0" maximum="2147483647"/>    
+  <association id="106">    
+    <bendpoint x="1239" y="765"/>    
+    <bendpoint x="1338" y="974"/>    
+    <bendpoint x="1591" y="1018"/>    
+    <end type="SOURCE" refId="14" navigable="false">      
+      <attribute id="107" name="controller"/>      
+      <multiplicity id="108" minimum="0" maximum="1"/>    
     </end>    
-    <end type="TARGET" refId="3" navigable="true"/>    
+    <end type="TARGET" refId="20" navigable="true"/>    
     <display labels="true" multiplicity="true"/>  
   </association>  
-  <classifier-display autosize="true" stereotype="true" package="true" initial-value="true" signature="true" 
+  <association id="109">    
+    <end type="SOURCE" refId="23" navigable="false">      
+      <attribute id="110" name="b"/>      
+      <multiplicity id="111" minimum="0" maximum="1"/>    
+    </end>    
+    <end type="TARGET" refId="21" navigable="true"/>    
+    <display labels="true" multiplicity="true"/>  
+  </association>  
+  <association id="112">    
+    <end type="SOURCE" refId="8" navigable="false">      
+      <attribute id="113" name="tablette"/>      
+      <multiplicity id="114" minimum="0" maximum="1"/>    
+    </end>    
+    <end type="TARGET" refId="12" navigable="true"/>    
+    <display labels="true" multiplicity="true"/>  
+  </association>  
+  <association id="115">    
+    <end type="SOURCE" refId="5" navigable="false">      
+      <attribute id="116" name="c"/>      
+      <multiplicity id="117" minimum="0" maximum="1"/>    
+    </end>    
+    <end type="TARGET" refId="6" navigable="true"/>    
+    <display labels="true" multiplicity="true"/>  
+  </association>  
+  <association id="118">    
+    <end type="SOURCE" refId="30" navigable="false">      
+      <attribute id="119" name="info"/>      
+      <multiplicity id="120" minimum="0" maximum="1"/>    
+    </end>    
+    <end type="TARGET" refId="31" navigable="true"/>    
+    <display labels="true" multiplicity="true"/>  
+  </association>  
+  <nesting id="121">    
+    <end type="SOURCE" refId="14"/>    
+    <end type="TARGET" refId="7"/>  
+  </nesting>  
+  <association id="122">    
+    <bendpoint x="1227" y="1848"/>    
+    <end type="SOURCE" refId="22" navigable="false">      
+      <attribute id="123" name="faces"/>      
+      <multiplicity id="124" minimum="0" maximum="2147483647"/>    
+    </end>    
+    <end type="TARGET" refId="23" navigable="true"/>    
+    <display labels="true" multiplicity="true"/>  
+  </association>  
+  <association id="125">    
+    <end type="SOURCE" refId="20" navigable="false">      
+      <attribute id="126" name="model"/>      
+      <multiplicity id="127" minimum="0" maximum="1"/>    
+    </end>    
+    <end type="TARGET" refId="19" navigable="true"/>    
+    <display labels="true" multiplicity="true"/>  
+  </association>  
+  <association id="128">    
+    <end type="SOURCE" refId="12" navigable="false">      
+      <attribute id="129" name="model"/>      
+      <multiplicity id="130" minimum="0" maximum="1"/>    
+    </end>    
+    <end type="TARGET" refId="19" navigable="true"/>    
+    <display labels="true" multiplicity="true"/>  
+  </association>  
+  <association id="131">    
+    <end type="SOURCE" refId="26" navigable="false">      
+      <attribute id="132" name="jpRecherche"/>      
+      <multiplicity id="133" minimum="0" maximum="1"/>    
+    </end>    
+    <end type="TARGET" refId="25" navigable="true"/>    
+    <display labels="true" multiplicity="true"/>  
+  </association>  
+  <nesting id="134">    
+    <end type="SOURCE" refId="9"/>    
+    <end type="TARGET" refId="15"/>  
+  </nesting>  
+  <association id="135">    
+    <end type="SOURCE" refId="25" navigable="false">      
+      <attribute id="136" name="pmc"/>      
+      <multiplicity id="137" minimum="0" maximum="1"/>    
+    </end>    
+    <end type="TARGET" refId="29" navigable="true"/>    
+    <display labels="true" multiplicity="true"/>  
+  </association>  
+  <association id="138">    
+    <end type="SOURCE" refId="8" navigable="false">      
+      <attribute id="139" name="menu"/>      
+      <multiplicity id="140" minimum="0" maximum="1"/>    
+    </end>    
+    <end type="TARGET" refId="16" navigable="true"/>    
+    <display labels="true" multiplicity="true"/>  
+  </association>  
+  <association id="141">    
+    <bendpoint x="2253" y="387"/>    
+    <bendpoint x="2410" y="446"/>    
+    <bendpoint x="2427" y="801"/>    
+    <end type="SOURCE" refId="8" navigable="false">      
+      <attribute id="142" name="model"/>      
+      <multiplicity id="143" minimum="0" maximum="1"/>    
+    </end>    
+    <end type="TARGET" refId="19" navigable="true"/>    
+    <display labels="true" multiplicity="true"/>  
+  </association>  
+  <association id="144">    
+    <end type="SOURCE" refId="16" navigable="false">      
+      <attribute id="145" name="model"/>      
+      <multiplicity id="146" minimum="0" maximum="1"/>    
+    </end>    
+    <end type="TARGET" refId="19" navigable="true"/>    
+    <display labels="true" multiplicity="true"/>  
+  </association>  
+  <association id="147">    
+    <bendpoint x="1329" y="2060"/>    
+    <end type="SOURCE" refId="22" navigable="false">      
+      <attribute id="148" name="points"/>      
+      <multiplicity id="149" minimum="0" maximum="2147483647"/>    
+    </end>    
+    <end type="TARGET" refId="21" navigable="true"/>    
+    <display labels="true" multiplicity="true"/>  
+  </association>  
+  <association id="150">    
+    <end type="SOURCE" refId="16" navigable="false">      
+      <attribute id="151" name="controller"/>      
+      <multiplicity id="152" minimum="0" maximum="1"/>    
+    </end>    
+    <end type="TARGET" refId="20" navigable="true"/>    
+    <display labels="true" multiplicity="true"/>  
+  </association>  
+  <association id="153">    
+    <bendpoint x="1140" y="667"/>    
+    <bendpoint x="1252" y="866"/>    
+    <bendpoint x="1306" y="996"/>    
+    <bendpoint x="1604" y="1054"/>    
+    <end type="SOURCE" refId="13" navigable="false">      
+      <attribute id="154" name="controller"/>      
+      <multiplicity id="155" minimum="0" maximum="1"/>    
+    </end>    
+    <end type="TARGET" refId="20" navigable="true"/>    
+    <display labels="true" multiplicity="true"/>  
+  </association>  
+  <association id="156">    
+    <bendpoint x="904" y="1102"/>    
+    <bendpoint x="904" y="1403"/>    
+    <bendpoint x="904" y="2302"/>    
+    <end type="SOURCE" refId="10" navigable="false">      
+      <attribute id="157" name="deplacement"/>      
+      <multiplicity id="158" minimum="0" maximum="1"/>    
+    </end>    
+    <end type="TARGET" refId="21" navigable="true"/>    
+    <display labels="true" multiplicity="true"/>  
+  </association>  
+  <classifier-display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
     sort-features="false" accessors="true" visibility="true">    
     <attributes public="true" package="true" protected="true" private="true" static="true"/>    
     <operations public="true" package="true" protected="true" private="true" static="true"/>  

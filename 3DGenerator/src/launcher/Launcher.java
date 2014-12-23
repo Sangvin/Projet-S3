@@ -27,7 +27,7 @@ public class Launcher extends JDialog{
 	 * construit la frame
 	 */
 	public Launcher(Frame f){
-		super(f,"",true);
+		super(f,"",false);
 		this.setUndecorated(true);
 		this.initComponent();
 		this.setSize(new Dimension(600,350));
