@@ -1,6 +1,5 @@
 package graphic;
 
-import java.awt.Color;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.io.File;
@@ -10,12 +9,15 @@ import javax.swing.JMenu;
 import javax.swing.JMenuBar;
 import javax.swing.JMenuItem;
 import javax.swing.JOptionPane;
+import javax.swing.filechooser.FileNameExtensionFilter;
 
 import mvc.Model;
 import mvc.ObjectController;
 import objet.Objet3D;
 import objet.Point;
 import open.Recherche;
+import save.Save;
+import autre.Outils;
 import colorChooser.MyColorChooser;
 
 public class MenuBar extends JMenuBar {
@@ -24,6 +26,9 @@ public class MenuBar extends JMenuBar {
 	 * 
 	 */
 	private static final long serialVersionUID = -6946857843971255702L;
+	private JMenuItem itemSauver;
+	private JMenuItem itemCouleurFigure;
+	private JMenuItem itemFermer;
 	private Frame f;
 	/**
 	 * Contient le modèle
@@ -51,13 +56,20 @@ public class MenuBar extends JMenuBar {
 		itemOuvrir.addActionListener(new ActionListener(){
 			@Override
 			public void actionPerformed(ActionEvent arg0) {
-				new Recherche(f);
+				new Recherche(f,controller);
+				if(model.getObject() != null){
+					itemCouleurFigure.setEnabled(true);
+					itemFermer.setEnabled(true);
+					itemSauver.setEnabled(true);
+				}
 			}
 		});
-		JMenuItem itemSauver = new JMenuItem("Sauver");
+		itemSauver = new JMenuItem("Sauver");
+		itemSauver.setEnabled(false);
 		itemSauver.addActionListener(new ActionListener(){
 			@Override
 			public void actionPerformed(ActionEvent arg0) {
+				new Save(f,model.getObject());
 			}
 		});
 		JMenuItem itemImporter = new JMenuItem("Importer");
@@ -66,25 +78,49 @@ public class MenuBar extends JMenuBar {
 			public void actionPerformed(ActionEvent arg0) {
 				File fichier = new File(".");
 				JFileChooser dialogue = new JFileChooser(fichier);	
+				dialogue.setFileFilter(new FileNameExtensionFilter("GNU Triangulated Surface (.gts)", "gts"));
 				int status = dialogue.showOpenDialog(null);
 				if(status==JFileChooser.APPROVE_OPTION) {
 					fichier = dialogue.getSelectedFile();
 					try {
-						controller.attachObjet3D(new Objet3D(fichier.getAbsolutePath(),Color.RED));
+						controller.attachObjet3D(new Objet3D(fichier.getAbsolutePath(),Outils.randomColor()));
 						double posx = f.getTablette().getSize().getWidth()/2;
 						double posy = f.getTablette().getSize().getHeight()/2;
 						controller.setVector(new Point(posx,posy,0));
+						if(model.getObject() != null){
+							itemSauver.setEnabled(true);
+							itemCouleurFigure.setEnabled(true);
+							itemFermer.setEnabled(true);
+						}
 					} catch (Exception e) {
 						JOptionPane.showMessageDialog(null, e.getMessage(), "Erreur", JOptionPane.ERROR_MESSAGE);
 					}
 				}
 			}
 		});
+		itemFermer = new JMenuItem("Fermer l'objet");
+		itemFermer.setEnabled(false);
+		itemFermer.addActionListener(new ActionListener() {
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				controller.attachObjet3D(null);
+				itemFermer.setEnabled(false);
+				itemSauver.setEnabled(false);
+				itemCouleurFigure.setEnabled(false);
+			}
+		});
 		JMenuItem itemQuitter = new JMenuItem("Quitter");
+		itemQuitter.addActionListener(new ActionListener() {
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				f.dispose();
+			}
+		});
 		menuFichier.add(itemOuvrir);
 		menuFichier.add(itemSauver);
 		menuFichier.addSeparator();
 		menuFichier.add(itemImporter);
+		menuFichier.add(itemFermer);
 		menuFichier.addSeparator();
 		menuFichier.add(itemQuitter);
 
@@ -97,7 +133,8 @@ public class MenuBar extends JMenuBar {
 		
 		// Menu Options
 		JMenu menuOptions = new JMenu("Options");
-		JMenuItem itemCouleurFigure = new JMenuItem("Couleur figure");
+		itemCouleurFigure = new JMenuItem("Couleur figure");
+		itemCouleurFigure.setEnabled(false);
 		itemCouleurFigure.addActionListener(new ActionListener(){
 			@Override
 			public void actionPerformed(ActionEvent arg0) {

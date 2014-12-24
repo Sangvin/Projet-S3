@@ -16,6 +16,7 @@ import java.util.Observer;
 
 import javax.swing.JPanel;
 
+import autre.Outils;
 import mvc.Model;
 import mvc.ObjectController;
 import objet.Face;
@@ -62,7 +63,7 @@ public class PanelObjet extends JPanel implements Observer{
 
 	private void initComponents(){
 		this.button = new ArrayList<Integer>();
-		this.background = Color.BLUE;
+		this.background = Outils.randomColor();
 
 		this.addMouseWheelListener(new MouseWheelListener(){
 

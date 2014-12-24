@@ -1,7 +1,9 @@
 package autre;
 
+import java.awt.Color;
 import java.util.Collections;
 import java.util.List;
+import java.util.Random;
 
 import objet.Face;
 import objet.Point;
@@ -75,5 +77,17 @@ public class Outils {
 	public static double norme(Point vector){
 		double norme = Math.abs(Math.sqrt(Math.pow(vector.x, 2)+Math.pow(vector.y, 2)+Math.pow(vector.z, 2)));
 		return norme;
+	}
+	
+	/**
+	 * retourne une couleur aléatoire
+	 * @return
+	 */
+	public static Color randomColor(){
+		Random r = new Random();
+		int red = r.nextInt(256);
+		int green = r.nextInt(256);
+		int blue = r.nextInt(256);
+		return new Color(red,green,blue);
 	}
 }

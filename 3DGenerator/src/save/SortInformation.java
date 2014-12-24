@@ -91,9 +91,11 @@ public class SortInformation extends JPanel{
 	 */
 	public String[][] getInfo() {
 		String[][] info = new String[3][];
-		if(this.tag.getText().length() != 0)
+		info[0] = null;
+		if(this.tag.getText().length() != 0){
 			info[0] = new String[this.tag.getText().split(" ").length];
-		info[0] = this.tag.getText().split(" ");
+			info[0] = this.tag.getText().split(" ");
+		}
 		info[1] = new String[1];
 		if(this.utilisation.getText().replaceAll(" ", "").length() != 0)
 			info[1][0] = this.utilisation.getText();

@@ -1,10 +1,12 @@
 package open;
-import java.awt.Color;
 import java.awt.GridLayout;
+import java.awt.event.KeyAdapter;
+import java.awt.event.KeyEvent;
 import java.text.ParseException;
+import java.util.Observable;
+import java.util.Observer;
 
 import javax.swing.BorderFactory;
-import javax.swing.JButton;
 import javax.swing.JFormattedTextField;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
@@ -18,7 +20,7 @@ import javax.swing.text.MaskFormatter;
  * @autor Douae
  *
  */
-public class PanelAtrCritere extends JPanel{
+public class PanelAtrCritere extends JPanel implements Observer{
 
 	private static final long serialVersionUID = 1L;
 	private JTextField nomObj;
@@ -27,21 +29,18 @@ public class PanelAtrCritere extends JPanel{
 	private JSpinner nbs;
 	private JSpinner nbp;
 	private JTextField nmauteur;
-	private JButton annuler;
-	private JButton valider;
-	
-	public PanelAtrCritere(){
+	private ControllerRecherche controller;
+	private ModelRecherche model;
+
+	public PanelAtrCritere(ModelRecherche model, ControllerRecherche controller){
+		this.model = model;
+		this.controller = controller;
 		this.setBorder(BorderFactory.createTitledBorder("Autres critères de recherche :"));
 		this.initComponents();
+		this.model.addObserver(this);
 	}
-	
+
 	private void initComponents(){
-		this.annuler = new JButton("Annuler");
-		this.annuler.setBackground(Color.WHITE);	
-		this.annuler.setBorder(BorderFactory.createLineBorder(Color.BLACK, 3));
-		this.valider = new JButton("Valider");
-		this.valider.setBackground(Color.WHITE);	
-		this.valider.setBorder(BorderFactory.createLineBorder(Color.BLACK, 3));
 		this.nomObj = new JTextField();
 		try {
 			this.dateAjt = new JFormattedTextField(new MaskFormatter("##/##/####"));
@@ -50,14 +49,12 @@ public class PanelAtrCritere extends JPanel{
 		}
 		this.nbp = new JSpinner(new SpinnerNumberModel(0,0,99999999,1));
 		this.nbs = new JSpinner(new SpinnerNumberModel(0,0,99999999,1));
-		this.nbf = new JSpinner(new SpinnerNumberModel(0,0,99999999,1));
+		this.nbf = new JSpinner(new SpinnerNumberModel(0,0,99999999,1));		
 		this.nmauteur = new JTextField();
-		
-//		JPanel tmp2 = new JPanel();
-//		JPanel tmp3 = new JPanel();
-//		JPanel tmp4 = new JPanel();
-		
-		GridLayout g = new GridLayout(7,2);
+
+		GridLayout g = new GridLayout(6,2);
+		g.setHgap(5);
+		g.setVgap(10);
 		this.setLayout(g);
 		this.add(new JLabel("Nom de l'objet"));
 		this.add(this.nomObj);
@@ -71,9 +68,30 @@ public class PanelAtrCritere extends JPanel{
 		this.add(this.nbf);
 		this.add(new JLabel("Nom de l'auteur"));
 		this.add(this.nmauteur);
-		g.setHgap(5);
-		g.setVgap(10);
-		this.add(this.valider);
-		this.add(this.annuler);
+	}
+
+	/* (non-Javadoc)
+	 * @see java.util.Observer#update(java.util.Observable, java.lang.Object)
+	 */
+	@Override
+	public void update(Observable o, Object arg) {
+		this.nomObj.setText(model.getNom());
+		this.dateAjt.setText(model.getDate());
+		this.nbf.setValue(model.getNb_faces());
+		this.nbp.setValue(model.getNb_points());
+		this.nbs.setValue(model.getNb_segments());
+		this.nmauteur.setText(model.getAuteur());
+	}
+	
+	/**
+	 * permet de mettre à jour le modèle
+	 */
+	public void updateController(){
+		controller.setNom(this.nomObj.getText());
+		controller.setDate(this.dateAjt.getText());
+		controller.setNb_points((int) this.nbp.getValue());
+		controller.setNb_faces((int) this.nbf.getValue());
+		controller.setNb_segments((int) this.nbs.getValue());
+		controller.setAuteur(this.nmauteur.getText());
 	}
 }

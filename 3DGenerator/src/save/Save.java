@@ -1,6 +1,7 @@
 package save;
 
-import java.awt.Color;
+import graphic.Frame;
+
 import java.awt.GridBagConstraints;
 import java.awt.GridBagLayout;
 import java.awt.Insets;
@@ -53,18 +54,17 @@ public class Save extends JDialog{
 	 * constructeur de la frame
 	 * @param object
 	 */
-	public Save(Objet3D object){
+	public Save(Frame parent,Objet3D object){
+		super(parent,"Enregistrer",true);
 		this.object = object;
 		this.initComponents();
-		this.setTitle("Enregistrer");
 		this.pack();
 		this.setResizable(false);
 		int x = (int) (Toolkit.getDefaultToolkit().getScreenSize().getWidth()/2-this.getWidth()/2);
 		int y = (int) (Toolkit.getDefaultToolkit().getScreenSize().getHeight()/2-this.getHeight()/2);
 		this.setLocation(x, y);
-		this.setVisible(true);
-		this.setAlwaysOnTop(true);
 		this.setDefaultCloseOperation(DISPOSE_ON_CLOSE);
+		this.setVisible(true);
 	}
 
 	/**
@@ -102,14 +102,13 @@ public class Save extends JDialog{
 								ps.setString(++j, object.getPoints().size()+"");
 								ps.setString(++j, object.getSegments().size()+"");
 								ps.setString(++j, object.getFaces().size()+"");
-//								ps.executeUpdate();
-								if(triInformation[0][0] != null){
-									System.out.println("test");
+								ps.executeUpdate();
+								if(triInformation[0] != null){
 									ps = con.prepareStatement("insert into tag values(?,?)");
 									for(int i = 0; i < triInformation[0].length; i++){
 										ps.setString(1, triInformation[0][i]);
 										ps.setString(2, information[0]);
-//										ps.executeUpdate();
+										ps.executeUpdate();
 									}
 								}
 								dispose();
@@ -161,9 +160,5 @@ public class Save extends JDialog{
 		c.gridx = 1;
 		bagLayout.setConstraints(this.annuler, c);
 		this.getContentPane().add(this.annuler);
-	}
-
-	public static void main(String[] args) throws Exception {
-		new Save(new Objet3D("./drone_dead_orbit_LP.gts",Color.RED));
 	}
 }
