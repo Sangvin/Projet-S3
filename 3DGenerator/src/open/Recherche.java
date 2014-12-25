@@ -30,14 +30,12 @@ public class Recherche extends JDialog {
     private JpResultats jpResultats;
     private JpRecherche jpRecherche;
     private JButton annuler;
-    private ObjectController controller;
     private Frame parent;
     
 	public Recherche(Frame f,ObjectController controller){
 		super(f,"Recherche de fichiers",true);
 		this.parent = f;
-		this.controller = controller;
-		this.initComponents();
+		this.initComponents(controller);
 		this.pack();	
 		this.setResizable(false);
 		int screen_x = (int) (Toolkit.getDefaultToolkit().getScreenSize().getWidth()/2);
@@ -47,13 +45,13 @@ public class Recherche extends JDialog {
 		this.setVisible(true);
 	}
 	
-	private void initComponents(){
+	private void initComponents(ObjectController controller){
 		ModelRecherche modelRecherche = new ModelRecherche();
 		ControllerRecherche jpResController = new ControllerRecherche(modelRecherche);
 		ControllerRecherche jpRecController = new ControllerRecherche(modelRecherche);
 		this.jpResultats = new JpResultats(parent,this,controller,modelRecherche,jpResController);
 		this.jpRecherche = new JpRecherche(modelRecherche,jpRecController);
-		jpResController.addView(jpResultats);
+		jpResController.addView(this.jpRecherche);
 		
 		this.annuler = new JButton("Annuler");
 		this.annuler.addActionListener(new ActionListener() {

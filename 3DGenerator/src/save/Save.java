@@ -16,7 +16,7 @@ import javax.swing.JButton;
 import javax.swing.JDialog;
 import javax.swing.JOptionPane;
 
-import objet.Objet3D;
+import mvc.Model;
 
 /**
  * cette classe contient les différents panel permettant la saisie d'information pour les
@@ -30,9 +30,9 @@ public class Save extends JDialog{
 	 */
 	private static final long serialVersionUID = 1L;
 	/**
-	 * contient l'objet à enregistrer
+	 * contient le modèle à enregistrer
 	 */
-	private Objet3D object;
+	private Model model;
 	/**
 	 * panel permettant la saisie d'infos générales
 	 */
@@ -54,9 +54,9 @@ public class Save extends JDialog{
 	 * constructeur de la frame
 	 * @param object
 	 */
-	public Save(Frame parent,Objet3D object){
+	public Save(Frame parent,Model model){
 		super(parent,"Enregistrer",true);
-		this.object = object;
+		this.model = model;
 		this.initComponents();
 		this.pack();
 		this.setResizable(false);
@@ -71,7 +71,7 @@ public class Save extends JDialog{
 	 * permet de placer les composants
 	 */
 	private void initComponents(){
-		this.info = new GeneralInformation(this.object.getFichier().getAbsolutePath());
+		this.info = new GeneralInformation(this.model.getObject().getFichier().getAbsolutePath());
 		this.sorted = new SortInformation();
 
 		this.valider = new JButton("Valider");
@@ -99,9 +99,9 @@ public class Save extends JDialog{
 								for(int i = 1; i < triInformation.length; i++){
 									ps.setString(++j, triInformation[i][0]);
 								}
-								ps.setString(++j, object.getPoints().size()+"");
-								ps.setString(++j, object.getSegments().size()+"");
-								ps.setString(++j, object.getFaces().size()+"");
+								ps.setString(++j, model.getObject().getPoints().size()+"");
+								ps.setString(++j, model.getObject().getSegments().size()+"");
+								ps.setString(++j, model.getObject().getFaces().size()+"");
 								ps.executeUpdate();
 								if(triInformation[0] != null){
 									ps = con.prepareStatement("insert into tag values(?,?)");

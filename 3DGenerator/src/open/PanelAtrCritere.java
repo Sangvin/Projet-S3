@@ -1,7 +1,5 @@
 package open;
 import java.awt.GridLayout;
-import java.awt.event.KeyAdapter;
-import java.awt.event.KeyEvent;
 import java.text.ParseException;
 import java.util.Observable;
 import java.util.Observer;

@@ -6,6 +6,8 @@ import java.awt.GridBagLayout;
 import java.awt.Insets;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.util.Observable;
+import java.util.Observer;
 
 import javax.swing.BorderFactory;
 import javax.swing.JButton;
@@ -16,7 +18,7 @@ import javax.swing.JPanel;
  *  @autor Douae
  *
  */
-public class JpRecherche extends JPanel {
+public class JpRecherche extends JPanel implements Observer{
 
 	private static final long serialVersionUID = 1L;
 	private PanelMcle pmc;
@@ -47,14 +49,13 @@ public class JpRecherche extends JPanel {
 			public void actionPerformed(ActionEvent e) {
 				pmc.updateController();
 				pac.updateController();
-				System.out.println(model.toString()+" / ");
 				String res = model.toString();
 				res = res.replaceAll("\n", "");
 				res = res.replaceAll(" ", "");
 				res = res.replaceAll("0", "");
 				res = res.replaceAll("/", "");
 				if(res.length() != 0);
-					//controller.recharger();
+					controller.recharger();
 			}
 		});
 		
@@ -107,5 +108,11 @@ public class JpRecherche extends JPanel {
         c.gridx = 1;
         bagLayout.setConstraints(reset, c);
         this.add(reset);
+	}
+
+	@Override
+	public void update(Observable arg0, Object arg1) {
+		pac.update(arg0, arg1);
+		pmc.update(arg0, arg1);
 	}
 }

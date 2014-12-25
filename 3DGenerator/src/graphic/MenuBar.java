@@ -69,7 +69,7 @@ public class MenuBar extends JMenuBar {
 		itemSauver.addActionListener(new ActionListener(){
 			@Override
 			public void actionPerformed(ActionEvent arg0) {
-				new Save(f,model.getObject());
+				new Save(f,model);
 			}
 		});
 		JMenuItem itemImporter = new JMenuItem("Importer");

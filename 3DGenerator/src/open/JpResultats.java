@@ -9,6 +9,7 @@ import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import java.sql.Connection;
 import java.sql.DriverManager;
+import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.Statement;
 import java.util.Observable;
@@ -73,7 +74,7 @@ public class JpResultats extends JPanel implements Observer{
 		this.ouvrir.addActionListener(new ActionListener(){
 			@Override
 			public void actionPerformed(ActionEvent arg0) {
-				if(!result.isSelectionEmpty())
+				if(result.getSelectedValue() != null)
 					try {
 						controller.attachObjet3D(new Objet3D(modelRecherche.getUrl(),Outils.randomColor()));
 						double posx = superFrame.getTablette().getSize().getWidth()/2;
@@ -83,6 +84,11 @@ public class JpResultats extends JPanel implements Observer{
 					} catch (Exception e) {
 						JOptionPane.showMessageDialog(null, e.getMessage(), "Erreur", JOptionPane.ERROR_MESSAGE);
 					}
+				else{
+					String message = "Erreur aucun fichier sélectionné";
+					JOptionPane.showMessageDialog(parent,message, "Erreur", JOptionPane.ERROR_MESSAGE);
+				}
+					
 				
 			}
 		});
@@ -100,18 +106,6 @@ public class JpResultats extends JPanel implements Observer{
 		});
 		
 		this.initResult();
-		
-		this.ouvrir.addActionListener(new ActionListener() {
-			@Override
-			public void actionPerformed(ActionEvent e) {
-				if(result.getSelectedValue() != null){
-					
-				} else {
-					String message = "Erreur aucun fichier sélectionné";
-					JOptionPane.showMessageDialog(parent,message, "Erreur", JOptionPane.ERROR_MESSAGE);
-				}
-			}
-		});
 		
 		JPanel tmp1 = new JPanel();
 		tmp1 .setBackground(Color.LIGHT_GRAY);
@@ -152,7 +146,7 @@ public class JpResultats extends JPanel implements Observer{
 	 * @see java.util.Observer#update(java.util.Observable, java.lang.Object)
 	 */
 	public void update(Observable arg0, Object arg1) {
-		/*String critere = modelRecherche.toString();
+		String critere = modelRecherche.toString();
 		critere = critere.replaceAll("\n", "");
 		critere = critere.replaceAll("0", "");
 		critere = critere.replaceAll(" ", "");
@@ -161,41 +155,75 @@ public class JpResultats extends JPanel implements Observer{
 			this.executeRecherche();
 		}
 		else
-			this.initResult();*/
+			this.initResult();
 	}
 	
 	private void executeRecherche(){
-		this.res.clear();
 		try{
 			Class.forName("org.sqlite.JDBC");
 			Connection con = null;
 			try{
-				String req = "select object.name from object left join tag on object.name=tag.name where";
+				con = DriverManager.getConnection("jdbc:sqlite:./config/bibliotheque.db");
+				
+				String req = "select distinct object.name from object left join tag on object.name=tag.name where 1=1";
 				if(modelRecherche.getNom().replaceAll(" ", "").length() != 0)
-					req += " name=?";
-				if(modelRecherche.getDate().replaceAll(" ", "").length() != 0)
-					req += " date=?";
+					req += " and object.name=?";
+				if(modelRecherche.getDate().replaceAll(" ", "").replaceAll("/", "").length() != 0)
+					req += " and date=?";
 				if(modelRecherche.getAuteur().replaceAll(" ", "").length() != 0)
-					req += " auteur=?";
+					req += " and auteur=?";
 				if(modelRecherche.getUtilisation().replaceAll(" ", "").length() != 0)
-					req += " utilisation=?";
+					req += " and utilisation=?";
 				if(modelRecherche.getForme().replaceAll(" ", "").length() != 0)
-					req += " forme=?";
+					req += " and forme=?";
 				if(modelRecherche.getNb_points() != 0)
-					req += " nb_points<=" + modelRecherche.getNb_points();
+					req += " and nb_points<=" + modelRecherche.getNb_points();
 				if(modelRecherche.getNb_segments() != 0)
-					req += " nb_segments<=" + modelRecherche.getNb_segments();
+					req += " and nb_segments<=" + modelRecherche.getNb_segments();
 				if(modelRecherche.getNb_faces() != 0)
-					req += " nb_faces<=" + modelRecherche.getNb_faces();
+					req += " and nb_faces<=" + modelRecherche.getNb_faces();
 				if(modelRecherche.getTag().size() != 0){
-					req += " cle in (";
+					req += " and cle in (";
 					for(int i = 0; i < modelRecherche.getTag().size(); i++)
 						if(i == modelRecherche.getTag().size() - 1)
-							req += "? )";
+							req += "?)";
 						else
-							req += " ? ,";
+							req += "?,";
 				}
-				//System.out.println(req);	
+				System.out.println(req);
+				PreparedStatement ps = con.prepareStatement(req);
+				int i = 1;
+				if(modelRecherche.getNom().replaceAll(" ", "").length() != 0){
+					ps.setString(i, modelRecherche.getNom());
+					i++;
+				}
+				if(modelRecherche.getDate().replaceAll(" ", "").replaceAll("/", "").length() != 0){
+					ps.setString(i, modelRecherche.getDate());
+					i++;
+				}
+				if(modelRecherche.getAuteur().replaceAll(" ", "").length() != 0){
+					ps.setString(i, modelRecherche.getAuteur());
+					i++;
+				}
+				if(modelRecherche.getUtilisation().replaceAll(" ", "").length() != 0){
+					ps.setString(i, modelRecherche.getUtilisation());
+					i++;
+				}
+				if(modelRecherche.getForme().replaceAll(" ", "").length() != 0){
+					ps.setString(i, modelRecherche.getForme());
+					i++;
+				}
+				if(modelRecherche.getTag().size() != 0){
+					for(int j = 0; j < modelRecherche.getTag().size(); j++){
+						ps.setString(i, modelRecherche.getTag().get(j));
+						i++;
+					}
+				}
+				ResultSet rs = ps.executeQuery();
+				res.clear();
+				while(rs.next()){
+					res.addElement(rs.getString(1));
+				}
 			}catch(Exception e){e.printStackTrace();}
 			con.close();
 		}catch(Exception e){e.printStackTrace();}

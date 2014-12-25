@@ -8,9 +8,7 @@ import java.io.BufferedReader;
 import java.io.File;
 import java.io.FileReader;
 import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
 
 import autre.FileError;
 import autre.Outils;
@@ -27,11 +25,11 @@ public class Objet3D {
 	/**
 	 * Liste des points
 	 */
-	private Map<Integer,Point> points;
+	private List<Point> points;
 	/**
 	 * Liste des segments
 	 */
-	private Map<Integer,Segment> segments;
+	private List<Segment> segments;
 	/**
 	 * Liste des faces
 	 */
@@ -73,8 +71,10 @@ public class Objet3D {
 	 */
 	private void initData(BufferedReader br) throws Exception{
 //		Launcher l = new Launcher();
-		points = new HashMap<Integer,Point>();
-		segments = new HashMap<Integer,Segment>();
+		points = new ArrayList<Point>();
+		points.add(null);
+		segments = new ArrayList<Segment>();
+		segments.add(null);
 		faces = new ArrayList<Face>();
 
 		String tmp = br.readLine();
@@ -133,7 +133,7 @@ public class Objet3D {
 					}
 //					if(!pointsUniques.add(tmp)) throw new Exception(FileError.ERROR2102.message());
 					try{
-						points.put(j, new Point(tmpSplit));
+						points.add(new Point(tmpSplit));
 					}catch(Exception e){
 						e.printStackTrace();
 					}
@@ -153,7 +153,7 @@ public class Objet3D {
 //					if(!segmentsUniques.add(tmp))
 //						throw new Exception(FileError.ERROR2202.message());
 					try{
-						segments.put(j, new Segment(points.get(Integer.parseInt(tmpSplit[0])),points.get(Integer.parseInt(tmpSplit[1]))));
+						segments.add(new Segment(points.get(Integer.parseInt(tmpSplit[0])),points.get(Integer.parseInt(tmpSplit[1]))));
 					}catch(Exception e){
 						e.printStackTrace();
 					}
@@ -212,7 +212,7 @@ public class Objet3D {
 		baricentre.x = baricentre.x/i;
 		baricentre.y = baricentre.y/i;
 		baricentre.z = baricentre.z/i;
-		for(Integer in : this.points.keySet()){
+		for(int in = 1; in < this.points.size(); in++){
 			this.points.get(in).add(new Point(-baricentre.x,-baricentre.y,-baricentre.z));
 //			l.increment();
 		}
@@ -225,7 +225,7 @@ public class Objet3D {
 //		l.setText("Calcul du zoom automatique");
 		Point temp;
 		double coord_tmp = 0;
-		for(Integer i : this.points.keySet()){
+		for(int i = 1; i < this.points.size(); i++){
 			temp = this.points.get(i);
 			if(temp.x < coord_tmp)
 				coord_tmp = temp.z;
@@ -252,16 +252,20 @@ public class Objet3D {
 	 * retourne les points de l'objet
 	 * @return
 	 */
-	public Map<Integer, Point> getPoints(){
-		return this.points;
+	public List<Point> getPoints(){
+		List<Point> tmp = this.points;
+		tmp.remove(0);
+		return tmp;
 	}
 
 	/**
 	 * retourne les segments de l'objet
 	 * @return
 	 */
-	public Map<Integer, Segment> getSegments(){
-		return this.segments;
+	public List<Segment> getSegments(){
+		List<Segment> tmp = this.segments;
+		tmp.remove(0);
+		return tmp;
 	}
 
 	/**
@@ -288,9 +292,9 @@ public class Objet3D {
 	 * @return
 	 */
 	public boolean putPoint(int p, Point point){
-		if(points.containsKey(p))
+		if(this.points.get(p) == null)
 			return false;
-		points.put(p, point);
+		points.add(point);
 		return true;
 	}
 
@@ -349,7 +353,7 @@ public class Objet3D {
 	 * @param rad
 	 */
 	public void rotationX(double rad){
-		for(Integer val : points.keySet()){
+		for(int val = 1; val < this.points.size(); val++){
 			points.get(val).rotationX(rad);
 		}
 		faces = Outils.peintre(faces);
@@ -360,7 +364,7 @@ public class Objet3D {
 	 * @param rad
 	 */
 	public void rotationY(double rad){
-		for(Integer val : points.keySet()){
+		for(int val = 1; val < this.points.size(); val++){
 			points.get(val).rotationY(rad);
 		}
 		faces = Outils.peintre(faces);
@@ -371,7 +375,7 @@ public class Objet3D {
 	 * @param rad
 	 */
 	public void rotationZ(double rad){
-		for(Integer val : points.keySet()){
+		for(int val = 1; val < this.points.size(); val++){
 			points.get(val).rotationZ(rad);
 		}
 		faces = Outils.peintre(faces);
@@ -382,7 +386,7 @@ public class Objet3D {
 	 * @param d
 	 */
 	public void zoom(double d) {
-		for(Integer i : this.points.keySet())
+		for(int i = 1; i < this.points.size(); i++)
 			this.points.get(i).zoom(d);
 	}
 }

@@ -127,6 +127,7 @@ public class PanelMcle extends JPanel implements Observer{
 	public void updateController(){
 		controller.setForme(this.forme.getText());
 		controller.setUtilisation(this.utilisation.getText());
+		System.out.println(this.motCle.getText());
 		controller.setTag(this.motCle.getText());
 	}
 }
