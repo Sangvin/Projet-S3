@@ -138,14 +138,14 @@ public class MenuBar extends JMenuBar {
 		itemCouleurFigure.addActionListener(new ActionListener(){
 			@Override
 			public void actionPerformed(ActionEvent arg0) {
-				new MyColorChooser(f,model);
+				new MyColorChooser(f,model,'o');
 			}
 		});
 		JMenuItem itemCouleurBackground = new JMenuItem("Couleur background");
 		itemCouleurBackground.addActionListener(new ActionListener(){
 			@Override
 			public void actionPerformed(ActionEvent arg0) {
-				new MyColorChooser(f,model);
+				new MyColorChooser(f,model,'b');
 			}
 		});
 		menuOptions.add(itemCouleurFigure);

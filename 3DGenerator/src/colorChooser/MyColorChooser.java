@@ -64,26 +64,24 @@ public class MyColorChooser extends JDialog{
 	 * Contient le modèle
 	 */
 	private Model model;
-	
+	/**
+	 * Permet de choisir entre le background et l'objet
+	 */
+	private char option;
+
 	/**
 	 * instancie les différents éléments et enregistre la frame appelante
 	 * @param i
 	 */
-	public MyColorChooser(Frame f,Model model){
+	public MyColorChooser(Frame f,Model model,char option){
 		super(f,"ColorChooser",true);
 		this.model = model;
 		this.f = f;
+		this.option = option;
 		initComponent();
 		initProperties();
 	}
-	
-	public MyColorChooser(Frame f, Objet3D object){
-		super(f,"ColorChooser",true);
-		this.f = f;
-		initComponent();
-		initProperties();
-	}
-	
+
 	/**
 	 * inittialise les propriété de la frame
 	 */
@@ -93,94 +91,98 @@ public class MyColorChooser extends JDialog{
 		int height = (int) (Toolkit.getDefaultToolkit().getScreenSize().getHeight()/3-this.getHeight()/2); 
 		this.setLocation(width,height);
 		this.setResizable(false);
-		
+
 		this.addWindowListener(new WindowAdapter(){
 			@Override
 			public void windowClosing(WindowEvent e) {
-				if(model.getObject() != null){
-					model.setColor(save);
-				}
-				else{
-					f.setbackground(save);
+				if(model != null){
+					if(option == 'o'){
+						model.setColor(save);
+					}
+					else{
+						f.setbackground(save);
+					}
 				}
 				dispose();
 			}
 		});
-		
+
 
 		this.setVisible(true);
 	}
-	
+
 	/**
 	 * initialise et position les éléments
 	 */
 	private void initComponent(){
-	  	titre = new JLabel();
-    	titre.setFont(new Font("Comic Sans MS", 0, 24));
-    	titre.setText("Choisi ta propre couleur");
-    	
-    	color = new JPanel();
-    	if(this.model.getObject() != null){
-    		color.setBackground(this.model.getColor());
-    		save = color.getBackground();
-    	}
-    	else{
-    		color.setBackground(this.f.getbackground());
-    		save = color.getBackground();
-    	}
-    	color.setPreferredSize(new Dimension(100,100));
-    	color.setBorder(BorderFactory.createLineBorder(Color.black));
+		titre = new JLabel();
+		titre.setFont(new Font("Comic Sans MS", 0, 24));
+		titre.setText("Choisi ta propre couleur");
 
-    	
-        appliquer = new JButton("Appliquer");
-        appliquer.addActionListener(new ActionListener(){
+		color = new JPanel();
+		if(this.model != null){
+			if(this.option == 'o'){
+				color.setBackground(this.model.getColor());
+				save = color.getBackground();
+			}
+			else{
+				color.setBackground(this.f.getbackground());
+				save = color.getBackground();
+			}
+		}
+		color.setPreferredSize(new Dimension(100,100));
+		color.setBorder(BorderFactory.createLineBorder(Color.black));
+
+
+		appliquer = new JButton("Appliquer");
+		appliquer.addActionListener(new ActionListener(){
 			@Override
 			public void actionPerformed(ActionEvent arg0) {
 				dispose();
 			}
-        });
-        
-        table = new ColorTable(this);
-        creator = new ColorCreator(this);
-        
-        GridBagLayout bagLayout = new GridBagLayout();
-        setLayout(bagLayout);
-        GridBagConstraints c = new GridBagConstraints();
-        
-        c.anchor = GridBagConstraints.NORTH;
-        c.weightx = 1.0;
-        c.weighty = 0;
-        c.gridwidth = 2;
-        c.gridheight = 1;
-        c.gridx = 0;
-        c.gridy = 0;
-        c.fill = GridBagConstraints.NORTHEAST;
-        bagLayout.setConstraints(titre, c);
-        add(titre);
-        
-        c.gridwidth = 1;
-        c.gridy = 1;
-        bagLayout.setConstraints(color, c);
-        add(color);
-        
-        c.gridx = 1;
-        c.gridwidth = 1;
-        bagLayout.setConstraints(creator, c);
-        add(creator);
-        
-        c.gridwidth = 2;
-        c.gridy = 2;
-        c.gridx = 0;
-        bagLayout.setConstraints(table, c);
-        add(table);
-        
-        c.gridwidth = 2;
-        c.gridy = 3;
-        c.gridx = 0;
-        bagLayout.setConstraints(appliquer, c);
-        add(appliquer);
+		});
+
+		table = new ColorTable(this);
+		creator = new ColorCreator(this);
+
+		GridBagLayout bagLayout = new GridBagLayout();
+		setLayout(bagLayout);
+		GridBagConstraints c = new GridBagConstraints();
+
+		c.anchor = GridBagConstraints.NORTH;
+		c.weightx = 1.0;
+		c.weighty = 0;
+		c.gridwidth = 2;
+		c.gridheight = 1;
+		c.gridx = 0;
+		c.gridy = 0;
+		c.fill = GridBagConstraints.NORTHEAST;
+		bagLayout.setConstraints(titre, c);
+		add(titre);
+
+		c.gridwidth = 1;
+		c.gridy = 1;
+		bagLayout.setConstraints(color, c);
+		add(color);
+
+		c.gridx = 1;
+		c.gridwidth = 1;
+		bagLayout.setConstraints(creator, c);
+		add(creator);
+
+		c.gridwidth = 2;
+		c.gridy = 2;
+		c.gridx = 0;
+		bagLayout.setConstraints(table, c);
+		add(table);
+
+		c.gridwidth = 2;
+		c.gridy = 3;
+		c.gridx = 0;
+		bagLayout.setConstraints(appliquer, c);
+		add(appliquer);
 	}
-	
+
 	/**
 	 * permet de récupérer la couleur courante
 	 * @return
@@ -188,7 +190,7 @@ public class MyColorChooser extends JDialog{
 	public Color getCurentColor(){
 		return color.getBackground();
 	}
-	
+
 	/**
 	 * change la couleur actuelle temporairement
 	 * @param color
@@ -196,11 +198,13 @@ public class MyColorChooser extends JDialog{
 	public void setColor(Color color) {
 		this.color.setBackground(color);
 		this.creator.actualiseSlider(color);
-		if(this.model.getObject() != null){
-			this.model.setColor(color);
-			this.f.getTablette().repaint();
+		if(this.model != null){
+			if(this.option == 'o'){
+				this.model.setColor(color);
+				this.f.getTablette().repaint();
+			}
+			else
+				this.f.setbackground(color);
 		}
-		else
-			this.f.setbackground(color);
 	}
 }
