@@ -14,15 +14,15 @@ import java.util.List;
 import java.util.Observable;
 import java.util.Observer;
 
-import javax.swing.JPanel;
+import javax.swing.JTabbedPane;
 
-import autre.Outils;
 import mvc.Model;
 import mvc.ObjectController;
 import objet.Face;
 import objet.Point;
+import autre.Outils;
 
-public class PanelObjet extends JPanel implements Observer{
+public class PanelObjet extends JTabbedPane implements Observer{
 
 	/**
 	 * 
