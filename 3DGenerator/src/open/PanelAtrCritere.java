@@ -20,16 +20,48 @@ import javax.swing.text.MaskFormatter;
  */
 public class PanelAtrCritere extends JPanel implements Observer{
 
+	/**
+	 * 
+	 */
 	private static final long serialVersionUID = 1L;
+	/**
+	 * Permet la saisie de nom de l'objet
+	 */
 	private JTextField nomObj;
+	/**
+	 * Permet de saisie la date d'ajout
+	 */
 	private JFormattedTextField dateAjt;
+	/**
+	 * Permet de choisir un nombre maximum de faces
+	 */
 	private JSpinner nbf;
+	/**
+	 * Permet de choisir un nombre maximum de segments
+	 */
 	private JSpinner nbs;
+	/**
+	 * Permet de choisir un nombre maximum de points
+	 */
 	private JSpinner nbp;
+	/**
+	 * Permet la saisie du nom de l'auteur
+	 */
 	private JTextField nmauteur;
+	/**
+	 * Contient un controller mvc de la fenêtre
+	 */
 	private ControllerRecherche controller;
+	/**
+	 * Contient le modèle mvc de la fenêtre
+	 */
 	private ModelRecherche model;
 
+	/**
+	 * Constructeur du panel
+	 * @param model
+	 * @param controller
+	 */
 	public PanelAtrCritere(ModelRecherche model, ControllerRecherche controller){
 		this.model = model;
 		this.controller = controller;
@@ -38,6 +70,9 @@ public class PanelAtrCritere extends JPanel implements Observer{
 		this.model.addObserver(this);
 	}
 
+	/**
+	 * Permet d'initialiser les composants
+	 */
 	private void initComponents(){
 		this.nomObj = new JTextField();
 		try {

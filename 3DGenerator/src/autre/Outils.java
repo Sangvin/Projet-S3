@@ -9,6 +9,7 @@ import objet.Face;
 import objet.Point;
 
 /**
+ * cette classe contient des methodes outils statiques 
  * @author Alex
  *
  */

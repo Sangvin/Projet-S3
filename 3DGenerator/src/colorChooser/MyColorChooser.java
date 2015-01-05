@@ -20,12 +20,10 @@ import javax.swing.JLabel;
 import javax.swing.JPanel;
 
 import mvc.Model;
-import objet.Objet3D;
 
 /**
  * Classe permettant de creer un color chooser fonctionne avec ColorTable et ColorCreator
- * @author Alex Dalencourt
- * @author Yoan Lamaire
+ * @author Alex
  */
 public class MyColorChooser extends JDialog{
 	/**

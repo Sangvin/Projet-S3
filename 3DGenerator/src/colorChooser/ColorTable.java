@@ -13,8 +13,7 @@ import javax.swing.JPanel;
 
 /**
  * class qui créer une table contenant 216 couleurs différentes
- * @author Alex Dalencourt
- * @author Yoann Lameire
+ * @author Alex
  */
 public class ColorTable extends JPanel{
 	/**

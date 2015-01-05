@@ -14,8 +14,8 @@ import autre.FileError;
 import autre.Outils;
 
 /**
- * @author Alex
  * Cette classe charge et stock les données du objet à afficher
+ * @author Alex
  */
 public class Objet3D {
 	/**

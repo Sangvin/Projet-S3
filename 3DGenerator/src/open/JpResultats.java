@@ -38,18 +38,59 @@ import autre.Outils;
  */
 public class JpResultats extends JPanel implements Observer{
 
+	/**
+	 * 
+	 */
 	private static final long serialVersionUID = 1L;
+	/**
+	 * Contient le titre du panel
+	 */
 	private JLabel recherche;
+	/**
+	 * Contient une Jlist pour l'affichage des résultats
+	 */
 	private JList<String> result;
+	/**
+	 * Contient le conteneur de la JList
+	 */
 	private JScrollPane jscroll;
+	/**
+	 * Contient la liste des résultats
+	 */
 	private DefaultListModel<String> res;
+	/**
+	 * Permet d'ouvrir le fichier sélectionné
+	 */
 	private JButton ouvrir;
+	/**
+	 * Contient la fenêtre pricipale, elle doit être du type JDialog
+	 */
 	private JDialog parent;
+	/**
+	 * Contient un controller mvc de la fenêtre
+	 */
 	private ObjectController controller;
+	/**
+	 * Contient le modèle mvc de la fenêtre principale
+	 */
 	private ModelRecherche modelRecherche;
+	/**
+	 * Contient un controller mvc de la fenêtre de recherche
+	 */
 	private ControllerRecherche controllerRecherche;
+	/**
+	 * Contient la frame principale
+	 */
 	private Frame superFrame;
 
+	/**
+	 * Constructeur du panel
+	 * @param superFrame
+	 * @param f
+	 * @param controller
+	 * @param modelRecherche
+	 * @param controllerRecherche
+	 */
 	public JpResultats(Frame superFrame,JDialog f,ObjectController controller,
 			ModelRecherche modelRecherche, ControllerRecherche controllerRecherche){
 		this.controller = controller;
@@ -63,6 +104,9 @@ public class JpResultats extends JPanel implements Observer{
 		this.modelRecherche.addObserver(this);
 	}
 	
+	/**
+	 * Permet d'initialiser les composants
+	 */
 	private void initComponents(){
 		this.recherche = new JLabel("Résultats de la recherche:");
 		this.ouvrir = new JButton("Ouvrir");
@@ -125,6 +169,9 @@ public class JpResultats extends JPanel implements Observer{
 		this.add(tmp2);
 	}
 
+	/**
+	 * Permet d'initialiser les résultats
+	 */
 	private void initResult() {
 		this.res.clear();
 		try{
@@ -158,6 +205,9 @@ public class JpResultats extends JPanel implements Observer{
 			this.initResult();
 	}
 	
+	/**
+	 * Permet d'exécuter une recherche
+	 */
 	private void executeRecherche(){
 		try{
 			Class.forName("org.sqlite.JDBC");

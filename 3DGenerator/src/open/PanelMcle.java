@@ -22,13 +22,36 @@ import javax.swing.JTextField;
  */
 public class PanelMcle extends JPanel implements Observer{
 
+	/**
+	 * 
+	 */
 	private static final long serialVersionUID = 1L;
+	/**
+	 * Permet de saisir une liste de mots clés séparés par des espaces
+	 */
 	private JTextArea motCle;
+	/**
+	 * Permet de saisir une forme
+	 */
 	private JTextField forme;
+	/**
+	 * Permet de saisir une utilisation
+	 */
 	private JTextField utilisation;
+	/**
+	 * Contient le modèle mvc de la fenêtre
+	 */
 	private ModelRecherche model;
+	/**
+	 * Contient un controller mvc de la fenêtre
+	 */
 	private ControllerRecherche controller;
 
+	/**
+	 * Constructeur du panel
+	 * @param model
+	 * @param controller
+	 */
 	public PanelMcle(ModelRecherche model, ControllerRecherche controller){
 		this.model = model;
 		this.controller = controller;
@@ -37,6 +60,9 @@ public class PanelMcle extends JPanel implements Observer{
 		this.model.addObserver(this);
 	}
 
+	/**
+	 * Permet d'initialiser les composants
+	 */
 	private void initComponents(){
 		this.motCle = new JTextArea(5,15);
 		this.motCle.addKeyListener(new KeyAdapter() {		
@@ -124,6 +150,9 @@ public class PanelMcle extends JPanel implements Observer{
 		}
 	}
 	
+	/**
+	 * Permet de mettre à jour le modèle
+	 */
 	public void updateController(){
 		controller.setForme(this.forme.getText());
 		controller.setUtilisation(this.utilisation.getText());

@@ -11,6 +11,11 @@ import javax.swing.JPanel;
 import mvc.ObjectController;
 import objet.Point;
 
+/**
+ * Contient les boutons utiles aux déplacements
+ * @author Alex
+ *
+ */
 public class PanelDep extends JPanel {
 
 	/**
@@ -22,11 +27,18 @@ public class PanelDep extends JPanel {
 	 */
 	private ObjectController controller;
 
+	/**
+	 * Constructeur du panel
+	 * @param controller
+	 */
 	public PanelDep(ObjectController controller){
 		this.controller = controller;
 		this.initComponents();
 	}
 
+	/**
+	 * Permet d'initialiser les composants
+	 */
 	private void initComponents(){
 		JButton haut = new JButton("Haut");
 
@@ -94,13 +106,28 @@ public class PanelDep extends JPanel {
 		this.add(Box.createRigidArea(null));
 	}
 	
+	/**
+	 * Cette classe permet de continuer une action tant que un bouton est appuyer
+	 * @author Vincent
+	 *
+	 */
 	class MoveThread extends Thread{
+		/**
+		 * Contient le point d'origine de la figure
+		 */
 		private Point deplacement;
 
+		/**
+		 * Constructeur du thread
+		 * @param dep
+		 */
 		public MoveThread(Point dep){
 			this.deplacement = dep;
 		}
 
+		/* (non-Javadoc)
+		 * @see java.lang.Thread#run()
+		 */
 		public void run() {
 			while(true){
 				controller.deplacement(this.deplacement);

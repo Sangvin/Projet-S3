@@ -15,8 +15,7 @@ import javax.swing.event.ChangeListener;
 
 /**
  * class qui créer un créateur de couleur
- * @author Alex Dalencourt
- * @author Yoann Lameire
+ * @author Alex
  */
 public class ColorCreator extends JPanel{
 	/**

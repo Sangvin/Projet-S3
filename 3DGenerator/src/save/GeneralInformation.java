@@ -43,12 +43,19 @@ public class GeneralInformation extends JPanel{
 	 */
 	private JTextField auteur;
 
+	/**
+	 * Constructeur du panel
+	 * @param path
+	 */
 	public GeneralInformation(String path){
 		this.path = path;
 		this.setBorder(BorderFactory.createTitledBorder("Champs Obligatoires"));
 		this.initComponents();
 	}
 
+	/**
+	 * Permet d'initialiser les composants
+	 */
 	private void initComponents(){
 		this.chemin = new JLabel(this.path);
 		JScrollPane scroll = new JScrollPane(this.chemin);

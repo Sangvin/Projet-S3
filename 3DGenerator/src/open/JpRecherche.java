@@ -20,14 +20,40 @@ import javax.swing.JPanel;
  */
 public class JpRecherche extends JPanel implements Observer{
 
+	/**
+	 * 
+	 */
 	private static final long serialVersionUID = 1L;
+	/**
+	 * Contient le panel permettant de saisir des mot-clé
+	 */
 	private PanelMcle pmc;
+	/**
+	 * Contient le panel permettant de saisir d'autres critères
+	 */
 	private PanelAtrCritere pac;
+	/**
+	 * Bouton qui permet de lancer la recherche
+	 */
 	private JButton valider;
+	/**
+	 * Bouton qui permet de reset tous les critères de recherche
+	 */
 	private JButton reset;
+	/**
+	 * Contient le modèle mvc de la fenêtre de recherche
+	 */
 	private ModelRecherche model;
+	/**
+	 * Contient un controller mvc pour la fenêtre de recherche
+	 */
 	private ControllerRecherche controller;
 	
+	/**
+	 * Constructeur du panel
+	 * @param model
+	 * @param controller
+	 */
 	public JpRecherche(ModelRecherche model, ControllerRecherche controller){
 		this.model = model;
 		this.controller = controller;
@@ -35,6 +61,9 @@ public class JpRecherche extends JPanel implements Observer{
 		this.setBorder(BorderFactory.createTitledBorder("Critères de Recherche"));
 	}
 	
+	/**
+	 * Initialise les composants
+	 */
 	private void initComponents(){
 		ControllerRecherche pmcController = new ControllerRecherche(this.model);
 		ControllerRecherche pacController = new ControllerRecherche(this.model);
@@ -110,6 +139,9 @@ public class JpRecherche extends JPanel implements Observer{
         this.add(reset);
 	}
 
+	/* (non-Javadoc)
+	 * @see java.util.Observer#update(java.util.Observable, java.lang.Object)
+	 */
 	@Override
 	public void update(Observable arg0, Object arg1) {
 		pac.update(arg0, arg1);

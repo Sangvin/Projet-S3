@@ -9,6 +9,11 @@ import java.math.MathContext;
 import javax.imageio.ImageIO;
 import javax.swing.JPanel;
 
+/**
+ * Contient les différents composants du launcher
+ * @author Alex
+ *
+ */
 public class Launch extends JPanel{
 	/**
 	 * 

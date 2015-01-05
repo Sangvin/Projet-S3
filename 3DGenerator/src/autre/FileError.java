@@ -1,6 +1,7 @@
 package autre;
 
 /**
+ * contient toutes les erreurs possibles sur un fichier
  * @author Alex
  *
  */

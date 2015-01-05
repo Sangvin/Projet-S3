@@ -4,8 +4,8 @@ import java.util.ArrayList;
 import java.util.List;
 
 /**
- * @author Alex
  * Caractérise un segment
+ * @author Alex
  */
 public class Segment {
 	/**

@@ -26,12 +26,32 @@ import mvc.ObjectController;
  *
  */
 public class Recherche extends JDialog {
+    /**
+     * 
+     */
     private static final long serialVersionUID = 1L;
+    /**
+     * Contient le panel permetant l'affichage des résultats
+     */
     private JpResultats jpResultats;
+    /**
+     * Contient le panel permetant une recherche spécifique suivant certaints critères
+     */
     private JpRecherche jpRecherche;
+    /**
+     * Permet d'annuler la recherche
+     */
     private JButton annuler;
+    /**
+     * Contient la frame principale du logiciel
+     */
     private Frame parent;
     
+	/**
+	 * Constructeur de la boite de dialogue
+	 * @param f
+	 * @param controller
+	 */
 	public Recherche(Frame f,ObjectController controller){
 		super(f,"Recherche de fichiers",true);
 		this.parent = f;
@@ -45,6 +65,10 @@ public class Recherche extends JDialog {
 		this.setVisible(true);
 	}
 	
+	/**
+	 * Permet d'initialiser les composants
+	 * @param controller
+	 */
 	private void initComponents(ObjectController controller){
 		ModelRecherche modelRecherche = new ModelRecherche();
 		ControllerRecherche jpResController = new ControllerRecherche(modelRecherche);
@@ -91,10 +115,6 @@ public class Recherche extends JDialog {
         c.gridy = 1;
         bagLayout.setConstraints(annuler, c);
         this.add(annuler);
-	}
-	
-	public static void main(String[] argv){
-		new Recherche(null, new ObjectController(new Model()));
 	}
 }
 

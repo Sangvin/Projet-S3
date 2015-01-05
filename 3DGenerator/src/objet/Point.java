@@ -4,8 +4,8 @@ import autre.Outils;
 
 
 /**
- * @author Alex
  * caractérise un point
+ * @author Alex
  */
 public class Point {
 	/**

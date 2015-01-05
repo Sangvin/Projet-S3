@@ -8,8 +8,8 @@ import java.util.Set;
 import autre.Outils;
 
 /**
- * @author Alex
  * Caractérise une face par 3 points
+ * @author Alex
  */
 public class Face implements Comparable<Face> {
 	/**

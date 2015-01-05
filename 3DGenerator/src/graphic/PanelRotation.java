@@ -10,6 +10,11 @@ import javax.swing.JPanel;
 
 import mvc.ObjectController;
 
+/**
+ * Contient les différents boutons de rotation
+ * @author Vincent
+ *
+ */
 public class PanelRotation extends JPanel {
 
 	/**
@@ -21,11 +26,18 @@ public class PanelRotation extends JPanel {
 	 */
 	private ObjectController controller;
 
+	/**
+	 * Constucteur du panel
+	 * @param controller
+	 */
 	public PanelRotation(ObjectController controller){
 		this.controller = controller;
 		initComponents();
 	}
 	
+	/**
+	 * Initialise les composants
+	 */
 	private void initComponents(){
 		JLabel textRotation = new JLabel("Rotation");
 		JButton xpos = new JButton("x+");
@@ -126,15 +138,34 @@ public class PanelRotation extends JPanel {
 		this.add(z);
 	}
 	
+	/**
+	 * Permet de continuer l'action tant qu'un bouton est appuyé 
+	 * @author Vincent
+	 *
+	 */
 	class RotationThread extends Thread{
+		/**
+		 * permet d'enregistrer l'axe de rotation
+		 */
 		private char axe;
+		/**
+		 * permet d'enregistrer le degré de rotation
+		 */
 		private double degree;
 
+		/**
+		 * Constructeur d'un thread
+		 * @param axe
+		 * @param degree
+		 */
 		public RotationThread(char axe, double degree){
 			this.axe = axe;
 			this.degree = degree;
 		}
 
+		/* (non-Javadoc)
+		 * @see java.lang.Thread#run()
+		 */
 		public void run() {
 			while(true){
 				if(this.axe == 'X')

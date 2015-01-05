@@ -11,6 +11,11 @@ import javax.swing.JScrollPane;
 import javax.swing.JTextArea;
 import javax.swing.JTextField;
 
+/**
+ * permet la saisie d'informations visant au tri des figures
+ * @author Alex
+ *
+ */
 public class SortInformation extends JPanel{
 
 	/**
@@ -30,11 +35,17 @@ public class SortInformation extends JPanel{
 	 */
 	private JTextField forme;
 
+	/**
+	 * Constructeur du panel
+	 */
 	public SortInformation(){
 		this.setBorder(BorderFactory.createTitledBorder("Champs facultatifs"));
 		this.initComponents();
 	}
 	
+	/**
+	 * Permet d'initialiser les composants
+	 */
 	private void initComponents(){
 		this.tag = new JTextArea(4,15);
 		this.tag.setLineWrap(true);

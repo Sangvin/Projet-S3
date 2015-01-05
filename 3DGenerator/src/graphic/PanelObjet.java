@@ -22,6 +22,11 @@ import objet.Face;
 import objet.Point;
 import autre.Outils;
 
+/**
+ * Contient le panel où sera dessiné la figure
+ * @author Vincent
+ *
+ */
 public class PanelObjet extends JTabbedPane implements Observer{
 
 	/**
@@ -53,6 +58,11 @@ public class PanelObjet extends JTabbedPane implements Observer{
 	 */
 	private ObjectController controller;
 
+	/**
+	 * Constructeur du panel
+	 * @param model
+	 * @param controller
+	 */
 	public PanelObjet(Model model, ObjectController controller){
 		this.model = model;
 		this.controller = controller;
@@ -61,6 +71,9 @@ public class PanelObjet extends JTabbedPane implements Observer{
 		//this.setMinimumSize(new Dimension(Toolkit.getDefaultToolkit().getScreenSize().width/2,Toolkit.getDefaultToolkit().getScreenSize().height));
 	}
 
+	/**
+	 * Permet d'initialiser les composants
+	 */
 	private void initComponents(){
 		this.button = new ArrayList<Integer>();
 		this.background = Outils.randomColor();
@@ -123,6 +136,9 @@ public class PanelObjet extends JTabbedPane implements Observer{
 		});	
 	}
 
+	/* (non-Javadoc)
+	 * @see javax.swing.JComponent#paint(java.awt.Graphics)
+	 */
 	public void paint(Graphics g){
 		Graphics2D g2D = (Graphics2D) g;
 		g2D.setColor(this.background);

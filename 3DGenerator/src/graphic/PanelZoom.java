@@ -10,6 +10,11 @@ import javax.swing.JPanel;
 
 import mvc.ObjectController;
 
+/**
+ * Contient les boutons permettant de zoomer la figure
+ * @author Vincent
+ *
+ */
 public class PanelZoom extends JPanel {
 
 	/**
@@ -21,11 +26,18 @@ public class PanelZoom extends JPanel {
 	 */
 	private ObjectController controller;
 
+	/**
+	 * Constructeur du panel
+	 * @param controller
+	 */
 	public PanelZoom(ObjectController controller){
 		this.controller = controller;
 		initComponents();
 	}
 	
+	/**
+	 * Permet d'initialiser les composants
+	 */
 	public void initComponents(){
 		JLabel textZoom = new JLabel("Zoom");
 		
@@ -126,13 +138,28 @@ public class PanelZoom extends JPanel {
 		this.add(panelZoom);
 	}
 	
+	/**
+	 * Permet de continuer une action tant qu'un bouton est appuyé
+	 * @author Vincent
+	 *
+	 */
 	class ZoomThread extends Thread{
+		/**
+		 * Permet d'enregistrer le pourcentage de zoom ou dézoom
+		 */
 		private double zoom;
 
+		/**
+		 * Constructeur du thread
+		 * @param zoom
+		 */
 		public ZoomThread(double zoom){
 			this.zoom = zoom;
 		}
 
+		/* (non-Javadoc)
+		 * @see java.lang.Thread#run()
+		 */
 		public void run() {
 			while(true){
 				controller.zoom(this.zoom);;

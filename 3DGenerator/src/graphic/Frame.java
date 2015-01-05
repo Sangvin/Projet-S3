@@ -16,6 +16,11 @@ import mvc.Model;
 import mvc.ObjectController;
 import objet.Point;
 
+/**
+ * Contient la fenêtre principale du logiciel
+ * @author Vincent
+ *
+ */
 public class Frame extends JFrame {
 	/**
 	 * 
@@ -42,6 +47,11 @@ public class Frame extends JFrame {
 	 */
 	private ObjectController controller;
 
+	/**
+	 * Constructeur de la fenêtre
+	 * @param model
+	 * @param controller
+	 */
 	public Frame(Model model, ObjectController controller){
 		this.model = model;
 		this.controller = controller;
@@ -55,6 +65,9 @@ public class Frame extends JFrame {
 //		this.setResizable(false);
 	}
 
+	/**
+	 * permet d'initialiser les composants
+	 */
 	private void initComponents(){
 		ObjectController controlTablette = new ObjectController(this.model);
 		this.tablette = new PanelObjet(this.model, controlTablette);
@@ -93,6 +106,9 @@ public class Frame extends JFrame {
 
 	}
 
+	/**
+	 * permet d'initialiser les racourcis claviers
+	 */
 	private void initKeyPad(){
 		this.getRootPane().getInputMap(JComponent.WHEN_ANCESTOR_OF_FOCUSED_COMPONENT).put(KeyStroke.getKeyStroke("A"), "A" );
 		this.getRootPane().getInputMap(JComponent.WHEN_ANCESTOR_OF_FOCUSED_COMPONENT).put(KeyStroke.getKeyStroke("Z"), "Z" );
@@ -229,12 +245,6 @@ public class Frame extends JFrame {
 	 */
 	public void setbackground(Color c){
 		this.tablette.setbackground(c);
-	}
-
-	public static void main(String[] args){
-//		new Configure();
-		Model m = new Model();
-		new Frame(m,new ObjectController(m));
 	}
 }
 

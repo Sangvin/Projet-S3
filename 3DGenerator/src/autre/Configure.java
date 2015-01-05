@@ -203,8 +203,4 @@ public class Configure{
 			e.printStackTrace();
 		}
 	}
-	
-	public static void main(String[] args) {
-		new Configure();
-	}
 }

@@ -20,15 +20,32 @@ import save.Save;
 import autre.Outils;
 import colorChooser.MyColorChooser;
 
+/**
+ * Contient la bare de Menu de la frame
+ * @author Vincent
+ *
+ */
 public class MenuBar extends JMenuBar {
 
 	/**
 	 * 
 	 */
 	private static final long serialVersionUID = -6946857843971255702L;
+	/**
+	 * Contient l'item pour sauvegarder une figure
+	 */
 	private JMenuItem itemSauver;
+	/**
+	 * Contient l'item pour changer la couleur d'une figure
+	 */
 	private JMenuItem itemCouleurFigure;
+	/**
+	 * Contient l'item pour fermer la fenêtre
+	 */
 	private JMenuItem itemFermer;
+	/**
+	 * Contient la fenêtre principale
+	 */
 	private Frame f;
 	/**
 	 * Contient le modèle
@@ -40,6 +57,7 @@ public class MenuBar extends JMenuBar {
 	private ObjectController controller;
 	
 	/**
+	 * Constructeur de la bar de menu
 	 * @param f
 	 */
 	public MenuBar(Frame f,Model model, ObjectController controller){
@@ -49,6 +67,9 @@ public class MenuBar extends JMenuBar {
 		this.initComponents();
 	}
 
+	/**
+	 * Permet d'initialiser les composants
+	 */
 	private void initComponents(){
 		// Menu Fichier
 		JMenu menuFichier = new JMenu("Fichier");
