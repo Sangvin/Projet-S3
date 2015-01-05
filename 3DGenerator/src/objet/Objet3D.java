@@ -3,15 +3,22 @@
  */
 package objet;
 
+import graphic.Frame;
+
 import java.awt.Color;
 import java.io.BufferedReader;
 import java.io.File;
 import java.io.FileReader;
+import java.io.IOException;
 import java.util.ArrayList;
+import java.util.Collections;
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 
 import autre.FileError;
 import autre.Outils;
+import autre.Error;
 
 /**
  * Cette classe charge et stock les données du objet à afficher
@@ -51,87 +58,76 @@ public class Objet3D{
 	 * Constructeur qui stock les différentes données de l'objet
 	 * @param accesFichier
 	 * @param c 
+	 * @param parent
+	 * @throws Exception 
 	 */
-	public Objet3D(String accesFichier, Color c) throws Exception{
+	public Objet3D(String accesFichier, Color c,Frame parent) throws Exception{
+		Set<FileError> errorList = new HashSet<FileError>();
+		
 		if(accesFichier.length() < 4)
-			throw new Exception(FileError.ERROR1101.message());
+			errorList.add(FileError.ERROR1101);
 		if(!accesFichier.substring(accesFichier.length()-4, accesFichier.length()).equals(".gts"))
-			throw new Exception(FileError.ERROR1101.message());
+			errorList.add(FileError.ERROR1101);
 		this.fichier = new File(accesFichier);
 		BufferedReader br = new BufferedReader(new FileReader(fichier));
-		initData(br);
+		initData(br,errorList);
 		this.color = c;
 		this.setColor(this.color);
+		if(errorList.size() != 0)
+			new Error(parent,errorList,"Le fichier ouvert contient des erreurs");
 	}
 
 	/**
 	 * initialise les données
 	 * @param br
-	 * @throws Exception
+	 * @param errorList
+	 * @throws IOException 
 	 */
-	private void initData(BufferedReader br) throws Exception{
-//		Launcher l = new Launcher();
+	private void initData(BufferedReader br, Set<FileError> errorList) throws IOException{
 		points = new ArrayList<Point>();
 		points.add(null);
 		segments = new ArrayList<Segment>();
 		segments.add(null);
 		faces = new ArrayList<Face>();
 
+		Set<String> uniques = new HashSet<String>();
+		List<Integer> organizeID = new ArrayList<Integer>();
+		Set<Integer> uniqueID = new HashSet<Integer>();
+		Set<Point> triangle = new HashSet<Point>();
+
 		String tmp = br.readLine();
 		if(tmp == null){
-//			l.dispose();
-			throw new Exception(FileError.ERROR1102.message());
+			errorList.add(FileError.ERROR1102);
 		}
 		String[] tmpSplit;
 		String[] infoObjet = tmp.split(" ");
 		for(int i = 0; i < infoObjet.length; i++)
 			try{
 				Integer.parseInt(infoObjet[i]);
-			}catch(Exception e){/*l.dispose();*/throw new Exception(FileError.ERROR1201.message());}
+			}catch(Exception e){errorList.add(FileError.ERROR1201);}
 		if(infoObjet.length != 3){
-//			l.dispose();
-			throw new Exception(FileError.ERROR1202.message());
+			errorList.add(FileError.ERROR1202);
 		}
-			
-//		BigDecimal nbOperation = new BigDecimal(infoObjet[0]).add(new BigDecimal(infoObjet[1])).add(new BigDecimal(infoObjet[2]));
-//		nbOperation = nbOperation.add(new BigDecimal(infoObjet[2])).add(new BigDecimal(infoObjet[0]));
-//		nbOperation = nbOperation.add(new BigDecimal(infoObjet[0]));
-//		l.setIncrement(new BigDecimal(100).divide(nbOperation,MathContext.DECIMAL128));
-		
-//		Set<String> pointsUniques = new HashSet<String>();
-//		Set<String> segmentsUniques = new HashSet<String>();
-//		Set<String> facesUniques = new HashSet<String>();
-//		List<Integer> organizeID = new ArrayList<Integer>();
-//		Set<Integer> uniqueID = new HashSet<Integer>();
-//		Set<Point> triangle = new HashSet<Point>();
 		
 		for(int i = 0; i < infoObjet.length; i++){
-//			if(i == 0)
-//				l.setText("Lecture des points");
-//			if(i == 1)
-//				l.setText("Lecture des segments");
-//			if(i == 2)
-//				l.setText("Lecture des faces");
 			for(int j = 1; j<=Integer.parseInt(infoObjet[i]) ; j++){
-//				organizeID.clear();
+				organizeID.clear();
 				tmp = br.readLine();
 				if(tmp == null){
-//					l.dispose();
-					throw new Exception(FileError.ERROR1203.message());
+					errorList.add(FileError.ERROR1203);
 				}
 				
 				tmpSplit = tmp.split(" ");
 				for(int z = 0; z < tmpSplit.length; z++)
 					try{
 						Double.parseDouble(tmpSplit[z]);
-					}catch(Exception e){/*l.dispose();*/throw new Exception(FileError.ERROR1201.message());}
+					}catch(Exception e){errorList.add(FileError.ERROR1201);}
 				
 				if(i == 0){
 					if(tmp.split(" ").length != 3){
-//						l.dispose();
-						throw new Exception(FileError.ERROR2101.message());
+						errorList.add(FileError.ERROR2101);
 					}
-//					if(!pointsUniques.add(tmp)) throw new Exception(FileError.ERROR2102.message());
+					if(!uniques.add(tmp)) errorList.add(FileError.ERROR2102);
 					try{
 						points.add(new Point(tmpSplit));
 					}catch(Exception e){
@@ -141,17 +137,16 @@ public class Objet3D{
 				
 				if(i == 1){
 					if(tmpSplit.length != 2){
-//						l.dispose();
-						throw new Exception(FileError.ERROR2201.message());
+						errorList.add(FileError.ERROR2201);
 					}
-//					organizeID.add(Integer.parseInt(tmpSplit[0]));
-//					organizeID.add(Integer.parseInt(tmpSplit[1]));
-//					Collections.sort(organizeID);
-//					tmp = organizeID.get(0) + " " + organizeID.get(1);
-//					if(organizeID.get(0) == organizeID.get(1))
-//						throw new Exception(FileError.ERROR2203.message());
-//					if(!segmentsUniques.add(tmp))
-//						throw new Exception(FileError.ERROR2202.message());
+					organizeID.add(Integer.parseInt(tmpSplit[0]));
+					organizeID.add(Integer.parseInt(tmpSplit[1]));
+					Collections.sort(organizeID);
+					tmp = organizeID.get(0) + " " + organizeID.get(1);
+					if(organizeID.get(0) == organizeID.get(1))
+						errorList.add(FileError.ERROR2203);
+					if(!uniques.add(tmp))
+						errorList.add(FileError.ERROR2202);
 					try{
 						segments.add(new Segment(points.get(Integer.parseInt(tmpSplit[0])),points.get(Integer.parseInt(tmpSplit[1]))));
 					}catch(Exception e){
@@ -161,68 +156,57 @@ public class Objet3D{
 				
 				if(i == 2){
 					if(tmp.split(" ").length != 3){
-//						l.dispose();
-						throw new Exception(FileError.ERROR2301.message());
+						errorList.add(FileError.ERROR2301);
 					}
-//					organizeID.add(Integer.parseInt(tmpSplit[0]));
-//					organizeID.add(Integer.parseInt(tmpSplit[1]));
-//					organizeID.add(Integer.parseInt(tmpSplit[2]));
-//					
-//					uniqueID.addAll(organizeID);
-//					if(uniqueID.size() != 3) throw new Exception(FileError.ERROR2303.message());
-//					uniqueID.clear();
-//					
-//					for(Integer z : organizeID)
-//						triangle.addAll(segments.get(z).getPoints());
-//					if(triangle.size() != 3) throw new Exception(FileError.ERROR2304.message());
-//					triangle.clear();
-//					
-//					Collections.sort(organizeID);
-//					tmp = organizeID.get(0)+" "+organizeID.get(1)+" "+organizeID.get(2);
-//					if(!facesUniques.add(tmp))
-//						throw new Exception(FileError.ERROR2302.message());
+					organizeID.add(Integer.parseInt(tmpSplit[0]));
+					organizeID.add(Integer.parseInt(tmpSplit[1]));
+					organizeID.add(Integer.parseInt(tmpSplit[2]));
+					
+					uniqueID.addAll(organizeID);
+					if(uniqueID.size() != 3) errorList.add(FileError.ERROR2303);
+					uniqueID.clear();
+					
+					for(Integer z : organizeID)
+						triangle.addAll(segments.get(z).getPoints());
+					if(triangle.size() != 3) errorList.add(FileError.ERROR2304);
+					triangle.clear();
+					
+					Collections.sort(organizeID);
+					tmp = organizeID.get(0)+" "+organizeID.get(1)+" "+organizeID.get(2);
+					if(!uniques.add(tmp))
+						errorList.add(FileError.ERROR2302);
 					try{
 						faces.add(new Face(segments.get(Integer.parseInt(tmpSplit[0])),segments.get(Integer.parseInt(tmpSplit[1])),segments.get(Integer.parseInt(tmpSplit[2])),j));
 					}catch(Exception e){
 						e.printStackTrace();
 					}
 				}
-				
-//				l.increment();
 			}
 		}
-//		l.setText("Organisation des faces");
 		this.faces = Outils.peintre(this.faces);
-		this.centrerFigure(/*l*/);
-		this.zoomAuto(/*l*/);
+		this.centrerFigure();
+		this.zoomAuto();
 		this.vector = new Point(0,0,0);
-//		l.setValue(100);
-//		l.setText("Affichage");
-//		l.dispose();
 	}
 
-	private void centrerFigure(/*Launcher l*/){
-//		l.setText("Recentrage de la figure");
+	private void centrerFigure(){
 		int i;
 		Point baricentre = new Point(0,0,0);
 		for(i = 0; i < this.faces.size(); i++){
 			baricentre.add(this.faces.get(i).baricentre);
-//			l.increment();
 		}
 		baricentre.x = baricentre.x/i;
 		baricentre.y = baricentre.y/i;
 		baricentre.z = baricentre.z/i;
 		for(int in = 1; in < this.points.size(); in++){
 			this.points.get(in).add(new Point(-baricentre.x,-baricentre.y,-baricentre.z));
-//			l.increment();
 		}
 	}
 
 	/**
 	 * Calcule automatiquement le zoom optimal
 	 */
-	public void zoomAuto(/*Launcher l*/){
-//		l.setText("Calcul du zoom automatique");
+	public void zoomAuto(){
 		Point temp;
 		double coord_tmp = 0;
 		for(int i = 1; i < this.points.size(); i++){
@@ -233,10 +217,8 @@ public class Objet3D{
 				coord_tmp = temp.y;
 			if(temp.z < coord_tmp)
 				coord_tmp = temp.z;
-//			l.increment();
 		}
 		this.zoomOrigine = 100 / coord_tmp;
-//		l.setText("Application du zoom");
 		this.zoom(this.zoomOrigine);
 	}
 

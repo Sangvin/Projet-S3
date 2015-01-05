@@ -104,7 +104,7 @@ public class MenuBar extends JMenuBar{
 				if(status==JFileChooser.APPROVE_OPTION) {
 					fichier = dialogue.getSelectedFile();
 					try {
-						controller.attachObjet3D(new Objet3D(fichier.getAbsolutePath(),Outils.randomColor()));
+						controller.attachObjet3D(new Objet3D(fichier.getAbsolutePath(),Outils.randomColor(),f));
 						double posx = f.getTablette().getSize().getWidth()/2;
 						double posy = f.getTablette().getSize().getHeight()/2;
 						controller.setVector(new Point(posx,posy,0));
@@ -114,7 +114,7 @@ public class MenuBar extends JMenuBar{
 							itemFermer.setEnabled(true);
 						}
 					} catch (Exception e) {
-						JOptionPane.showMessageDialog(null, e.getMessage(), "Erreur", JOptionPane.ERROR_MESSAGE);
+						e.printStackTrace();
 					}
 				}
 			}

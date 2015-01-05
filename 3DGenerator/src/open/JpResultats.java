@@ -119,7 +119,7 @@ public class JpResultats extends JPanel implements Observer{
 			public void actionPerformed(ActionEvent arg0) {
 				if(result.getSelectedValue() != null)
 					try {
-						controller.attachObjet3D(new Objet3D(modelRecherche.getUrl(),Outils.randomColor()));
+						controller.attachObjet3D(new Objet3D(modelRecherche.getUrl(),Outils.randomColor(),superFrame));
 						double posx = superFrame.getTablette().getSize().getWidth()/2;
 						double posy = superFrame.getTablette().getSize().getHeight()/2;
 						controller.setVector(new Point(posx,posy,0));
