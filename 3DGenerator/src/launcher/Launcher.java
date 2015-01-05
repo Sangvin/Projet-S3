@@ -98,8 +98,4 @@ public class Launcher extends JDialog{
 		}
 		super.dispose();
 	}
-	
-	public static void main(String[] args) {
-		new Launcher(null);
-	}
 }
