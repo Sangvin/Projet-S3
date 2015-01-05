@@ -6,7 +6,9 @@ import java.awt.GridBagLayout;
 import java.awt.Insets;
 import java.awt.Toolkit;
 import java.awt.event.ActionEvent;
+import java.io.IOException;
 
+import javax.imageio.ImageIO;
 import javax.swing.AbstractAction;
 import javax.swing.JComponent;
 import javax.swing.JFrame;
@@ -60,6 +62,11 @@ public class Frame extends JFrame{
 		this.controller.addView(this.tablette);
 		this.pack();
 		this.setSize(Toolkit.getDefaultToolkit().getScreenSize());
+		try {
+			this.setIconImage(ImageIO.read(this.getClass().getResource("Logo.png")));
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
 		this.setDefaultCloseOperation(EXIT_ON_CLOSE);
 		this.setVisible(true);
 //		this.setResizable(false);
