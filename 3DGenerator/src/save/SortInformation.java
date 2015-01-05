@@ -17,7 +17,6 @@ import javax.swing.JTextField;
  *
  */
 public class SortInformation extends JPanel{
-
 	/**
 	 * 
 	 */

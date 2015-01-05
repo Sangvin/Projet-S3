@@ -12,7 +12,7 @@ import objet.Point;
  * @author Alex
  *
  */
-public class ObjectController {
+public class ObjectController{
 	/**
 	 * Contient le modèle
 	 */

@@ -15,8 +15,7 @@ import mvc.ObjectController;
  * @author Vincent
  *
  */
-public class PanelRotation extends JPanel {
-
+public class PanelRotation extends JPanel{
 	/**
 	 * 
 	 */

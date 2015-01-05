@@ -7,7 +7,7 @@ import autre.Outils;
  * caractérise un point
  * @author Alex
  */
-public class Point {
+public class Point{
 	/**
 	 * coordonnée en x
 	 */

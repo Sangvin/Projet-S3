@@ -28,7 +28,6 @@ import autre.Outils;
  *
  */
 public class PanelObjet extends JTabbedPane implements Observer{
-
 	/**
 	 * 
 	 */

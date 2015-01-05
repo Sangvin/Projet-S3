@@ -15,8 +15,8 @@ import javax.swing.JButton;
 import javax.swing.JDialog;
 import javax.swing.JFrame;
 
-import mvc.Model;
 import mvc.ObjectController;
+
 /**
  * Cette class contient tout les panels c'est celle la qui est instancié lors de la compilation
  * elle sert a chercher un fichier dans la base de donnée et l'importer dans le logiciel (IG pricipale) , 

@@ -7,7 +7,7 @@ import java.util.List;
  * Caractérise un segment
  * @author Alex
  */
-public class Segment {
+public class Segment{
 	/**
 	 * point de début
 	 */

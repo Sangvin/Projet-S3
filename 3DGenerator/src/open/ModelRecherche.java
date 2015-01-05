@@ -14,7 +14,7 @@ import java.util.Observable;
  * @author Alex
  *
  */
-public class ModelRecherche extends Observable {
+public class ModelRecherche extends Observable{
 	/**
 	 * Contient le nom de l'objet contenu dans le modèle 
 	 */

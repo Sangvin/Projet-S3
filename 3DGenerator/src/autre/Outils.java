@@ -13,7 +13,7 @@ import objet.Point;
  * @author Alex
  *
  */
-public class Outils {
+public class Outils{
 	/**
 	 * permet de calculer le produit de deux matrice
 	 * @param point 

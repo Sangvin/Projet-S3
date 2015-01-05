@@ -17,7 +17,6 @@ import launcher.Launcher;
  *
  */
 public class Configure{
-
 	/**
 	 * vérifie ou corrige la configuration
 	 */

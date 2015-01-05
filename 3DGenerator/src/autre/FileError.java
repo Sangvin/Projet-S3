@@ -5,7 +5,7 @@ package autre;
  * @author Alex
  *
  */
-public enum FileError {
+public enum FileError{
 	/**
 	 * Erreur de type 1000, concerne le fichier lui même
 	 * Erreur de type 1100, concerne le fichier dans sa globalité

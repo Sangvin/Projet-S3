@@ -9,7 +9,7 @@ import mvc.ObjectController;
  * @author Alex
  *
  */
-public class Main {
+public class Main{
 
 	/**
 	 * Methode principale du l'ogiciel

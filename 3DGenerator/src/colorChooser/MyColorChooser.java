@@ -104,8 +104,6 @@ public class MyColorChooser extends JDialog{
 				dispose();
 			}
 		});
-
-
 		this.setVisible(true);
 	}
 

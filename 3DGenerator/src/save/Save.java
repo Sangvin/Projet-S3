@@ -79,7 +79,7 @@ public class Save extends JDialog{
 		this.valider.addActionListener(new ActionListener(){
 
 			@Override
-			public void actionPerformed(ActionEvent arg0) {
+			public void actionPerformed(ActionEvent arg0){
 				if(info.getInfo() != null){
 
 					int confirm = JOptionPane.showConfirmDialog(parent, "Confirmer l'ajout dans la base","Confirmation",

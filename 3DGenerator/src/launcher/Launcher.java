@@ -40,7 +40,7 @@ public class Launcher extends JDialog{
 	/**
 	 * initialise le composant
 	 */
-	private void initComponent() {
+	private void initComponent(){
 		this.bar = new Launch();
 		this.add(bar);
 	}

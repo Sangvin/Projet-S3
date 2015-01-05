@@ -37,7 +37,6 @@ import autre.Outils;
  *
  */
 public class JpResultats extends JPanel implements Observer{
-
 	/**
 	 * 
 	 */

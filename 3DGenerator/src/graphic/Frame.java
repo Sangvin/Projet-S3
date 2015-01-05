@@ -21,7 +21,7 @@ import objet.Point;
  * @author Vincent
  *
  */
-public class Frame extends JFrame {
+public class Frame extends JFrame{
 	/**
 	 * 
 	 */

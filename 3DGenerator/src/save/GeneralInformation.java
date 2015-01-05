@@ -123,7 +123,7 @@ public class GeneralInformation extends JPanel{
 	 * permet de récupérer les informations générales renvois null si une info est manquante
 	 * @return
 	 */
-	public String[] getInfo() {
+	public String[] getInfo(){
 		if(this.auteur.getText().replaceAll(" ", "").length() == 0)
 			return null;
 		if(this.nom.getText().replaceAll(" ","").length() == 0)

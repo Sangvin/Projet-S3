@@ -25,7 +25,7 @@ import colorChooser.MyColorChooser;
  * @author Vincent
  *
  */
-public class MenuBar extends JMenuBar {
+public class MenuBar extends JMenuBar{
 
 	/**
 	 * 

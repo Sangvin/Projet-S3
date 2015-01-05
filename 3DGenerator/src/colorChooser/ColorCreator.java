@@ -100,7 +100,6 @@ public class ColorCreator extends JPanel{
     			c.setColor(new Color((int)textR.getValue(),(int)textG.getValue(),(int)textB.getValue()));
     		}
     	});
-
     	
     	sliderG = new JSlider(0,255);    	
     	sliderG.setMajorTickSpacing(50);
@@ -114,7 +113,6 @@ public class ColorCreator extends JPanel{
     			c.setColor(new Color((int)textR.getValue(),(int)textG.getValue(),(int)textB.getValue()));
     		}
     	});
-
     	
     	sliderB = new JSlider(0,255);
     	sliderB.setMajorTickSpacing(50);
@@ -128,7 +126,6 @@ public class ColorCreator extends JPanel{
     			c.setColor(new Color((int)textR.getValue(),(int)textG.getValue(),(int)textB.getValue()));
     		}
     	});
-
     	
     	SpinnerNumberModel model1 = new SpinnerNumberModel(0, 0, 255, 1);
         textR = new JSpinner(model1);
@@ -138,7 +135,6 @@ public class ColorCreator extends JPanel{
         		sliderR.setValue((int)textR.getValue());
         	}
         });
-
         
     	SpinnerNumberModel model2 = new SpinnerNumberModel(0, 0, 255, 1);
         textG = new JSpinner(model2);
@@ -148,7 +144,6 @@ public class ColorCreator extends JPanel{
         		sliderG.setValue((int)textG.getValue());
         	}
         });
-
         
     	SpinnerNumberModel model3 = new SpinnerNumberModel(0, 0, 255, 1);
         textB = new JSpinner(model3);
@@ -158,7 +153,6 @@ public class ColorCreator extends JPanel{
         		sliderB.setValue((int)textB.getValue());
         	}
         });
-
         
         GridBagLayout bagLayout = new GridBagLayout();
         setLayout(bagLayout);

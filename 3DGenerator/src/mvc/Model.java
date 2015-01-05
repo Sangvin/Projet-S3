@@ -16,7 +16,6 @@ public class Model extends Observable{
 	 * objet à afficher
 	 */
 	private Objet3D object;
-	
 	/**
 	 * constructeur
 	 */

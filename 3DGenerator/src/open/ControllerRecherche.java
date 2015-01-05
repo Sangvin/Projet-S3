@@ -9,7 +9,7 @@ import java.util.Observer;
  * @author Alex
  *
  */
-public class ControllerRecherche {
+public class ControllerRecherche{
 	/**
 	 * Contient le modèle
 	 */

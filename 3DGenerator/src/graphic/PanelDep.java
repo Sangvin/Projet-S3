@@ -16,7 +16,7 @@ import objet.Point;
  * @author Alex
  *
  */
-public class PanelDep extends JPanel {
+public class PanelDep extends JPanel{
 
 	/**
 	 * 

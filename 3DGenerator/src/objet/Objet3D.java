@@ -17,7 +17,7 @@ import autre.Outils;
  * Cette classe charge et stock les données du objet à afficher
  * @author Alex
  */
-public class Objet3D {
+public class Objet3D{
 	/**
 	 * Fichier à charger
 	 */

@@ -21,7 +21,6 @@ import javax.swing.JTextField;
  *
  */
 public class PanelMcle extends JPanel implements Observer{
-
 	/**
 	 * 
 	 */

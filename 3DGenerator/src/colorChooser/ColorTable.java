@@ -56,7 +56,7 @@ public class ColorTable extends JPanel{
 				 tmp = origine;	
 			 }
 	        	
-			 public void mouseClicked(MouseEvent evt) {
+			 public void mouseClicked(MouseEvent evt){
 				 c.setColor(tmp.getBackground());
 			 }
 	    }

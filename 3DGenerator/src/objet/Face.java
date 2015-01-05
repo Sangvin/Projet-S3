@@ -11,7 +11,7 @@ import autre.Outils;
  * Caractérise une face par 3 points
  * @author Alex
  */
-public class Face implements Comparable<Face> {
+public class Face implements Comparable<Face>{
 	/**
 	 * premier point de la face
 	 */

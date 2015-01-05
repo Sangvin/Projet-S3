@@ -60,7 +60,7 @@ public class Launch extends JPanel{
 	/**
 	 * incrémente la bare de 1%
 	 */
-	public void setValue() {
+	public void setValue(){
 		if(this.percent<100)
 			this.percent++;
 		this.progress = (int) (225*this.percent*0.01);

@@ -11,7 +11,7 @@ import mvc.ObjectController;
  * @author Vincent
  *
  */
-public class PanelBouton extends JPanel {
+public class PanelBouton extends JPanel{
 
 	/**
 	 * 

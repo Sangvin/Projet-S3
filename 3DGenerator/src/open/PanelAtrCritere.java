@@ -19,7 +19,6 @@ import javax.swing.text.MaskFormatter;
  *
  */
 public class PanelAtrCritere extends JPanel implements Observer{
-
 	/**
 	 * 
 	 */

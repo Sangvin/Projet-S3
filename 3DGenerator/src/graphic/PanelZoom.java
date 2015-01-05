@@ -15,8 +15,7 @@ import mvc.ObjectController;
  * @author Vincent
  *
  */
-public class PanelZoom extends JPanel {
-
+public class PanelZoom extends JPanel{
 	/**
 	 * 
 	 */

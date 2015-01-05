@@ -19,7 +19,6 @@ import javax.swing.JPanel;
  *
  */
 public class JpRecherche extends JPanel implements Observer{
-
 	/**
 	 * 
 	 */
