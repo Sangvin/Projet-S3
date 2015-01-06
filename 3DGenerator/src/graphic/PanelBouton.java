@@ -7,7 +7,7 @@ import mvc.Model;
 import mvc.ObjectController;
 
 /**
- * Contient les différents panel de boutons
+ * Contient les diffï¿½rents panel de boutons
  * @author Vincent
  *
  */
@@ -28,10 +28,12 @@ public class PanelBouton extends JPanel{
 		JPanel rot = new PanelRotation(controller);
 		JPanel zoom = new PanelZoom(controller);
 		JPanel dep = new PanelDep(controller);
+		JPanel info = new PanelInfo();
 		
 		this.add(zoom);
 		this.add(rot);
 		this.add(dep);
+		this.add(info);
 	}
 
 }

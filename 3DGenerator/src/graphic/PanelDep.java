@@ -12,7 +12,7 @@ import mvc.ObjectController;
 import objet.Point;
 
 /**
- * Contient les boutons utiles aux déplacements
+ * Contient les boutons utiles aux dï¿½placements
  * @author Alex
  *
  */
@@ -106,7 +106,7 @@ public class PanelDep extends JPanel{
 			}
 		});
 
-		this.setLayout(new GridLayout(3, 3));
+		this.setLayout(new GridLayout(4, 3));
 		this.add(Box.createRigidArea(null));
 		this.add(haut);
 		this.add(Box.createRigidArea(null));
