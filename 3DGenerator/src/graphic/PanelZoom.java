@@ -49,8 +49,11 @@ public class PanelZoom extends JPanel{
 				this.zoom.start();
 			}
 			
+			@SuppressWarnings("deprecation")
 			public void mouseReleased(MouseEvent arg0){
 				this.zoom.interrupt();
+				if(!this.zoom.isInterrupted())
+					this.zoom.stop();
 			}
 		});
 		
@@ -63,8 +66,11 @@ public class PanelZoom extends JPanel{
 				this.zoom.start();
 			}
 			
+			@SuppressWarnings("deprecation")
 			public void mouseReleased(MouseEvent arg0){
 				this.zoom.interrupt();
+				if(!this.zoom.isInterrupted())
+					this.zoom.stop();
 			}
 		});
 		
@@ -77,8 +83,11 @@ public class PanelZoom extends JPanel{
 				this.zoom.start();
 			}
 			
+			@SuppressWarnings("deprecation")
 			public void mouseReleased(MouseEvent arg0){
 				this.zoom.interrupt();
+				if(!this.zoom.isInterrupted())
+					this.zoom.stop();
 			}
 		});
 		
@@ -91,8 +100,11 @@ public class PanelZoom extends JPanel{
 				this.zoom.start();
 			}
 			
+			@SuppressWarnings("deprecation")
 			public void mouseReleased(MouseEvent arg0){
 				this.zoom.interrupt();
+				if(!this.zoom.isInterrupted())
+					this.zoom.stop();
 			}
 		});
 		
@@ -105,8 +117,11 @@ public class PanelZoom extends JPanel{
 				this.zoom.start();
 			}
 			
+			@SuppressWarnings("deprecation")
 			public void mouseReleased(MouseEvent arg0){
 				this.zoom.interrupt();
+				if(!this.zoom.isInterrupted())
+					this.zoom.stop();
 			}
 		});
 		
@@ -119,8 +134,11 @@ public class PanelZoom extends JPanel{
 				this.zoom.start();
 			}
 			
+			@SuppressWarnings("deprecation")
 			public void mouseReleased(MouseEvent arg0){
 				this.zoom.interrupt();
+				if(!this.zoom.isInterrupted())
+					this.zoom.stop();
 			}
 		});
 		

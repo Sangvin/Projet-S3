@@ -48,8 +48,11 @@ public class PanelRotation extends JPanel{
 				this.rotation.start();
 			}
 			
+			@SuppressWarnings("deprecation")
 			public void mouseReleased(MouseEvent arg0){
 				this.rotation.interrupt();
+				if(!this.rotation.isInterrupted())
+					this.rotation.stop();
 			}
 		});
 		JButton xneg = new JButton("x-");
@@ -61,8 +64,11 @@ public class PanelRotation extends JPanel{
 				this.rotation.start();
 			}
 			
+			@SuppressWarnings("deprecation")
 			public void mouseReleased(MouseEvent arg0){
 				this.rotation.interrupt();
+				if(!this.rotation.isInterrupted())
+					this.rotation.stop();
 			}
 		});
 		JButton ypos = new JButton("y+");
@@ -74,8 +80,11 @@ public class PanelRotation extends JPanel{
 				this.rotation.start();
 			}
 			
+			@SuppressWarnings("deprecation")
 			public void mouseReleased(MouseEvent arg0){
 				this.rotation.interrupt();
+				if(!this.rotation.isInterrupted())
+					this.rotation.stop();
 			}
 		});
 		JButton yneg = new JButton("y-");
@@ -87,8 +96,11 @@ public class PanelRotation extends JPanel{
 				this.rotation.start();
 			}
 			
+			@SuppressWarnings("deprecation")
 			public void mouseReleased(MouseEvent arg0){
 				this.rotation.interrupt();
+				if(!this.rotation.isInterrupted())
+					this.rotation.stop();
 			}
 		});
 		JButton zpos = new JButton("z+");
@@ -100,8 +112,11 @@ public class PanelRotation extends JPanel{
 				this.rotation.start();
 			}
 			
+			@SuppressWarnings("deprecation")
 			public void mouseReleased(MouseEvent arg0){
 				this.rotation.interrupt();
+				if(!this.rotation.isInterrupted())
+					this.rotation.stop();
 			}
 		});
 		JButton zneg = new JButton("z-");
@@ -113,8 +128,11 @@ public class PanelRotation extends JPanel{
 				this.rotation.start();
 			}
 			
+			@SuppressWarnings("deprecation")
 			public void mouseReleased(MouseEvent arg0){
 				this.rotation.interrupt();
+				if(!this.rotation.isInterrupted())
+					this.rotation.stop();
 			}
 		});
 

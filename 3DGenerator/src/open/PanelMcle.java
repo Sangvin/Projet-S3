@@ -73,6 +73,7 @@ public class PanelMcle extends JPanel implements Observer{
 			}
 		});
 		this.motCle.setLineWrap(true);
+		this.motCle.setToolTipText("Entrez vos tag ici en les séparant par un espace");
 		JScrollPane scroll = new JScrollPane(this.motCle);
 		this.forme = new JTextField(15);
 		this.forme.addKeyListener(new KeyAdapter() {
@@ -155,7 +156,6 @@ public class PanelMcle extends JPanel implements Observer{
 	public void updateController(){
 		controller.setForme(this.forme.getText());
 		controller.setUtilisation(this.utilisation.getText());
-		System.out.println(this.motCle.getText());
 		controller.setTag(this.motCle.getText());
 	}
 }

@@ -50,8 +50,11 @@ public class PanelDep extends JPanel{
 				this.move.start();
 			}
 
+			@SuppressWarnings("deprecation")
 			public void mouseReleased(MouseEvent arg0) {
 				this.move.interrupt();
+				if(!this.move.isInterrupted())
+					this.move.stop();
 			}
 		});
 		JButton droite = new JButton("Droite");
@@ -63,8 +66,11 @@ public class PanelDep extends JPanel{
 				this.move.start();
 			}
 
+			@SuppressWarnings("deprecation")
 			public void mouseReleased(MouseEvent arg0) {
 				this.move.interrupt();
+				if(!this.move.isInterrupted())
+					this.move.stop();
 			}
 		});
 		JButton bas = new JButton("Bas");
@@ -76,8 +82,11 @@ public class PanelDep extends JPanel{
 				this.move.start();
 			}
 
+			@SuppressWarnings("deprecation")
 			public void mouseReleased(MouseEvent arg0) {
 				this.move.interrupt();
+				if(!this.move.isInterrupted())
+					this.move.stop();
 			}
 		});
 		JButton gauche = new JButton("Gauche");
@@ -89,8 +98,11 @@ public class PanelDep extends JPanel{
 				this.move.start();
 			}
 
+			@SuppressWarnings("deprecation")
 			public void mouseReleased(MouseEvent arg0) {
 				this.move.interrupt();
+				if(!this.move.isInterrupted())
+					this.move.stop();
 			}
 		});
 

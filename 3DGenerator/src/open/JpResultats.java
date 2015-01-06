@@ -177,7 +177,7 @@ public class JpResultats extends JPanel implements Observer{
 			Class.forName("org.sqlite.JDBC");
 			Connection con = null;
 			try{
-				con = DriverManager.getConnection("jdbc:sqlite:./config/Bibliotheque.db");
+				con = DriverManager.getConnection("jdbc:sqlite:./config/bibliotheque.db");
 				String req = "Select name from object";
 				Statement st = con.createStatement();
 				ResultSet rs = st.executeQuery(req);
