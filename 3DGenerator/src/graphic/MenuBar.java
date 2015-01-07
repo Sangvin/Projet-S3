@@ -98,6 +98,7 @@ public class MenuBar extends JMenuBar{
 			public void actionPerformed(ActionEvent arg0) {
 				File fichier = new File(".");
 				JFileChooser dialogue = new JFileChooser(fichier);	
+				dialogue.setAcceptAllFileFilterUsed(false);
 				dialogue.setFileFilter(new FileNameExtensionFilter("GNU Triangulated Surface (.gts)", "gts"));
 				int status = dialogue.showOpenDialog(null);
 				if(status==JFileChooser.APPROVE_OPTION) {
