@@ -82,8 +82,8 @@ public class ObjectController{
 	 * permet d'attacher un nouvel objet3d
 	 * @param o
 	 */
-	public void attachObjet3D(Objet3D o){
-		this.model.attachObjet3D(o);
+	public void attachObjet3D(Objet3D o,String name,String auteur){
+		this.model.attachObjet3D(o,name,auteur);
 	}
 	
 	/**
@@ -108,5 +108,28 @@ public class ObjectController{
 	 */
 	public void setVector(Point p){
 		this.model.setVector(p);
+	}
+	
+	/**
+	 * permet de modifier le nom de l'objet
+	 * @param name
+	 */
+	public void setName(String name){
+		this.model.setName(name);
+	}
+	
+	/**
+	 * permet de modifier l'auteur de l'objet
+	 * @param auteur
+	 */
+	public void setAuteur(String auteur){
+		this.model.setAuteur(auteur);
+	}
+	
+	/**
+	 * Permet de fermer l'objet
+	 */
+	public void fermerObjet(){
+		this.model.fermerObjet();
 	}
 }

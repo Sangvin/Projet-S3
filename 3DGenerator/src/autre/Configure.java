@@ -3,16 +3,13 @@ package autre;
 import java.io.BufferedReader;
 import java.io.File;
 import java.io.FileReader;
-import java.io.PrintWriter;
-import java.net.URL;
+import java.io.InputStream;
+import java.nio.file.Files;
+import java.nio.file.Path;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.ResultSet;
 import java.sql.Statement;
-
-import javax.swing.BoxLayout;
-import javax.swing.JFrame;
-import javax.swing.JLabel;
 
 import launcher.Launcher;
 
@@ -22,26 +19,17 @@ import launcher.Launcher;
  *
  */
 public class Configure{
-	private JFrame outLine;
 	/**
 	 * vérifie ou corrige la configuration
 	 */
 	public  Configure(){
-		outLine = new JFrame("OutLine");
-		outLine.setVisible(true);
-		outLine.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		outLine.setLayout(new BoxLayout(outLine.getContentPane(),BoxLayout.Y_AXIS));
 		Launcher l = new Launcher(null);
 		l.setText("Configuration");
 		dossier(l);
-		l.setValue(33);
-		outLine.add(new JLabel("debut de la phase critique"));
-		outLine.pack();
-		bdd(l);
-		l.setValue(66);		
-		outLine.add(new JLabel("phase critique"));
-		outLine.pack();
+		l.setValue(33);	
 		examples(l);
+		l.setValue(66);
+		bdd(l);
 		l.setValue(100);
 		l.setText("Lancement");
 		l.dispose();
@@ -141,15 +129,9 @@ public class Configure{
 	 * @param l
 	 */
 	private void examples(Launcher l){
-		l.setText("Vérification des examples");		
-		outLine.add(new JLabel("exemple 1 le drone"));
-		outLine.pack();
-		example("drone_example.gts");		
-		outLine.add(new JLabel("exemple 2 le pokemon"));
-		outLine.pack();
-		example("lugia_example.gts");		
-		outLine.add(new JLabel("exemple 3 la station"));
-		outLine.pack();
+		l.setText("Vérification des examples");
+		example("drone_example.gts");
+		example("lugia_example.gts");
 		example("space_station_example.gts");
 	}
 
@@ -159,12 +141,8 @@ public class Configure{
 	 * @param file
 	 */
 	private void example(String file){
-		outLine.add(new JLabel("./config/"+file));
-		outLine.pack();
 		File f = new File("./config/"+file);
 		if(!f.exists()){
-			outLine.add(new JLabel("il n'existe pas"));
-			outLine.pack();
 			copyExample(file);
 		}
 	}
@@ -174,20 +152,13 @@ public class Configure{
 	 * @param file
 	 */
 	private void copyExample(String file){
-		BufferedReader input =null;
-		PrintWriter out = null;
-		outLine.add(new JLabel(this.getClass().getResource(file).getPath()));
-		outLine.pack();
-		String tmp = this.getClass().getResource(file).getPath();
-		try{
-			input = new BufferedReader(new FileReader(new File(tmp)));
-			out = new PrintWriter(new File("./config/"+file));
-			while((tmp = input.readLine()) != null)
-				out.println(tmp);
-		}catch(Exception e){
+		try {
+			InputStream in = this.getClass().getResourceAsStream(file);
+			Path out = new File("./config/"+file).toPath();
+			Files.copy(in, out);
+		} catch (Exception e) {
 			e.printStackTrace();
 		}
-		out.close();
 	}
 	
 	/**
@@ -201,7 +172,7 @@ public class Configure{
 		BufferedReader input = null;
 		String descripeurFigure = "0";
 		try{
-			input = new BufferedReader(new FileReader(this.getClass().getResource(file).getPath()));
+			input = new BufferedReader(new FileReader(new File("./config/"+file)));
 			descripeurFigure = input.readLine();
 			input.close();
 		}catch(Exception e){

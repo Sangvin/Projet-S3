@@ -17,6 +17,10 @@ public class PanelBouton extends JPanel{
 	 * 
 	 */
 	private static final long serialVersionUID = 9039047326989267376L;
+	/**
+	 * Contient les informations de la figure
+	 */
+	private JPanel info;
 
 	/**
 	 * Constructeur du panel
@@ -28,12 +32,11 @@ public class PanelBouton extends JPanel{
 		JPanel rot = new PanelRotation(controller);
 		JPanel zoom = new PanelZoom(controller);
 		JPanel dep = new PanelDep(controller);
-		JPanel info = new PanelInfo();
+		this.info = new PanelInfo(model);
 		
 		this.add(zoom);
 		this.add(rot);
 		this.add(dep);
-		this.add(info);
+		this.add(this.info);
 	}
-
 }

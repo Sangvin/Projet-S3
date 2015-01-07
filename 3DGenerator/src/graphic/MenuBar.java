@@ -89,7 +89,7 @@ public class MenuBar extends JMenuBar{
 		itemSauver.addActionListener(new ActionListener(){
 			@Override
 			public void actionPerformed(ActionEvent arg0) {
-				new Save(f,model);
+				new Save(f,model,controller);
 			}
 		});
 		JMenuItem itemImporter = new JMenuItem("Importer");
@@ -103,7 +103,7 @@ public class MenuBar extends JMenuBar{
 				if(status==JFileChooser.APPROVE_OPTION) {
 					fichier = dialogue.getSelectedFile();
 					try {
-						controller.attachObjet3D(new Objet3D(fichier.getAbsolutePath(),Outils.randomColor(),f));
+						controller.attachObjet3D(new Objet3D(fichier.getAbsolutePath(),Outils.randomColor(),f),"","");
 						double posx = f.getTablette().getSize().getWidth()/2;
 						double posy = f.getTablette().getSize().getHeight()/2;
 						controller.setVector(new Point(posx,posy,0));
@@ -123,7 +123,8 @@ public class MenuBar extends JMenuBar{
 		itemFermer.addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				controller.attachObjet3D(null);
+				controller.fermerObjet();
+//				controller.attachObjet3D(null);
 				itemFermer.setEnabled(false);
 				itemSauver.setEnabled(false);
 				itemCouleurFigure.setEnabled(false);

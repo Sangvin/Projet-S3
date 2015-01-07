@@ -11,12 +11,14 @@ import java.awt.event.ActionListener;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.PreparedStatement;
+import java.sql.ResultSet;
 
 import javax.swing.JButton;
 import javax.swing.JDialog;
 import javax.swing.JOptionPane;
 
 import mvc.Model;
+import mvc.ObjectController;
 
 /**
  * cette classe contient les différents panel permettant la saisie d'information pour les
@@ -49,14 +51,19 @@ public class Save extends JDialog{
 	 * permet d'annuler la sauvegarde
 	 */
 	private JButton annuler;
+	/**
+	 * Permet de controller certaines informations du model
+	 */
+	private ObjectController controller;
 
 	/**
 	 * constructeur de la frame
 	 * @param object
 	 */
-	public Save(Frame parent,Model model){
+	public Save(Frame parent,Model model,ObjectController controller){
 		super(parent,"Enregistrer",true);
 		this.model = model;
+		this.controller = controller;
 		this.initComponents();
 		this.pack();
 		this.setResizable(false);
@@ -81,7 +88,6 @@ public class Save extends JDialog{
 			@Override
 			public void actionPerformed(ActionEvent arg0){
 				if(info.getInfo() != null){
-
 					int confirm = JOptionPane.showConfirmDialog(parent, "Confirmer l'ajout dans la base","Confirmation",
 							JOptionPane.YES_NO_OPTION,JOptionPane.QUESTION_MESSAGE);
 					if(confirm == JOptionPane.OK_OPTION){
@@ -92,26 +98,35 @@ public class Save extends JDialog{
 							Connection con = null;
 							try{
 								con = DriverManager.getConnection("jdbc:sqlite:./config/bibliotheque.db");
-								PreparedStatement ps = con.prepareStatement("insert into object values(?,?,?,?,?,?,?,?,?)");
-								int j = 0;
-								for(; j < information.length; j++)
-									ps.setString(j+1,information[j]);
-								for(int i = 1; i < triInformation.length; i++){
-									ps.setString(++j, triInformation[i][0]);
-								}
-								ps.setString(++j, model.getObject().getPoints().size()+"");
-								ps.setString(++j, model.getObject().getSegments().size()+"");
-								ps.setString(++j, model.getObject().getFaces().size()+"");
-								ps.executeUpdate();
-								if(triInformation[0] != null){
-									ps = con.prepareStatement("insert into tag values(?,?)");
-									for(int i = 0; i < triInformation[0].length; i++){
-										ps.setString(1, triInformation[0][i]);
-										ps.setString(2, information[0]);
-										ps.executeUpdate();
+								PreparedStatement ps = con.prepareStatement("select name from object where name=?");
+								ps.setString(1, information[0]);
+								ResultSet rs = ps.executeQuery();
+								if(rs.next()){
+									JOptionPane.showMessageDialog(parent, "Erreur le nom choisi existe déjà", "Erreur", JOptionPane.ERROR_MESSAGE);
+								} else {
+									ps = con.prepareStatement("insert into object values(?,?,?,?,?,?,?,?,?)");
+									int j = 0;
+									for(; j < information.length; j++)
+										ps.setString(j+1,information[j]);
+									for(int i = 1; i < triInformation.length; i++){
+										ps.setString(++j, triInformation[i][0]);
 									}
+									ps.setString(++j, model.getObject().getPoints().size()+"");
+									ps.setString(++j, model.getObject().getSegments().size()+"");
+									ps.setString(++j, model.getObject().getFaces().size()+"");
+									ps.executeUpdate();
+									if(triInformation[0] != null){
+										ps = con.prepareStatement("insert into tag values(?,?)");
+										for(int i = 0; i < triInformation[0].length; i++){
+											ps.setString(1, triInformation[0][i]);
+											ps.setString(2, information[0]);
+											ps.executeUpdate();
+										}
+									}
+									controller.setName(information[0]);
+									controller.setAuteur(information[3]);
+									dispose();
 								}
-								dispose();
 							}catch(Exception e){e.printStackTrace();}
 							con.close();
 						}catch(Exception e){e.printStackTrace();}

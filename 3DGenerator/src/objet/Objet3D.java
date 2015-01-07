@@ -16,9 +16,9 @@ import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
 
+import autre.Error;
 import autre.FileError;
 import autre.Outils;
-import autre.Error;
 
 /**
  * Cette classe charge et stock les données du objet à afficher
@@ -370,5 +370,29 @@ public class Objet3D{
 	public void zoom(double d) {
 		for(int i = 1; i < this.points.size(); i++)
 			this.points.get(i).zoom(d);
+	}
+	
+	/**
+	 * permet de récupérer le nombre de points
+	 * @return
+	 */
+	public int getNbPoints(){
+		return this.points.size() - 1;
+	}
+	
+	/**
+	 * permet de récupérer le nombre de segments
+	 * @return
+	 */
+	public int getNbSegments(){
+		return this.segments.size() - 1;
+	}
+	
+	/**
+	 * permet de récupérer le nombre de faces
+	 * @return
+	 */
+	public int getNbFaces(){
+		return this.faces.size();
 	}
 }

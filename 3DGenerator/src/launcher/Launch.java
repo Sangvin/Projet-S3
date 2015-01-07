@@ -7,8 +7,6 @@ import java.math.BigDecimal;
 import java.math.MathContext;
 
 import javax.imageio.ImageIO;
-import javax.swing.JFrame;
-import javax.swing.JLabel;
 import javax.swing.JPanel;
 
 /**
@@ -52,11 +50,6 @@ public class Launch extends JPanel{
 	public Launch(){
 		this.percent = 0;
 		this.progress = 0;
-		JFrame out = new JFrame("outLineLauncher");
-		out.setVisible(true);
-		out.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		out.add(new JLabel(this.getClass().getResource("Launcher.jpg").toString()));
-		out.pack();
 		try{
 			this.img = ImageIO.read(this.getClass().getResource("Launcher.jpg"));
 		} catch(Exception e){}
