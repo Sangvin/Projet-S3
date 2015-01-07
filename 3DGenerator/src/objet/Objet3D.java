@@ -65,9 +65,9 @@ public class Objet3D{
 		Set<FileError> errorList = new HashSet<FileError>();
 		
 		if(accesFichier.length() < 4)
-			errorList.add(FileError.ERROR1101);
+			throw new Exception(FileError.ERROR1101.message());
 		if(!accesFichier.substring(accesFichier.length()-4, accesFichier.length()).equals(".gts"))
-			errorList.add(FileError.ERROR1101);
+			throw new Exception(FileError.ERROR1101.message());
 		this.fichier = new File(accesFichier);
 		BufferedReader br = new BufferedReader(new FileReader(fichier));
 		initData(br,errorList);
