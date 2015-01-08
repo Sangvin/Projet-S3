@@ -81,12 +81,13 @@ public class PanelInfo extends JPanel implements Observer {
 	}
 	
 	@Override
-	public void update(Observable arg0, Object arg1) {
-		this.textAuteur.setText(this.model.getAuteur());
-		this.textNom.setText(this.model.getName());
-		this.textNbFaces.setText(this.model.getNBFace() + "");
-		this.textNbPoints.setText(this.model.getNBPoint() + "");
-		this.textNbSeg.setText(this.model.getNBSeg() + "");
+	public void update(Observable arg0, Object arg) {
+		if((Integer)arg != 1){
+			this.textAuteur.setText(this.model.getAuteur());
+			this.textNom.setText(this.model.getName());
+			this.textNbFaces.setText(this.model.getNBFace() + "");
+			this.textNbPoints.setText(this.model.getNBPoint() + "");
+			this.textNbSeg.setText(this.model.getNBSeg() + "");
+		}
 	}
-
 }

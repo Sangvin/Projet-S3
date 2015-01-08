@@ -132,4 +132,12 @@ public class ObjectController{
 	public void fermerObjet(){
 		this.model.fermerObjet();
 	}
+	
+	/**
+	 * Permet de choisir le mode d'affichage pour la figure
+	 * @param mode
+	 */
+	public void setMode(int mode){
+		this.model.setMode(mode);
+	}
 }

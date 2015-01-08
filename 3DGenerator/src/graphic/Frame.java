@@ -60,7 +60,7 @@ public class Frame extends JFrame{
 		this.setTitle("3DGenerator");
 		this.initComponents();
 		this.controller.addView(this.tablette);
-		this.pack();
+		this.setExtendedState(MAXIMIZED_HORIZ | MAXIMIZED_VERT | MAXIMIZED_BOTH);
 		this.setSize(Toolkit.getDefaultToolkit().getScreenSize());
 		try {
 			this.setIconImage(ImageIO.read(this.getClass().getResource("Logo.png")));
@@ -122,10 +122,12 @@ public class Frame extends JFrame{
 		this.getRootPane().getInputMap(JComponent.WHEN_ANCESTOR_OF_FOCUSED_COMPONENT).put(KeyStroke.getKeyStroke("D"), "D" );
 		this.getRootPane().getInputMap(JComponent.WHEN_ANCESTOR_OF_FOCUSED_COMPONENT).put(KeyStroke.getKeyStroke("S"), "S" );
 		this.getRootPane().getInputMap(JComponent.WHEN_ANCESTOR_OF_FOCUSED_COMPONENT).put(KeyStroke.getKeyStroke("Q"), "Q" );
-		this.getRootPane().getInputMap(JComponent.WHEN_ANCESTOR_OF_FOCUSED_COMPONENT).put(KeyStroke.getKeyStroke("LEFT"), "LEFT" );
-		this.getRootPane().getInputMap(JComponent.WHEN_ANCESTOR_OF_FOCUSED_COMPONENT).put(KeyStroke.getKeyStroke("DOWN"), "DOWN" );
-		this.getRootPane().getInputMap(JComponent.WHEN_ANCESTOR_OF_FOCUSED_COMPONENT).put(KeyStroke.getKeyStroke("UP"), "UP" );
-		this.getRootPane().getInputMap(JComponent.WHEN_ANCESTOR_OF_FOCUSED_COMPONENT).put(KeyStroke.getKeyStroke("RIGHT"), "RIGHT");
+		this.getRootPane().getInputMap(JComponent.WHEN_ANCESTOR_OF_FOCUSED_COMPONENT).put(KeyStroke.getKeyStroke("J"), "J" );
+		this.getRootPane().getInputMap(JComponent.WHEN_ANCESTOR_OF_FOCUSED_COMPONENT).put(KeyStroke.getKeyStroke("K"), "K" );
+		this.getRootPane().getInputMap(JComponent.WHEN_ANCESTOR_OF_FOCUSED_COMPONENT).put(KeyStroke.getKeyStroke("I"), "I" );
+		this.getRootPane().getInputMap(JComponent.WHEN_ANCESTOR_OF_FOCUSED_COMPONENT).put(KeyStroke.getKeyStroke("L"), "L" );
+		this.getRootPane().getInputMap(JComponent.WHEN_ANCESTOR_OF_FOCUSED_COMPONENT).put(KeyStroke.getKeyStroke("V"), "V" );
+		this.getRootPane().getInputMap(JComponent.WHEN_ANCESTOR_OF_FOCUSED_COMPONENT).put(KeyStroke.getKeyStroke("B"), "B" );
 
 		this.getRootPane().getActionMap().put("A", new AbstractAction() {
 			/**
@@ -187,7 +189,7 @@ public class Frame extends JFrame{
 				controller.rotationY(Math.PI/100);
 			}
 		});
-		this.getRootPane().getActionMap().put("UP", new AbstractAction() {
+		this.getRootPane().getActionMap().put("I", new AbstractAction() {
 			/**
 			 * 
 			 */
@@ -197,7 +199,7 @@ public class Frame extends JFrame{
 				controller.deplacement(new Point(0,-5,0));
 			}
 		});
-		this.getRootPane().getActionMap().put("DOWN", new AbstractAction() {
+		this.getRootPane().getActionMap().put("K", new AbstractAction() {
 			/**
 			 * 
 			 */
@@ -207,7 +209,7 @@ public class Frame extends JFrame{
 					controller.deplacement(new Point(0,5,0));
 			}
 		});
-		this.getRootPane().getActionMap().put("LEFT", new AbstractAction() {
+		this.getRootPane().getActionMap().put("J", new AbstractAction() {
 			/**
 			 * 
 			 */
@@ -217,7 +219,7 @@ public class Frame extends JFrame{
 					controller.deplacement(new Point(-5,0,0));
 			}
 		});
-		this.getRootPane().getActionMap().put("RIGHT", new AbstractAction() {
+		this.getRootPane().getActionMap().put("L", new AbstractAction() {
 			/**
 			 * 
 			 */
@@ -225,6 +227,26 @@ public class Frame extends JFrame{
 
 			public void actionPerformed(ActionEvent e) {
 					controller.deplacement(new Point(5,0,0));
+			}
+		});
+		this.getRootPane().getActionMap().put("B", new AbstractAction() {
+			/**
+			 * 
+			 */
+			private static final long serialVersionUID = 9;
+
+			public void actionPerformed(ActionEvent e) {
+					controller.zoom(1.05);
+			}
+		});
+		this.getRootPane().getActionMap().put("V", new AbstractAction() {
+			/**
+			 * 
+			 */
+			private static final long serialVersionUID = 9;
+
+			public void actionPerformed(ActionEvent e) {
+					controller.zoom(0.95);
 			}
 		});
 	}

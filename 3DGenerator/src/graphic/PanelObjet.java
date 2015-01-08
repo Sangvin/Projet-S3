@@ -67,7 +67,6 @@ public class PanelObjet extends JTabbedPane implements Observer{
 		this.controller = controller;
 		this.initComponents();
 		model.addObserver(this);
-		//this.setMinimumSize(new Dimension(Toolkit.getDefaultToolkit().getScreenSize().width/2,Toolkit.getDefaultToolkit().getScreenSize().height));
 	}
 
 	/**
@@ -152,9 +151,26 @@ public class PanelObjet extends JTabbedPane implements Observer{
 			g2D.setRenderingHint(RenderingHints.KEY_COLOR_RENDERING, RenderingHints.VALUE_COLOR_RENDER_SPEED);
 			g2D.setRenderingHint(RenderingHints.KEY_FRACTIONALMETRICS, RenderingHints.VALUE_FRACTIONALMETRICS_OFF);
 			g2D.setRenderingHint(RenderingHints.KEY_DITHERING, RenderingHints.VALUE_DITHER_DISABLE);
-			for(Face tmp : this.model.getObject().getFaces()){
-				g2D.setColor(tmp.getColor());
-				g2D.fillPolygon(tmp.getAllPosX(this.model.getObject().getVector()),tmp.getAllPosY(this.model.getObject().getVector()),3);
+			if(this.model.getMode() == 2)
+				for(Face tmp : this.model.getObject().getFaces()){
+					g2D.setColor(tmp.getColor());
+					g2D.fillPolygon(tmp.getAllPosX(this.model.getObject().getVector()),tmp.getAllPosY(this.model.getObject().getVector()),3);
+				}
+			else if(this.model.getMode() == 1){
+				g2D.setColor(this.model.getColor());
+				for(Face tmp : this.model.getObject().getFaces()){
+					g2D.drawPolygon(tmp.getAllPosX(this.model.getObject().getVector()),tmp.getAllPosY(this.model.getObject().getVector()),3);
+				}
+			}
+			else{
+				Color figure = this.model.getColor();
+				Color segment = this.model.getColor().darker();
+				for(Face tmp : this.model.getObject().getFaces()){
+					g2D.setColor(figure);
+					g2D.fillPolygon(tmp.getAllPosX(this.model.getObject().getVector()),tmp.getAllPosY(this.model.getObject().getVector()),3);
+					g2D.setColor(segment);	
+					g2D.drawPolygon(tmp.getAllPosX(this.model.getObject().getVector()),tmp.getAllPosY(this.model.getObject().getVector()),3);
+				}
 			}
 		}
 		g.dispose();
@@ -182,6 +198,7 @@ public class PanelObjet extends JTabbedPane implements Observer{
 	 */
 	@Override
 	public void update(Observable o, Object arg) {
-		this.repaint();
+		if((Integer)arg != 2)
+			this.repaint();
 	}
 }

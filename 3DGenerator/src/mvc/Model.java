@@ -36,6 +36,13 @@ public class Model extends Observable{
 	 * Permet de connaitre le nombre d'objets
 	 */
 	private int nbFace;
+	/**
+	 * Permet de choisir le mode d'affichage
+	 * mode normal = 0
+	 * mode squelete = 1
+	 * mode lumiere = 2
+	 */
+	private int mode;
 	
 	/**
 	 * constructeur
@@ -65,7 +72,7 @@ public class Model extends Observable{
 		this.nbSeg = this.object.getNbSegments();
 		this.nbFace = this.object.getNbFaces();
 		this.setChanged();
-		this.notifyObservers();
+		this.notifyObservers(new Integer(0));
 	}
 	
 	/**
@@ -77,7 +84,7 @@ public class Model extends Observable{
 			this.object.rotationX(d);
 			this.object.setColor(this.object.getColor());
 			this.setChanged();
-			this.notifyObservers();
+			this.notifyObservers(new Integer(1));
 		}
 	}
 
@@ -90,7 +97,7 @@ public class Model extends Observable{
 			this.object.rotationY(d);
 			this.object.setColor(this.object.getColor());
 			this.setChanged();
-			this.notifyObservers();
+			this.notifyObservers(new Integer(1));
 		}
 	}
 
@@ -103,7 +110,7 @@ public class Model extends Observable{
 			this.object.rotationZ(d);
 			this.object.setColor(this.object.getColor());
 			this.setChanged();
-			this.notifyObservers();
+			this.notifyObservers(new Integer(1));
 		}
 	}
 
@@ -115,7 +122,7 @@ public class Model extends Observable{
 		if(this.object != null){
 			this.object.zoom(d);
 			this.setChanged();
-			this.notifyObservers();
+			this.notifyObservers(new Integer(1));
 		}
 	}
 
@@ -127,7 +134,7 @@ public class Model extends Observable{
 		if(this.object != null){
 			this.object.getVector().add(p);
 			this.setChanged();
-			this.notifyObservers();
+			this.notifyObservers(new Integer(1));
 		}
 	}
 	
@@ -139,7 +146,7 @@ public class Model extends Observable{
 		if(this.object != null){
 			this.object.setColor(e);
 			this.setChanged();
-			this.notifyObservers();
+			this.notifyObservers(new Integer(1));
 		}
 	}
 	
@@ -161,7 +168,7 @@ public class Model extends Observable{
 		if(this.object != null){
 			this.object.setVector(p);
 			this.setChanged();
-			this.notifyObservers();
+			this.notifyObservers(new Integer(1));
 		}
 	}
 	
@@ -180,7 +187,7 @@ public class Model extends Observable{
 	public void setName(String name){
 		this.name = name;
 		this.setChanged();
-		this.notifyObservers();
+		this.notifyObservers(new Integer(2));
 	}
 	
 	/**
@@ -190,7 +197,7 @@ public class Model extends Observable{
 	public void setAuteur(String auteur){
 		this.auteur = auteur;
 		this.setChanged();
-		this.notifyObservers();
+		this.notifyObservers(new Integer(2));
 	}
 	
 	/**
@@ -244,6 +251,27 @@ public class Model extends Observable{
 		this.nbPoint = 0;
 		this.nbSeg = 0;
 		this.setChanged();
-		this.notifyObservers();
+		this.notifyObservers(new Integer(0));
+	}
+	
+	/**
+	 * permet de choisi le mode d'affichage de la figure
+	 * lumiere = 2
+	 * squelete = 1
+	 * normal = 0
+	 * @param mode
+	 */
+	public void setMode(int mode){
+		this.mode = mode;
+		this.setChanged();
+		this.notifyObservers(new Integer(1));
+	}
+	
+	/**
+	 * permet de récupérer le mode d'affichage
+	 * @return
+	 */
+	public int getMode(){
+		return this.mode;
 	}
 }

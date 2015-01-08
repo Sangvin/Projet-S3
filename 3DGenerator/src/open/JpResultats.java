@@ -125,7 +125,7 @@ public class JpResultats extends JPanel implements Observer{
 						controller.setVector(new Point(posx,posy,0));
 						parent.dispose();
 					} catch (Exception e) {
-						JOptionPane.showMessageDialog(null, e.getMessage(), "Erreur", JOptionPane.ERROR_MESSAGE);
+						JOptionPane.showMessageDialog(parent, e.getMessage(), "Erreur", JOptionPane.ERROR_MESSAGE);
 					}
 				else{
 					String message = "Erreur aucun fichier sélectionné";

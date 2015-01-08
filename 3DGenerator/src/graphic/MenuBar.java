@@ -4,10 +4,13 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.io.File;
 
+import javax.swing.ButtonGroup;
 import javax.swing.JFileChooser;
 import javax.swing.JMenu;
 import javax.swing.JMenuBar;
 import javax.swing.JMenuItem;
+import javax.swing.JOptionPane;
+import javax.swing.JRadioButtonMenuItem;
 import javax.swing.filechooser.FileNameExtensionFilter;
 
 import mvc.Model;
@@ -114,7 +117,7 @@ public class MenuBar extends JMenuBar{
 							itemFermer.setEnabled(true);
 						}
 					} catch (Exception e) {
-						e.printStackTrace();
+						JOptionPane.showMessageDialog(f, e.getMessage(), "Erreur", JOptionPane.ERROR_MESSAGE);
 					}
 				}
 			}
@@ -125,7 +128,7 @@ public class MenuBar extends JMenuBar{
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				controller.fermerObjet();
-//				controller.attachObjet3D(null);
+				
 				itemFermer.setEnabled(false);
 				itemSauver.setEnabled(false);
 				itemCouleurFigure.setEnabled(false);
@@ -170,8 +173,41 @@ public class MenuBar extends JMenuBar{
 				new MyColorChooser(f,model,'b');
 			}
 		});
+		JMenu preferenceAffichage = new JMenu("Mode d'affichage");
+		ButtonGroup group = new ButtonGroup();
+		JRadioButtonMenuItem normal = new JRadioButtonMenuItem("Normal");
+		this.controller.setMode(0);
+		normal.setSelected(true);
+		normal.addActionListener(new ActionListener() {
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				controller.setMode(0);
+			}
+		});
+		JRadioButtonMenuItem squelete = new JRadioButtonMenuItem("Squelete");
+		squelete.addActionListener(new ActionListener() {
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				controller.setMode(1);
+			}
+		});
+		JRadioButtonMenuItem lumiere = new JRadioButtonMenuItem("Lumière");
+		lumiere.addActionListener(new ActionListener() {
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				controller.setMode(2);
+			}
+		});
+		group.add(normal);
+		group.add(squelete);
+		group.add(lumiere);
+		preferenceAffichage.add(normal);
+		preferenceAffichage.add(squelete);
+		preferenceAffichage.add(lumiere);
 		menuOptions.add(itemCouleurFigure);
 		menuOptions.add(itemCouleurBackground);
+		menuOptions.addSeparator();
+		menuOptions.add(preferenceAffichage);
 		
 		//Ajout des JMenu
 		this.add(menuFichier);
