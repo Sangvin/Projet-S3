@@ -16,6 +16,7 @@ import java.sql.ResultSet;
 import javax.swing.JButton;
 import javax.swing.JDialog;
 import javax.swing.JOptionPane;
+import javax.swing.JPanel;
 
 import mvc.Model;
 import mvc.ObjectController;
@@ -104,7 +105,7 @@ public class Save extends JDialog{
 								if(rs.next()){
 									JOptionPane.showMessageDialog(parent, "Erreur le nom choisi existe déjà", "Erreur", JOptionPane.ERROR_MESSAGE);
 								} else {
-									ps = con.prepareStatement("insert into object values(?,?,?,?,?,?,?,?,?)");
+									ps = con.prepareStatement("insert into object values(?,?,?,?,?,?,?,?,?,?)");
 									int j = 0;
 									for(; j < information.length; j++)
 										ps.setString(j+1,information[j]);
@@ -125,6 +126,7 @@ public class Save extends JDialog{
 									}
 									controller.setName(information[0]);
 									controller.setAuteur(information[3]);
+									info.copyFile();
 									dispose();
 								}
 							}catch(Exception e){e.printStackTrace();}
@@ -151,7 +153,7 @@ public class Save extends JDialog{
 		GridBagConstraints c = new GridBagConstraints();
 
 		c.anchor = GridBagConstraints.NORTH;
-		c.insets = new Insets(5,2,5,2);
+		c.insets = new Insets(2,2,2,2);
 		c.weightx = 1;
 		c.weighty = 0;
 		c.fill = GridBagConstraints.NORTHEAST;
@@ -167,13 +169,14 @@ public class Save extends JDialog{
 		bagLayout.setConstraints(this.sorted, c);
 		this.getContentPane().add(this.sorted);
 
+		JPanel tmp = new JPanel();
+		tmp.add(this.valider);
+		tmp.add(this.annuler);
+		
 		c.gridx = 0;
 		c.gridy = 1;
-		bagLayout.setConstraints(this.valider, c);
-		this.getContentPane().add(this.valider);
-
-		c.gridx = 1;
-		bagLayout.setConstraints(this.annuler, c);
-		this.getContentPane().add(this.annuler);
+		c.gridwidth = 2;
+		bagLayout.setConstraints(tmp, c);
+		this.getContentPane().add(tmp);
 	}
 }

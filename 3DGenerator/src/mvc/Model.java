@@ -1,6 +1,7 @@
 package mvc;
 
 import java.awt.Color;
+import java.util.List;
 import java.util.Observable;
 
 import objet.Objet3D;
@@ -17,23 +18,43 @@ public class Model extends Observable{
 	 */
 	private Objet3D object;
 	/**
-	 * Permet de conserver le nom de l'objet
+	 * Contient le nom de l'objet
 	 */
 	private String name;
 	/**
-	 * Permet de conserver le nom de l'auteur
+	 * Contient l'url de l'objet
+	 */
+	private String url;
+	/**
+	 * Contient sa date
+	 */
+	private String date;
+	/**
+	 * Contient son auteur;
 	 */
 	private String auteur;
 	/**
-	 * Permet de connaitre le nombre de point
+	 * Contient son utilisation 
+	 */
+	private String utilisation;
+	/**
+	 * Contient sa forme
+	 */
+	private String forme;
+	/**
+	 * Contient la liste des tag
+	 */
+	private List<String> tag;
+	/**
+	 * Contient le nombre de points
 	 */
 	private int nbPoint;
 	/**
-	 * Permet de connaitre le nombre de segments
+	 * Contient le nombre de segments
 	 */
 	private int nbSeg;
 	/**
-	 * Permet de connaitre le nombre d'objets
+	 * Contient le nombre de faces
 	 */
 	private int nbFace;
 	/**

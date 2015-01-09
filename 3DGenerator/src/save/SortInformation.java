@@ -33,6 +33,10 @@ public class SortInformation extends JPanel{
 	 * Permet de saisir une forme
 	 */
 	private JTextField forme;
+	/**
+	 * Permet de saisir la description de l'objet
+	 */
+	private JTextArea description;
 
 	/**
 	 * Constructeur du panel
@@ -54,6 +58,10 @@ public class SortInformation extends JPanel{
 		this.forme.setToolTipText("Entrez ici la forme de l'objet (véhicule,personnage etc)");
 		this.utilisation = new JTextField(15);
 		this.utilisation.setToolTipText("Entrez ici une utilisation de l'objet");
+		this.description = new JTextArea(6,30);
+		this.description.setLineWrap(true);
+		JScrollPane scrollDescription = new JScrollPane(this.description);
+		this.description.setToolTipText("Entrez ici une description du fichier");
 
 		
 		GridBagLayout bagLayout = new GridBagLayout();
@@ -61,7 +69,7 @@ public class SortInformation extends JPanel{
         GridBagConstraints c = new GridBagConstraints();
         
         c.anchor = GridBagConstraints.WEST;
-        c.insets = new Insets(2,2,2,2);	
+        c.insets = new Insets(3,2,3,2);	
         c.weightx = 1;
         c.weighty = 0;
         c.fill = GridBagConstraints.WEST;
@@ -93,6 +101,16 @@ public class SortInformation extends JPanel{
 		c.gridx = 1;
 		bagLayout.setConstraints(this.forme, c);
 		this.add(this.forme);
+		
+		
+		JPanel tmp = new JPanel();
+		tmp.setBorder(BorderFactory.createTitledBorder("Description"));
+		tmp.add(scrollDescription);
+		c.gridx = 3;
+		c.gridy = 0;
+		c.gridheight = 3;
+		bagLayout.setConstraints(tmp, c);
+		this.add(tmp);
 	}
 
 	/**
@@ -100,7 +118,7 @@ public class SortInformation extends JPanel{
 	 * @return
 	 */
 	public String[][] getInfo() {
-		String[][] info = new String[3][];
+		String[][] info = new String[4][];
 		info[0] = null;
 		if(this.tag.getText().length() != 0){
 			info[0] = new String[this.tag.getText().split(" ").length];
@@ -112,6 +130,9 @@ public class SortInformation extends JPanel{
 		info[2] = new String[1];
 		if(this.forme.getText().replaceAll(" ", "").length() != 0)
 			info[2][0] = this.forme.getText();
+		info[3] = new String[1];
+		if(this.forme.getText().replaceAll(" ", "").length() != 0)
+			info[3][0] = this.description.getText();
 		return info;
 	}
 }

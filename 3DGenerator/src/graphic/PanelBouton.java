@@ -2,6 +2,7 @@ package graphic;
 
 import javax.swing.BoxLayout;
 import javax.swing.JPanel;
+import javax.swing.JTabbedPane;
 
 import mvc.Model;
 import mvc.ObjectController;
@@ -17,10 +18,7 @@ public class PanelBouton extends JPanel{
 	 * 
 	 */
 	private static final long serialVersionUID = 9039047326989267376L;
-	/**
-	 * Contient les informations de la figure
-	 */
-	private JPanel info;
+
 
 	/**
 	 * Constructeur du panel
@@ -32,11 +30,13 @@ public class PanelBouton extends JPanel{
 		JPanel rot = new PanelRotation(controller);
 		JPanel zoom = new PanelZoom(controller);
 		JPanel dep = new PanelDep(controller);
-		this.info = new PanelInfo(model);
+		JTabbedPane table = new JTabbedPane();
+		table.addTab("Informations générales", new PanelInfoGeneral(model));
+		table.addTab("Informations complémentaires", new PanelInfoSpe(model));
 		
 		this.add(zoom);
 		this.add(rot);
 		this.add(dep);
-		this.add(this.info);
+		this.add(table);
 	}
 }

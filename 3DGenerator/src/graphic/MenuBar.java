@@ -46,6 +46,10 @@ public class MenuBar extends JMenuBar{
 	 */
 	private JMenuItem itemFermer;
 	/**
+	 * Contient l'item pour modifier les données de la figure
+	 */
+	private JMenuItem itemModifier;
+	/**
 	 * Contient la fenêtre principale
 	 */
 	private Frame f;
@@ -84,6 +88,7 @@ public class MenuBar extends JMenuBar{
 					itemCouleurFigure.setEnabled(true);
 					itemFermer.setEnabled(true);
 					itemSauver.setEnabled(true);
+					itemModifier.setEnabled(true);
 				}
 			}
 		});
@@ -95,6 +100,8 @@ public class MenuBar extends JMenuBar{
 				new Save(f,model,controller);
 			}
 		});
+		this.itemModifier = new JMenuItem("Modifier données");
+		this.itemModifier.setEnabled(false);
 		JMenuItem itemImporter = new JMenuItem("Importer");
 		itemImporter.addActionListener(new ActionListener(){
 			@Override
@@ -115,6 +122,7 @@ public class MenuBar extends JMenuBar{
 							itemSauver.setEnabled(true);
 							itemCouleurFigure.setEnabled(true);
 							itemFermer.setEnabled(true);
+							itemModifier.setEnabled(true);
 						}
 					} catch (Exception e) {
 						JOptionPane.showMessageDialog(f, e.getMessage(), "Erreur", JOptionPane.ERROR_MESSAGE);
@@ -128,7 +136,7 @@ public class MenuBar extends JMenuBar{
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				controller.fermerObjet();
-				
+				itemModifier.setEnabled(false);
 				itemFermer.setEnabled(false);
 				itemSauver.setEnabled(false);
 				itemCouleurFigure.setEnabled(false);
@@ -143,6 +151,7 @@ public class MenuBar extends JMenuBar{
 		});
 		menuFichier.add(itemOuvrir);
 		menuFichier.add(itemSauver);
+		menuFichier.add(itemModifier);
 		menuFichier.addSeparator();
 		menuFichier.add(itemImporter);
 		menuFichier.add(itemFermer);

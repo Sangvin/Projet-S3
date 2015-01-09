@@ -237,7 +237,6 @@ public class JpResultats extends JPanel implements Observer{
 						else
 							req += "?,";
 				}
-				System.out.println(req);
 				PreparedStatement ps = con.prepareStatement(req);
 				int i = 1;
 				if(modelRecherche.getNom().replaceAll(" ", "").length() != 0){
