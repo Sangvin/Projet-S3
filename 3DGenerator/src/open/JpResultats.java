@@ -19,7 +19,6 @@ import javax.swing.BorderFactory;
 import javax.swing.BoxLayout;
 import javax.swing.DefaultListModel;
 import javax.swing.JButton;
-import javax.swing.JDialog;
 import javax.swing.JLabel;
 import javax.swing.JList;
 import javax.swing.JOptionPane;
@@ -64,7 +63,7 @@ public class JpResultats extends JPanel implements Observer{
 	/**
 	 * Contient la fenêtre pricipale, elle doit être du type JDialog
 	 */
-	private JDialog parent;
+	private Recherche parent;
 	/**
 	 * Contient un controller mvc de la fenêtre
 	 */
@@ -90,7 +89,7 @@ public class JpResultats extends JPanel implements Observer{
 	 * @param modelRecherche
 	 * @param controllerRecherche
 	 */
-	public JpResultats(Frame superFrame,JDialog f,ObjectController controller,
+	public JpResultats(Frame superFrame,Recherche f,ObjectController controller,
 			ModelRecherche modelRecherche, ControllerRecherche controllerRecherche){
 		this.controller = controller;
 		this.superFrame = superFrame;
@@ -119,10 +118,13 @@ public class JpResultats extends JPanel implements Observer{
 			public void actionPerformed(ActionEvent arg0) {
 				if(result.getSelectedValue() != null)
 					try {
-						controller.attachObjet3D(new Objet3D(modelRecherche.getUrl(),Outils.randomColor(),superFrame),modelRecherche.getNom(),modelRecherche.getAuteur());
+						controller.attachObjet3D(new Objet3D(modelRecherche.getUrl(),Outils.randomColor(),superFrame));
 						double posx = superFrame.getTablette().getSize().getWidth()/2;
 						double posy = superFrame.getTablette().getSize().getHeight()/2;
 						controller.setVector(new Point(posx,posy,0));
+						controller.copyData(modelRecherche);
+						parent.getItemSauver().setEnabled(false);
+						parent.getItemModifier().setEnabled(true);
 						parent.dispose();
 					} catch (Exception e) {
 						JOptionPane.showMessageDialog(parent, e.getMessage(), "Erreur", JOptionPane.ERROR_MESSAGE);

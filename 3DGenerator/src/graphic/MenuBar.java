@@ -19,6 +19,7 @@ import objet.Objet3D;
 import objet.Point;
 import open.Recherche;
 import save.Save;
+import update.Update;
 import autre.Outils;
 import colorChooser.MyColorChooser;
 
@@ -83,12 +84,10 @@ public class MenuBar extends JMenuBar{
 		itemOuvrir.addActionListener(new ActionListener(){
 			@Override
 			public void actionPerformed(ActionEvent arg0) {
-				new Recherche(f,controller);
+				new Recherche(f,controller,itemSauver,itemModifier);
 				if(model.getObject() != null){
 					itemCouleurFigure.setEnabled(true);
 					itemFermer.setEnabled(true);
-					itemSauver.setEnabled(true);
-					itemModifier.setEnabled(true);
 				}
 			}
 		});
@@ -97,11 +96,17 @@ public class MenuBar extends JMenuBar{
 		itemSauver.addActionListener(new ActionListener(){
 			@Override
 			public void actionPerformed(ActionEvent arg0) {
-				new Save(f,model,controller);
+				new Save(f, model, controller,itemSauver,itemModifier);
 			}
 		});
 		this.itemModifier = new JMenuItem("Modifier données");
 		this.itemModifier.setEnabled(false);
+		this.itemModifier.addActionListener(new ActionListener() {
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				new Update(f, model, new ObjectController(model));
+			}
+		});
 		JMenuItem itemImporter = new JMenuItem("Importer");
 		itemImporter.addActionListener(new ActionListener(){
 			@Override
@@ -114,7 +119,7 @@ public class MenuBar extends JMenuBar{
 				if(status==JFileChooser.APPROVE_OPTION) {
 					fichier = dialogue.getSelectedFile();
 					try {
-						controller.attachObjet3D(new Objet3D(fichier.getAbsolutePath(),Outils.randomColor(),f),"","");
+						controller.attachObjet3D(new Objet3D(fichier.getAbsolutePath(),Outils.randomColor(),f));
 						double posx = f.getTablette().getSize().getWidth()/2;
 						double posy = f.getTablette().getSize().getHeight()/2;
 						controller.setVector(new Point(posx,posy,0));
@@ -122,7 +127,7 @@ public class MenuBar extends JMenuBar{
 							itemSauver.setEnabled(true);
 							itemCouleurFigure.setEnabled(true);
 							itemFermer.setEnabled(true);
-							itemModifier.setEnabled(true);
+							itemModifier.setEnabled(false);
 						}
 					} catch (Exception e) {
 						JOptionPane.showMessageDialog(f, e.getMessage(), "Erreur", JOptionPane.ERROR_MESSAGE);

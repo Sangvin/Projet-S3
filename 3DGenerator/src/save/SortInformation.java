@@ -121,8 +121,7 @@ public class SortInformation extends JPanel{
 		String[][] info = new String[4][];
 		info[0] = null;
 		if(this.tag.getText().length() != 0){
-			info[0] = new String[this.tag.getText().split(" ").length];
-			info[0] = this.tag.getText().split(" ");
+			info[0] = this.tag.getText().replaceAll("	", " ").split(" ");
 		}
 		info[1] = new String[1];
 		if(this.utilisation.getText().replaceAll(" ", "").length() != 0)
@@ -131,7 +130,7 @@ public class SortInformation extends JPanel{
 		if(this.forme.getText().replaceAll(" ", "").length() != 0)
 			info[2][0] = this.forme.getText();
 		info[3] = new String[1];
-		if(this.forme.getText().replaceAll(" ", "").length() != 0)
+		if(this.description.getText().replaceAll(" ", "").length() != 0)
 			info[3][0] = this.description.getText();
 		return info;
 	}

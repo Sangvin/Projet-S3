@@ -49,9 +49,11 @@ public class PanelInfoSpe extends JPanel implements Observer{
 	
 	private void initComponents(){
 		this.description = new JTextArea(4,15);
+		this.description.setLineWrap(true);
 		JScrollPane scrollDescription = new JScrollPane(this.description);
 		this.description.setFocusable(false);
 		this.tag = new JTextArea(4,15);
+		this.tag.setLineWrap(true);
 		JScrollPane scrollTag = new JScrollPane(this.tag);
 		this.tag.setFocusable(false);
 		this.utilisation = new JTextField(15);
@@ -109,7 +111,12 @@ public class PanelInfoSpe extends JPanel implements Observer{
 	}
 
 	@Override
-	public void update(Observable arg0, Object arg1) {
-		
+	public void update(Observable arg0, Object arg) {
+		if((Integer)arg == 0 || (Integer)arg == 3){
+			this.description.setText(model.getDescription());
+			this.tag.setText(model.getTags());
+			this.forme.setText(model.getForme());
+			this.utilisation.setText(model.getUtilisation());
+		}
 	}
 }

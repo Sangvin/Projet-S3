@@ -1,11 +1,12 @@
 package graphic;
 
+import java.awt.Color;
+import java.awt.Dimension;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 
-import javax.swing.BoxLayout;
+import javax.swing.ImageIcon;
 import javax.swing.JButton;
-import javax.swing.JLabel;
 import javax.swing.JPanel;
 
 import mvc.ObjectController;
@@ -38,9 +39,10 @@ public class PanelZoom extends JPanel{
 	 * Permet d'initialiser les composants
 	 */
 	public void initComponents(){
-		JLabel textZoom = new JLabel("Zoom");
-		
-		JButton zoom50 = new JButton("+50%");
+		JButton zoom50 = new JButton();
+		zoom50.setIcon(new ImageIcon(this.getClass().getResource("zoomMore50.png")));
+		zoom50.setPreferredSize(new Dimension(40,40));
+		zoom50.setBackground(Color.WHITE);
 		zoom50.addMouseListener(new MouseAdapter(){
 			private Thread zoom;
 			
@@ -57,7 +59,10 @@ public class PanelZoom extends JPanel{
 			}
 		});
 		
-		JButton zoom10 = new JButton("+10%");
+		JButton zoom10 = new JButton();
+		zoom10.setIcon(new ImageIcon(this.getClass().getResource("zoomMore10.png")));
+		zoom10.setPreferredSize(new Dimension(40,40));
+		zoom10.setBackground(Color.WHITE);
 		zoom10.addMouseListener(new MouseAdapter(){
 			private Thread zoom;
 			
@@ -74,7 +79,10 @@ public class PanelZoom extends JPanel{
 			}
 		});
 		
-		JButton zoom5 = new JButton("+5%");
+		JButton zoom5 = new JButton();
+		zoom5.setIcon(new ImageIcon(this.getClass().getResource("zoomMore5.png")));
+		zoom5.setPreferredSize(new Dimension(40,40));
+		zoom5.setBackground(Color.WHITE);
 		zoom5.addMouseListener(new MouseAdapter(){
 			private Thread zoom;
 			
@@ -91,7 +99,10 @@ public class PanelZoom extends JPanel{
 			}
 		});
 		
-		JButton zoomMoins5 = new JButton("-5%");
+		JButton zoomMoins5 = new JButton();
+		zoomMoins5.setIcon(new ImageIcon(this.getClass().getResource("zoomLess5.png")));
+		zoomMoins5.setPreferredSize(new Dimension(40,40));
+		zoomMoins5.setBackground(Color.WHITE);
 		zoomMoins5.addMouseListener(new MouseAdapter(){
 			private Thread zoom;
 			
@@ -108,7 +119,10 @@ public class PanelZoom extends JPanel{
 			}
 		});
 		
-		JButton zoomMoins10 = new JButton("-10%");
+		JButton zoomMoins10 = new JButton();
+		zoomMoins10.setIcon(new ImageIcon(this.getClass().getResource("zoomLess10.png")));
+		zoomMoins10.setPreferredSize(new Dimension(40,40));
+		zoomMoins10.setBackground(Color.WHITE);
 		zoomMoins10.addMouseListener(new MouseAdapter(){
 			private Thread zoom;
 			
@@ -125,7 +139,10 @@ public class PanelZoom extends JPanel{
 			}
 		});
 		
-		JButton zoomMoins50 = new JButton("-50%");
+		JButton zoomMoins50 = new JButton();
+		zoomMoins50.setIcon(new ImageIcon(this.getClass().getResource("zoomLess50.png")));
+		zoomMoins50.setPreferredSize(new Dimension(40,40));
+		zoomMoins50.setBackground(Color.WHITE);
 		zoomMoins50.addMouseListener(new MouseAdapter(){
 			private Thread zoom;
 			
@@ -149,9 +166,6 @@ public class PanelZoom extends JPanel{
 		panelZoom.add(zoomMoins5);
 		panelZoom.add(zoomMoins10);
 		panelZoom.add(zoomMoins50);
-		
-		this.setLayout(new BoxLayout(this, 1));
-		this.add(textZoom);
 		this.add(panelZoom);
 	}
 	

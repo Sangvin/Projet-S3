@@ -1,6 +1,7 @@
 package mvc;
 
 import java.awt.Color;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Observable;
 
@@ -22,29 +23,25 @@ public class Model extends Observable{
 	 */
 	private String name;
 	/**
-	 * Contient l'url de l'objet
-	 */
-	private String url;
-	/**
-	 * Contient sa date
-	 */
-	private String date;
-	/**
 	 * Contient son auteur;
 	 */
 	private String auteur;
 	/**
-	 * Contient son utilisation 
+	 * Contient l'utilisation de l'objet
 	 */
 	private String utilisation;
 	/**
-	 * Contient sa forme
+	 * Contient la forme forme de l'objet
 	 */
 	private String forme;
 	/**
-	 * Contient la liste des tag
+	 * Contient la liste des tag de l'objet
 	 */
 	private List<String> tag;
+	/**
+	 * Contient la description de l'objet
+	 */
+	private String description;
 	/**
 	 * Contient le nombre de points
 	 */
@@ -76,6 +73,10 @@ public class Model extends Observable{
 		this.nbFace = 0;
 		this.nbPoint = 0;
 		this.nbSeg = 0;
+		this.tag = new ArrayList<String>();
+		this.description = "";
+		this.utilisation = "";
+		this.forme = "";
 	}
 	
 	/**
@@ -85,10 +86,14 @@ public class Model extends Observable{
 	 * @param name
 	 * @param auteur
 	 */
-	public void attachObjet3D(Objet3D o,String name,String auteur){
+	public void attachObjet3D(Objet3D o){
+		this.auteur = "";
+		this.description = "";
+		this.utilisation = "";
+		this.forme = "";
+		this.name = "";
+		this.tag.clear();
 		this.object = o;
-		this.name = name;
-		this.auteur = auteur;
 		this.nbPoint = this.object.getNbPoints();
 		this.nbSeg = this.object.getNbSegments();
 		this.nbFace = this.object.getNbFaces();
@@ -268,9 +273,13 @@ public class Model extends Observable{
 		this.object = null;
 		this.auteur = "";
 		this.name = "";
+		this.forme = "";
+		this.utilisation = "";
+		this.description = "";
 		this.nbFace = 0;
 		this.nbPoint = 0;
 		this.nbSeg = 0;
+		this.tag.clear();
 		this.setChanged();
 		this.notifyObservers(new Integer(0));
 	}
@@ -294,5 +303,88 @@ public class Model extends Observable{
 	 */
 	public int getMode(){
 		return this.mode;
+	}
+
+	/**
+	 * permet de récupéré l'utilisation de l'objet
+	 * @return
+	 */
+	public String getUtilisation() {
+		return utilisation;
+	}
+
+	/**
+	 * permet de modifier l'utilisation de l'objet
+	 * @param utilisation
+	 */
+	public void setUtilisation(String utilisation) {
+		this.utilisation = utilisation;
+		this.setChanged();
+		this.notifyObservers(new Integer(3));
+	}
+
+	/**
+	 * permet de récupérer la forme de l'objet
+	 * @return
+	 */
+	public String getForme() {
+		return forme;
+	}
+
+	/**
+	 * permet de modifier la forme de l'objet
+	 * @param forme
+	 */
+	public void setForme(String forme) {
+		this.forme = forme;
+		this.setChanged();
+		this.notifyObservers(new Integer(3));
+	}
+
+	/**
+	 * permet de récupérer une liste de tag
+	 * @return
+	 */
+	public List<String> getTag() {
+		return tag;
+	}
+	
+	/**
+	 * permet de récupérer les tags sous forme de string
+	 * @return
+	 */
+	public String getTags(){
+		String str = "";
+		for(String tmp : tag)
+			str += tmp + " ";
+		return str;
+	}
+
+	/**
+	 * permet de changer la liste des tag par celle passée en paramètre
+	 * @param tag
+	 */
+	public void setTag(List<String> tag) {
+		this.tag = tag;
+		this.setChanged();
+		this.notifyObservers(new Integer(3));
+	}
+
+	/**
+	 * permet de récupérer la description de l'objet
+	 * @return
+	 */
+	public String getDescription() {
+		return description;
+	}
+
+	/**
+	 * permet de modifier la description de l'objet
+	 * @param description
+	 */
+	public void setDescription(String description) {
+		this.description = description;
+		this.setChanged();
+		this.notifyObservers(new Integer(3));
 	}
 }

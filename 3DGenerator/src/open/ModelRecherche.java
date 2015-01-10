@@ -14,6 +14,14 @@ import java.util.Observable;
  * @author Alex
  *
  */
+/**
+ * @author Alex
+ *
+ */
+/**
+ * @author Alex
+ *
+ */
 public class ModelRecherche extends Observable{
 	/**
 	 * Contient le nom de l'objet contenu dans le modèle 
@@ -55,6 +63,10 @@ public class ModelRecherche extends Observable{
 	 * Contient le nombre de faces
 	 */
 	private int nb_faces;
+	/**
+	 * Contient la description de l'objet
+	 */
+	private String description;
 	
 	/**
 	 * constructeur du modèle
@@ -71,6 +83,7 @@ public class ModelRecherche extends Observable{
 		this.nb_segments = 0;
 		this.tag = new ArrayList<String>();
 		this.url = "";
+		this.description = "";
 	}
 
 	/**
@@ -261,6 +274,8 @@ public class ModelRecherche extends Observable{
 							this.utilisation = rs.getString(i);
 						if(rsmd.getColumnName(i).equals("forme"))
 							this.forme = rs.getString(i);
+						if(rsmd.getColumnName(i).equals("description"))
+							this.description = rs.getString(i);
 						if(rsmd.getColumnName(i).equals("nb_points"))
 							this.nb_points = Integer.parseInt(rs.getString(i));
 						if(rsmd.getColumnName(i).equals("nb_faces"))
@@ -284,26 +299,6 @@ public class ModelRecherche extends Observable{
 		}
 	}
 	
-	/* (non-Javadoc)
-	 * @see java.lang.Object#toString()
-	 */
-	public String toString(){
-		String str = "";
-		str += this.nom + "\n";
-		str += this.url + "\n";
-		str += this.date + "\n";
-		str += this.auteur + "\n";
-		str += this.utilisation + "\n";
-		str += this.forme + "\n";
-		for(int i = 0; i < tag.size(); i++){
-			str += tag.get(i) + "\n";
-		}
-		str += this.nb_points + "\n";
-		str += this.nb_segments + "\n";
-		str += this.nb_faces;
-		return str;
-	}
-	
 	/**
 	 * permet de reset le modèle
 	 */
@@ -318,6 +313,7 @@ public class ModelRecherche extends Observable{
 		this.tag.clear();
 		this.url = "";
 		this.utilisation = "";
+		this.description = "";
 		this.setChanged();
 		this.notifyObservers();
 	}
@@ -328,5 +324,13 @@ public class ModelRecherche extends Observable{
 	public void recharger(){
 		this.setChanged();
 		this.notifyObservers();
+	}
+
+	/**
+	 * permet de récupérer l'utilisation de l'objet
+	 * @return
+	 */
+	public String getDescription() {
+		return this.description;
 	}
 }

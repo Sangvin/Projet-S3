@@ -15,6 +15,7 @@ import java.sql.ResultSet;
 
 import javax.swing.JButton;
 import javax.swing.JDialog;
+import javax.swing.JMenuItem;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 
@@ -58,14 +59,18 @@ public class Save extends JDialog{
 	private ObjectController controller;
 
 	/**
-	 * constructeur de la frame
-	 * @param object
+	 * Constructeur de la boite de dialogue
+	 * @param parent
+	 * @param model
+	 * @param controller
+	 * @param itemModifier 
+	 * @param itemSauver 
 	 */
-	public Save(Frame parent,Model model,ObjectController controller){
+	public Save(Frame parent,Model model,ObjectController controller, JMenuItem itemSauver, JMenuItem itemModifier){
 		super(parent,"Enregistrer",true);
 		this.model = model;
 		this.controller = controller;
-		this.initComponents();
+		this.initComponents(itemSauver,itemModifier);
 		this.pack();
 		this.setResizable(false);
 		int x = (int) (Toolkit.getDefaultToolkit().getScreenSize().getWidth()/2-this.getWidth()/2);
@@ -77,8 +82,10 @@ public class Save extends JDialog{
 
 	/**
 	 * permet de placer les composants
+	 * @param itemModifier 
+	 * @param itemSauver 
 	 */
-	private void initComponents(){
+	private void initComponents(final JMenuItem itemSauver,final JMenuItem itemModifier){
 		this.info = new GeneralInformation(this.model.getObject().getFichier().getAbsolutePath());
 		this.sorted = new SortInformation();
 
@@ -112,21 +119,27 @@ public class Save extends JDialog{
 									for(int i = 1; i < triInformation.length; i++){
 										ps.setString(++j, triInformation[i][0]);
 									}
-									ps.setString(++j, model.getObject().getPoints().size()+"");
-									ps.setString(++j, model.getObject().getSegments().size()+"");
-									ps.setString(++j, model.getObject().getFaces().size()+"");
+									ps.setString(++j, model.getNBPoint()+"");
+									ps.setString(++j, model.getNBSeg()+"");
+									ps.setString(++j, model.getNBFace()+"");
 									ps.executeUpdate();
+									controller.setTag(triInformation[0]);
 									if(triInformation[0] != null){
 										ps = con.prepareStatement("insert into tag values(?,?)");
-										for(int i = 0; i < triInformation[0].length; i++){
-											ps.setString(1, triInformation[0][i]);
+										for(String tmp : model.getTag()){
+											ps.setString(1, tmp);
 											ps.setString(2, information[0]);
 											ps.executeUpdate();
 										}
 									}
 									controller.setName(information[0]);
 									controller.setAuteur(information[3]);
+									controller.setUtilisation(triInformation[1][0]);
+									controller.setForme(triInformation[2][0]);
+									controller.setDescription(triInformation[3][0]);
 									info.copyFile();
+									itemSauver.setEnabled(false);
+									itemModifier.setEnabled(true);
 									dispose();
 								}
 							}catch(Exception e){e.printStackTrace();}

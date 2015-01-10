@@ -133,7 +133,7 @@ public class PanelInfoGeneral extends JPanel implements Observer {
 	
 	@Override
 	public void update(Observable arg0, Object arg) {
-		if((Integer)arg != 1){
+		if((Integer)arg == 0 || (Integer)arg == 2){
 			this.textAuteur.setText(this.model.getAuteur());
 			this.textNom.setText(this.model.getName());
 			this.textNbFaces.setText(this.model.getNBFace() + "");

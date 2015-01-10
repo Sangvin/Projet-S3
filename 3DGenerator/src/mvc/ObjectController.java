@@ -3,9 +3,15 @@ package mvc;
 import graphic.PanelObjet;
 
 import java.awt.Color;
+import java.util.ArrayList;
+import java.util.HashSet;
+import java.util.Iterator;
+import java.util.List;
+import java.util.Set;
 
 import objet.Objet3D;
 import objet.Point;
+import open.ModelRecherche;
 
 /**
  * permet de controller la figure
@@ -82,8 +88,8 @@ public class ObjectController{
 	 * permet d'attacher un nouvel objet3d
 	 * @param o
 	 */
-	public void attachObjet3D(Objet3D o,String name,String auteur){
-		this.model.attachObjet3D(o,name,auteur);
+	public void attachObjet3D(Objet3D o){
+		this.model.attachObjet3D(o);
 	}
 	
 	/**
@@ -139,5 +145,82 @@ public class ObjectController{
 	 */
 	public void setMode(int mode){
 		this.model.setMode(mode);
+	}
+	
+	/**
+	 * permet de modifier l'utilisation de l'objet
+	 * @param utilisation
+	 */
+	public void setUtilisation(String utilisation){
+		if(utilisation.replaceAll(" ", "").length() != 0){
+			if(utilisation.charAt(0) == ' ')
+				utilisation = utilisation.substring(1);
+			if(utilisation.charAt(utilisation.length()-1) == ' ')
+				utilisation = utilisation.substring(0, utilisation.length()-1);
+			this.model.setUtilisation(utilisation);
+		}
+		else
+			this.model.setUtilisation("");
+	}
+	
+	/**
+	 * permet de modifier la forme de l'objet
+	 * @param forme
+	 */
+	public void setForme(String forme){
+		if(forme.replaceAll(" ", "").length() != 0){
+			if(forme.charAt(0) == ' ')
+				forme = forme.substring(1);
+			if(forme.charAt(forme.length()-1) == ' ')
+				forme = forme.substring(0, forme.length()-1);
+			this.model.setForme(forme);
+		}
+		else
+			this.model.setForme("");
+	}
+	
+	/**
+	 * permet de modifier la description de l'objet
+	 * @param description
+	 */
+	public void setDescription(String description){
+		if(description.replaceAll(" ", "").length() != 0){
+			if(description.charAt(0) == ' ')
+				description = description.substring(1);
+			if(description.charAt(description.length()-1) == ' ')
+				description = description.substring(0, description.length()-1);
+			this.model.setDescription(description);
+		}
+		else
+			this.model.setDescription("");
+	}
+	
+	/**
+	 * permet de modifier la liste des tag avec celle passée en paramètres
+	 * @param tag
+	 */
+	public void setTag(String[] tag){
+		Set<String> tmp = new HashSet<String>();
+		List<String> list = new ArrayList<String>();
+		if(tag != null){
+			for(int i = 0; i < tag.length; i++)
+				if(tag[i].length() != 0)
+					tmp.add(tag[i]);
+			Iterator<String> it = tmp.iterator();
+			while(it.hasNext())
+				list.add(it.next());
+			this.model.setTag(list);
+		}
+		else
+			this.model.setTag(list);
+	}
+	
+	public void copyData(ModelRecherche model){
+		this.model.setAuteur(model.getAuteur());
+		this.model.setDescription(model.getDescription());
+		this.model.setForme(model.getForme());
+		this.model.setName(model.getNom());
+		this.model.setTag(model.getTag());
+		this.model.setUtilisation(model.getUtilisation());
 	}
 }

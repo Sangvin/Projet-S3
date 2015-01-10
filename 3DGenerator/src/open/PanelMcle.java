@@ -76,6 +76,7 @@ public class PanelMcle extends JPanel implements Observer{
 		this.motCle.setToolTipText("Entrez vos tag ici en les séparant par un espace");
 		JScrollPane scroll = new JScrollPane(this.motCle);
 		this.forme = new JTextField(15);
+		this.forme.setToolTipText("Entrez une forme d'objet");
 		this.forme.addKeyListener(new KeyAdapter() {
 			@Override
 			public void keyTyped(KeyEvent e){
@@ -85,6 +86,7 @@ public class PanelMcle extends JPanel implements Observer{
 			}
 		});
 		this.utilisation = new JTextField(15);
+		this.utilisation.setToolTipText("Entrez une utilisation d'objet");
 		this.utilisation.addKeyListener(new KeyAdapter() {
 			@Override
 			public void keyTyped(KeyEvent e){

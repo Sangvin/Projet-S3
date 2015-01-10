@@ -14,6 +14,7 @@ import javax.swing.BorderFactory;
 import javax.swing.JButton;
 import javax.swing.JDialog;
 import javax.swing.JFrame;
+import javax.swing.JMenuItem;
 
 import mvc.ObjectController;
 
@@ -46,15 +47,27 @@ public class Recherche extends JDialog {
      * Contient la frame principale du logiciel
      */
     private Frame parent;
+    /**
+     * Contient l'item de menu sauver l'objet
+     */
+    private JMenuItem itemSauver;
+    /**
+     * Contient l'item de menu modifier l'enregistrement
+     */
+    private JMenuItem itemModifier;
     
 	/**
 	 * Constructeur de la boite de dialogue
 	 * @param f
 	 * @param controller
+	 * @param itemModifier 
+	 * @param itemSauver 
 	 */
-	public Recherche(Frame f,ObjectController controller){
+	public Recherche(Frame f,ObjectController controller, JMenuItem itemSauver, JMenuItem itemModifier){
 		super(f,"Recherche de fichiers",true);
 		this.parent = f;
+		this.itemSauver = itemSauver;
+		this.itemModifier = itemModifier;
 		this.initComponents(controller);
 		this.pack();	
 		this.setResizable(false);
@@ -115,6 +128,22 @@ public class Recherche extends JDialog {
         c.gridy = 1;
         bagLayout.setConstraints(annuler, c);
         this.add(annuler);
+	}
+
+	/**
+	 * Permet de récupérer l'item menu sauver
+	 * @return
+	 */
+	public JMenuItem getItemSauver() {
+		return itemSauver;
+	}
+
+	/**
+	 * permet de récupérer l'item menu modifier
+	 * @return
+	 */
+	public JMenuItem getItemModifier() {
+		return itemModifier;
 	}
 }
 

@@ -1,11 +1,13 @@
 package graphic;
 
+import java.awt.Color;
+import java.awt.Dimension;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 
 import javax.swing.BoxLayout;
+import javax.swing.ImageIcon;
 import javax.swing.JButton;
-import javax.swing.JLabel;
 import javax.swing.JPanel;
 
 import mvc.ObjectController;
@@ -38,8 +40,10 @@ public class PanelRotation extends JPanel{
 	 * Initialise les composants
 	 */
 	private void initComponents(){
-		JLabel textRotation = new JLabel("Rotation");
-		JButton xpos = new JButton("x+");
+		JButton xpos = new JButton();
+		xpos.setIcon(new ImageIcon(this.getClass().getResource("rotationXMore.png")));
+		xpos.setPreferredSize(new Dimension(120,40));
+		xpos.setBackground(Color.WHITE);
 		xpos.addMouseListener(new MouseAdapter(){
 			private Thread rotation;
 			
@@ -55,7 +59,10 @@ public class PanelRotation extends JPanel{
 					this.rotation.stop();
 			}
 		});
-		JButton xneg = new JButton("x-");
+		JButton xneg = new JButton();
+		xneg.setIcon(new ImageIcon(this.getClass().getResource("rotationXLess.png")));
+		xneg.setPreferredSize(new Dimension(120,40));
+		xneg.setBackground(Color.WHITE);
 		xneg.addMouseListener(new MouseAdapter(){
 			private Thread rotation;
 			
@@ -71,7 +78,10 @@ public class PanelRotation extends JPanel{
 					this.rotation.stop();
 			}
 		});
-		JButton ypos = new JButton("y+");
+		JButton ypos = new JButton();
+		ypos.setIcon(new ImageIcon(this.getClass().getResource("rotationYMore.png")));
+		ypos.setPreferredSize(new Dimension(120,40));
+		ypos.setBackground(Color.WHITE);
 		ypos.addMouseListener(new MouseAdapter(){
 			private Thread rotation;
 			
@@ -87,7 +97,10 @@ public class PanelRotation extends JPanel{
 					this.rotation.stop();
 			}
 		});
-		JButton yneg = new JButton("y-");
+		JButton yneg = new JButton();
+		yneg.setIcon(new ImageIcon(this.getClass().getResource("rotationYLess.png")));
+		yneg.setPreferredSize(new Dimension(120,40));
+		yneg.setBackground(Color.WHITE);
 		yneg.addMouseListener(new MouseAdapter(){
 			private Thread rotation;
 			
@@ -103,7 +116,10 @@ public class PanelRotation extends JPanel{
 					this.rotation.stop();
 			}
 		});
-		JButton zpos = new JButton("z+");
+		JButton zpos = new JButton();
+		zpos.setIcon(new ImageIcon(this.getClass().getResource("rotationZMore.png")));
+		zpos.setPreferredSize(new Dimension(120,40));
+		zpos.setBackground(Color.WHITE);
 		zpos.addMouseListener(new MouseAdapter(){
 			private Thread rotation;
 			
@@ -119,7 +135,10 @@ public class PanelRotation extends JPanel{
 					this.rotation.stop();
 			}
 		});
-		JButton zneg = new JButton("z-");
+		JButton zneg = new JButton();
+		zneg.setIcon(new ImageIcon(this.getClass().getResource("rotationZLess.png")));
+		zneg.setPreferredSize(new Dimension(120,40));
+		zneg.setBackground(Color.WHITE);
 		zneg.addMouseListener(new MouseAdapter(){
 			private Thread rotation;
 			
@@ -147,9 +166,8 @@ public class PanelRotation extends JPanel{
 		z.add(zneg);
 		z.add(zpos);
 
-		this.setLayout(new BoxLayout(this, 1));
+		this.setLayout(new BoxLayout(this, BoxLayout.Y_AXIS));
 
-		this.add(textRotation);
 		this.add(x);
 		this.add(y);
 		this.add(z);

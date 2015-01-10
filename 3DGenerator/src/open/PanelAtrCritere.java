@@ -74,15 +74,21 @@ public class PanelAtrCritere extends JPanel implements Observer{
 	 */
 	private void initComponents(){
 		this.nomObj = new JTextField();
+		this.nomObj.setToolTipText("Entrez ici le nom d'un objet");
 		try {
 			this.dateAjt = new JFormattedTextField(new MaskFormatter("##/##/####"));
+			this.dateAjt.setToolTipText("Entrez une date d'ajout maximale au format JJ/MM/AAAA");
 		} catch (ParseException e) {
 			e.printStackTrace();
 		}
 		this.nbp = new JSpinner(new SpinnerNumberModel(0,0,99999999,1));
+		this.nbp.setToolTipText("Choisissez le nombre de points max (Si 0 le critère est ignoré)");
 		this.nbs = new JSpinner(new SpinnerNumberModel(0,0,99999999,1));
-		this.nbf = new JSpinner(new SpinnerNumberModel(0,0,99999999,1));		
+		this.nbs.setToolTipText("Choisissez le nombre de segments max (Si 0 le critère est ignoré)");
+		this.nbf = new JSpinner(new SpinnerNumberModel(0,0,99999999,1));
+		this.nbf.setToolTipText("Choisissez le nombre de faces max (Si 0 le critère est ignoré)");		
 		this.nmauteur = new JTextField();
+		this.nmauteur.setToolTipText("Entrez un auteur");
 
 		GridLayout g = new GridLayout(6,2);
 		g.setHgap(5);

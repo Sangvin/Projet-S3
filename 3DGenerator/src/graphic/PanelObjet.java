@@ -198,7 +198,7 @@ public class PanelObjet extends JTabbedPane implements Observer{
 	 */
 	@Override
 	public void update(Observable o, Object arg) {
-		if((Integer)arg != 2)
+		if((Integer)arg == 0 || (Integer)arg == 1)
 			this.repaint();
 	}
 }

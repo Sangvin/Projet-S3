@@ -137,6 +137,22 @@ public class MyColorChooser extends JDialog{
 				dispose();
 			}
 		});
+		
+		JButton annuler = new JButton("Annuler");
+		annuler.addActionListener(new ActionListener() {
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				if(model != null){
+					if(option == 'o'){
+						model.setColor(save);
+					}
+					else{
+						f.setbackground(save);
+					}
+				}
+				dispose();
+			}
+		});
 
 		table = new ColorTable(this);
 		creator = new ColorCreator(this);
@@ -172,11 +188,14 @@ public class MyColorChooser extends JDialog{
 		bagLayout.setConstraints(table, c);
 		add(table);
 
+		JPanel tmp = new JPanel();
+		tmp.add(appliquer);
+		tmp.add(annuler);
 		c.gridwidth = 2;
 		c.gridy = 3;
 		c.gridx = 0;
-		bagLayout.setConstraints(appliquer, c);
-		add(appliquer);
+		bagLayout.setConstraints(tmp, c);
+		add(tmp);
 	}
 
 	/**
