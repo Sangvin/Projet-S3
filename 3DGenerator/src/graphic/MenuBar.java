@@ -21,6 +21,7 @@ import open.Recherche;
 import save.Save;
 import update.Update;
 import autre.Outils;
+import autre.Raccourcis;
 import colorChooser.MyColorChooser;
 
 /**
@@ -165,10 +166,14 @@ public class MenuBar extends JMenuBar{
 
 		// Menu Aide
 		JMenu menuAide = new JMenu("Aide");
-		JMenuItem itemAPropos = new JMenuItem("A Propos");
-		JMenuItem itemFAQ = new JMenuItem("F.A.Q.");
-		menuAide.add(itemAPropos);
-		menuAide.add(itemFAQ);
+		JMenuItem itemRaccourcis = new JMenuItem("Raccourcies Clavier");
+		itemRaccourcis.addActionListener(new ActionListener() {
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				new Raccourcis(f);
+			}
+		});
+		menuAide.add(itemRaccourcis);
 		
 		// Menu Options
 		JMenu menuOptions = new JMenu("Options");
@@ -218,6 +223,7 @@ public class MenuBar extends JMenuBar{
 		preferenceAffichage.add(normal);
 		preferenceAffichage.add(squelete);
 		preferenceAffichage.add(lumiere);
+		
 		menuOptions.add(itemCouleurFigure);
 		menuOptions.add(itemCouleurBackground);
 		menuOptions.addSeparator();
