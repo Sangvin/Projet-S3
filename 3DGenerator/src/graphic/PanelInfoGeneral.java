@@ -131,6 +131,9 @@ public class PanelInfoGeneral extends JPanel implements Observer {
 
 	}
 	
+	/* (non-Javadoc)
+	 * @see java.util.Observer#update(java.util.Observable, java.lang.Object)
+	 */
 	@Override
 	public void update(Observable arg0, Object arg) {
 		if((Integer)arg == 0 || (Integer)arg == 2){

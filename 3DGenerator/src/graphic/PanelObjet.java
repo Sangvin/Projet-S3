@@ -33,7 +33,7 @@ public class PanelObjet extends JTabbedPane implements Observer{
 	 */
 	private static final long serialVersionUID = 1L;
 	/**
-	 * pile des boutons qui sont actuellement pressï¿½s
+	 * pile des boutons qui sont actuellement pressé
 	 */
 	private List<Integer> button;
 	/**

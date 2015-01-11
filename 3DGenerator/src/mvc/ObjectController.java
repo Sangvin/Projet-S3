@@ -215,6 +215,10 @@ public class ObjectController{
 			this.model.setTag(list);
 	}
 	
+	/**
+	 * Permet de copier des données d'un modèle de recherche au modèle d'affichage
+	 * @param model
+	 */
 	public void copyData(ModelRecherche model){
 		this.model.setAuteur(model.getAuteur());
 		this.model.setDescription(model.getDescription());

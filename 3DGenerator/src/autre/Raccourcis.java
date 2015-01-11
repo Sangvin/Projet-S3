@@ -8,6 +8,11 @@ import java.awt.Toolkit;
 import javax.swing.JDialog;
 import javax.swing.JTable;
 
+/**
+ * Permet d'avoir la liste des raccourcies
+ * @author Alex
+ *
+ */
 public class Raccourcis extends JDialog{
 
 	/**
@@ -15,6 +20,10 @@ public class Raccourcis extends JDialog{
 	 */
 	private static final long serialVersionUID = 1L;
 
+	/**
+	 * Constructeur de la boite de dialogue
+	 * @param parent
+	 */
 	public Raccourcis(Frame parent){
 		super(parent,"Liste des Raccourcis", false);
 	    Object[][] data = {

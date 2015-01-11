@@ -14,6 +14,12 @@ import javax.swing.JTextField;
 
 import mvc.Model;
 
+/**
+ * Panel qui permet d'afficher les infos spécifiques de l'objet 
+ * (tag description forme utilisation)
+ * @author Alex
+ *
+ */
 public class PanelInfoSpe extends JPanel implements Observer{
 
 	/**
@@ -41,12 +47,19 @@ public class PanelInfoSpe extends JPanel implements Observer{
 	 */
 	private Model model;
 	
+	/**
+	 * Constructeur du panel
+	 * @param model
+	 */
 	public PanelInfoSpe(Model model){
 		this.model = model;
 		this.initComponents();
 		this.model.addObserver(this);
 	}
 	
+	/**
+	 * Permet d'initialiser les composants
+	 */
 	private void initComponents(){
 		this.description = new JTextArea(4,15);
 		this.description.setLineWrap(true);
@@ -110,6 +123,9 @@ public class PanelInfoSpe extends JPanel implements Observer{
 		this.add(this.forme);
 	}
 
+	/* (non-Javadoc)
+	 * @see java.util.Observer#update(java.util.Observable, java.lang.Object)
+	 */
 	@Override
 	public void update(Observable arg0, Object arg) {
 		if((Integer)arg == 0 || (Integer)arg == 3){

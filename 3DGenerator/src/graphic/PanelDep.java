@@ -16,8 +16,8 @@ import mvc.ObjectController;
 import objet.Point;
 
 /**
- * Contient les boutons utiles aux dï¿½placements
- * @author Alex
+ * Contient les boutons utiles aux déplacements
+ * @author Vincent
  *
  */
 public class PanelDep extends JPanel{

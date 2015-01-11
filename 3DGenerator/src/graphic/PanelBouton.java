@@ -8,7 +8,7 @@ import mvc.Model;
 import mvc.ObjectController;
 
 /**
- * Contient les diffï¿½rents panel de boutons
+ * Contient les différents panel de boutons
  * @author Vincent
  *
  */
