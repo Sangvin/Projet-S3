@@ -67,6 +67,7 @@ public class PanelObjet extends JTabbedPane implements Observer{
 		this.controller = controller;
 		this.initComponents();
 		model.addObserver(this);
+		this.controller.addView(this);
 	}
 
 	/**

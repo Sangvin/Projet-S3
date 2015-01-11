@@ -203,7 +203,7 @@ public class MenuBar extends JMenuBar{
 				controller.setMode(0);
 			}
 		});
-		JRadioButtonMenuItem squelete = new JRadioButtonMenuItem("Squelete");
+		JRadioButtonMenuItem squelete = new JRadioButtonMenuItem("Squelette");
 		squelete.addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent e) {
