@@ -55,6 +55,10 @@ public class Recherche extends JDialog {
      * Contient l'item de menu modifier l'enregistrement
      */
     private JMenuItem itemModifier;
+    /**
+     * Contient l'item de menu exporter le fichier
+     */
+    private JMenuItem itemExporter;
     
 	/**
 	 * Constructeur de la boite de dialogue
@@ -62,12 +66,14 @@ public class Recherche extends JDialog {
 	 * @param controller
 	 * @param itemModifier 
 	 * @param itemSauver 
+	 * @param itemExporter 
 	 */
-	public Recherche(Frame f,ObjectController controller, JMenuItem itemSauver, JMenuItem itemModifier){
+	public Recherche(Frame f,ObjectController controller, JMenuItem itemSauver, JMenuItem itemModifier, JMenuItem itemExporter){
 		super(f,"Recherche de fichiers",true);
 		this.parent = f;
 		this.itemSauver = itemSauver;
 		this.itemModifier = itemModifier;
+		this.itemExporter = itemExporter;
 		this.initComponents(controller);
 		this.pack();	
 		this.setResizable(false);
@@ -144,6 +150,14 @@ public class Recherche extends JDialog {
 	 */
 	public JMenuItem getItemModifier() {
 		return itemModifier;
+	}
+
+	/**
+	 * permet de récupérer l'item menu exporter
+	 * @return
+	 */
+	public JMenuItem getItemExporter() {
+		return itemExporter;
 	}
 }
 

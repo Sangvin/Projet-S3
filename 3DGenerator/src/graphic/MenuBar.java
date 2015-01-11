@@ -3,6 +3,8 @@ package graphic;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.io.File;
+import java.nio.file.Files;
+import java.nio.file.Path;
 
 import javax.swing.ButtonGroup;
 import javax.swing.JFileChooser;
@@ -52,6 +54,10 @@ public class MenuBar extends JMenuBar{
 	 */
 	private JMenuItem itemModifier;
 	/**
+	 * Contient l'item pour exporter le fichier gts
+	 */
+	private JMenuItem itemExporter;
+	/**
 	 * Contient la fenêtre principale
 	 */
 	private Frame f;
@@ -63,7 +69,7 @@ public class MenuBar extends JMenuBar{
 	 * Contient le controller
 	 */
 	private ObjectController controller;
-	
+
 	/**
 	 * Constructeur de la bar de menu
 	 * @param f
@@ -85,7 +91,7 @@ public class MenuBar extends JMenuBar{
 		itemOuvrir.addActionListener(new ActionListener(){
 			@Override
 			public void actionPerformed(ActionEvent arg0) {
-				new Recherche(f,controller,itemSauver,itemModifier);
+				new Recherche(f,controller,itemSauver,itemModifier,itemExporter);
 				if(model.getObject() != null){
 					itemCouleurFigure.setEnabled(true);
 					itemFermer.setEnabled(true);
@@ -116,7 +122,8 @@ public class MenuBar extends JMenuBar{
 				JFileChooser dialogue = new JFileChooser(fichier);	
 				dialogue.setAcceptAllFileFilterUsed(false);
 				dialogue.setFileFilter(new FileNameExtensionFilter("GNU Triangulated Surface (.gts)", "gts"));
-				int status = dialogue.showOpenDialog(null);
+				dialogue.setMultiSelectionEnabled(false);
+				int status = dialogue.showOpenDialog(f);
 				if(status==JFileChooser.APPROVE_OPTION) {
 					fichier = dialogue.getSelectedFile();
 					try {
@@ -128,8 +135,48 @@ public class MenuBar extends JMenuBar{
 							itemSauver.setEnabled(true);
 							itemCouleurFigure.setEnabled(true);
 							itemFermer.setEnabled(true);
+							itemExporter.setEnabled(true);
 							itemModifier.setEnabled(false);
 						}
+					} catch (Exception e) {
+						JOptionPane.showMessageDialog(f, e.getMessage(), "Erreur", JOptionPane.ERROR_MESSAGE);
+					}
+				}
+			}
+		});
+		this.itemExporter = new JMenuItem("Exporter");
+		this.itemExporter.setEnabled(false);
+		this.itemExporter.addActionListener(new ActionListener() {
+			@Override
+			public void actionPerformed(ActionEvent arg0) {
+				File tmp = new File(".");
+				JFileChooser dialogue = new JFileChooser(tmp);	
+				dialogue.setAcceptAllFileFilterUsed(false);
+				dialogue.setFileFilter(new FileNameExtensionFilter("GNU Triangulated Surface (.gts)", "gts"));
+				dialogue.setMultiSelectionEnabled(false);
+				tmp = model.getObject().getFichier();
+				dialogue.setSelectedFile(tmp);
+				int status = dialogue.showSaveDialog(f);
+				if(status==JFileChooser.APPROVE_OPTION) {
+					try {
+						Path in = tmp.toPath();
+						String outName = dialogue.getSelectedFile().getName();
+						if(dialogue.getSelectedFile().getName().equals(".gts"))
+							throw new Exception("Il est impossible d'attribuer le nom .gts au fichier");
+						else if(outName.length() >= 5){
+							if(!outName.substring(outName.length() - 4, outName.length()).equals(".gts"))
+								outName += ".gts";
+						}
+						else
+							outName += ".gts";
+						String output = dialogue.getCurrentDirectory().getPath() + "\\" + outName;
+						tmp = new File(output);
+						System.out.println(tmp.getPath());
+						if(tmp.exists()){
+							throw new Exception("Exportation impossible de fichier existe déjà");
+						}
+						Path out = tmp.toPath();
+						Files.copy(in, out);
 					} catch (Exception e) {
 						JOptionPane.showMessageDialog(f, e.getMessage(), "Erreur", JOptionPane.ERROR_MESSAGE);
 					}
@@ -145,6 +192,7 @@ public class MenuBar extends JMenuBar{
 				itemModifier.setEnabled(false);
 				itemFermer.setEnabled(false);
 				itemSauver.setEnabled(false);
+				itemExporter.setEnabled(false);
 				itemCouleurFigure.setEnabled(false);
 			}
 		});
@@ -160,6 +208,7 @@ public class MenuBar extends JMenuBar{
 		menuFichier.add(itemModifier);
 		menuFichier.addSeparator();
 		menuFichier.add(itemImporter);
+		menuFichier.add(itemExporter);
 		menuFichier.add(itemFermer);
 		menuFichier.addSeparator();
 		menuFichier.add(itemQuitter);
@@ -174,7 +223,7 @@ public class MenuBar extends JMenuBar{
 			}
 		});
 		menuAide.add(itemRaccourcis);
-		
+
 		// Menu Options
 		JMenu menuOptions = new JMenu("Options");
 		itemCouleurFigure = new JMenuItem("Couleur figure");
@@ -223,12 +272,12 @@ public class MenuBar extends JMenuBar{
 		preferenceAffichage.add(normal);
 		preferenceAffichage.add(squelete);
 		preferenceAffichage.add(lumiere);
-		
+
 		menuOptions.add(itemCouleurFigure);
 		menuOptions.add(itemCouleurBackground);
 		menuOptions.addSeparator();
 		menuOptions.add(preferenceAffichage);
-		
+
 		//Ajout des JMenu
 		this.add(menuFichier);
 		this.add(menuOptions);

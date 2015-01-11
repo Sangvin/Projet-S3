@@ -125,6 +125,7 @@ public class JpResultats extends JPanel implements Observer{
 						controller.copyData(modelRecherche);
 						parent.getItemSauver().setEnabled(false);
 						parent.getItemModifier().setEnabled(true);
+						parent.getItemExporter().setEnabled(true);
 						parent.dispose();
 					} catch (Exception e) {
 						JOptionPane.showMessageDialog(parent, e.getMessage(), "Erreur", JOptionPane.ERROR_MESSAGE);

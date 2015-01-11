@@ -44,6 +44,8 @@ public class Raccourcis extends JDialog{
 				{"",""},
 				{"Souris click gauche","Rotation de la figure sur les axes X et Y"},
 				{"Souris click droit","Déplacement de la figure au point souhaité"},
+				{"Souris scroll haut","Zoomer de la figure"},
+				{"Souris scroll bas","Dézoomer la figure"}
 	    };
 
 	    String  title[] = {"Raccourci","Effet"};
